@@ -69,7 +69,7 @@ export default function JobForm({orgId,jobDoc}:{orgId:string;jobDoc?:Job}) {
           Location
           <div className="flex flex-col sm:flex-row gap-4 *:grow">
             <CountrySelect
-              defaultValue={countryId ? {id:countryId,name:countryName} : 0}
+              defaultValue={countryId ? {id:countryId,name:countryName} : {id: 21, name: 'Belgium'}}
               onChange={(e:any) => {
                 setCountryId(e.id);
                 setCountryName(e.name);
@@ -77,7 +77,7 @@ export default function JobForm({orgId,jobDoc}:{orgId:string;jobDoc?:Job}) {
               placeHolder="Select Country"
             />
             <StateSelect
-              defaultValue={stateId ? {id:stateId,name:stateName} : 0}
+              defaultValue={stateId ? {id:stateId,name:stateName} : {id: 1, name: 'Brussels-Capital Region'}}
               countryid={countryId}
               onChange={(e:any) => {
                 setStateId(e.id);
@@ -86,7 +86,7 @@ export default function JobForm({orgId,jobDoc}:{orgId:string;jobDoc?:Job}) {
               placeHolder="Select State"
             />
             <CitySelect
-              defaultValue={cityId ? {id:cityId,name:cityName} : 0}
+              defaultValue={cityId ? {id:cityId,name:cityName} : {id: 1, name: 'Brussels'}}
               countryid={countryId}
               stateid={stateId}
               onChange={(e:any) => {
