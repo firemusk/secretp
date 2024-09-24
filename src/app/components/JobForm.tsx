@@ -46,14 +46,6 @@ export default function JobForm({orgId,jobDoc}:{orgId:string;jobDoc?:Job}) {
         <TextField.Root name="title" placeholder="Job title" defaultValue={jobDoc?.title || ''}/>
         <div className="grid sm:grid-cols-3 gap-6 *:grow">
           <div>
-            Remote?
-            <RadioGroup.Root defaultValue={jobDoc?.remote || 'hybrid'} name="remote">
-              <RadioGroup.Item value="onsite">On-site</RadioGroup.Item>
-              <RadioGroup.Item value="hybrid">Hybrid-remote</RadioGroup.Item>
-              <RadioGroup.Item value="remote">Fully remote</RadioGroup.Item>
-            </RadioGroup.Root>
-          </div>
-          <div>
             Full time?
             <RadioGroup.Root defaultValue={jobDoc?.type || 'full'} name="type">
               <RadioGroup.Item value="project">Project</RadioGroup.Item>
