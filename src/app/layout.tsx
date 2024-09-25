@@ -10,7 +10,21 @@ export const metadata: Metadata = {
   title: "EU Jobs",
   description: "Find a job in the EU institutions change the world by advocating, lobbying, or making policy",
   icons: {
-    icon: '/favicon.ico',
+    icon: '/flavicon/favicon.ico',
+    shortcut: '/flavicon/favicon-32x32.png',
+    apple: '/flavicon/apple-touch-icon.png',
+    other: [
+      {
+        rel: 'android-chrome',
+        sizes: '192x192',
+        url: '/flavicon/android-chrome-192x192.png',
+      },
+      {
+        rel: 'android-chrome',
+        sizes: '512x512',
+        url: '/flavicon/android-chrome-512x512.png',
+      }
+    ]
   },
 };
 
