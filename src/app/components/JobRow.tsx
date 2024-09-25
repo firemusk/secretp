@@ -5,6 +5,7 @@ import {faHeart} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Link from "next/link";
+import Image from 'next/image';
 
 export default function JobRow({jobDoc}:{jobDoc:Job}) {
   return (
@@ -15,9 +16,13 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
         </div>
         <div className="flex grow gap-4">
           <div className="content-center w-12 basis-12 shrink-0">
-            <img
+            <Image
               className="size-12"
-              src={jobDoc?.jobIcon} alt=""/>
+              src={jobDoc?.jobIcon}
+              alt=""
+              width={48}
+              height={48}
+            />
           </div>
           <div className="grow sm:flex">
             <div className="grow">
