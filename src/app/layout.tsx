@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "EU Jobs",
   description: "Find a job in the EU institutions change the world by advocating, lobbying, or making policy",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({

@@ -2,7 +2,7 @@ export default async function Hero() {
   return (
     <section className="container my-16">
       <h1 className="text-4xl font-bold text-center">
-        Work in the Brussels<br />Make policy for the EU
+        Jobs in Brussels<br />Work in the EU
       </h1>
       {/*<p className="text-center text-gray-600 mt-2">*/}
       {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, obcaecati quas! Aliquam at, dignissimos eius esse ex excepturi ipsa.*/}
