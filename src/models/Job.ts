@@ -16,7 +16,6 @@ export type Job = {
   stateId: string;
   cityId: string;
   jobIcon: string;
-  contactPhoto: string;
   contactName: string;
   contactPhone: string;
   contactEmail: string;
@@ -38,7 +37,6 @@ const JobSchema = new Schema({
   stateId: {type: String },
   cityId: {type: String },
   jobIcon: {type: String},
-  contactPhoto: {type: String},
   contactName: {type: String },
   contactPhone: {type: String },
   contactEmail: {type: String },

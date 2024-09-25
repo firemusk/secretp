@@ -106,10 +106,6 @@ export default function JobForm({orgId,jobDoc}:{orgId:string;jobDoc?:Job}) {
           <div className="grow">
             <h3>Contact person</h3>
             <div className="flex gap-2">
-              <div className="">
-                <ImageUpload name="contactPhoto" icon={faUser} defaultValue={jobDoc?.contactPhoto || ''} />
-              </div>
-              <div className="grow flex flex-col gap-1">
                 <TextField.Root
                   placeholder="John Doe"
                   name="contactName"
