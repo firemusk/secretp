@@ -8,23 +8,20 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "EU Jobs",
-  description: "Find a job in the EU institutions change the world by advocating, lobbying, or making policy",
+  description: "Find a job in Policy or Advocacy in Brussels. We also have vacancies at NGOs, EU institutions, political parties etc.",
   icons: {
-    icon: '/flavicon/favicon.ico',
-    shortcut: '/flavicon/favicon-32x32.png',
-    apple: '/flavicon/apple-touch-icon.png',
-    other: [
-      {
-        rel: 'android-chrome',
-        sizes: '192x192',
-        url: '/flavicon/android-chrome-192x192.png',
-      },
-      {
-        rel: 'android-chrome',
-        sizes: '512x512',
-        url: '/flavicon/android-chrome-512x512.png',
-      }
-    ]
+    icon: [
+      { url: '/favicon/favicon.ico' },
+      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/favicon/apple-touch-icon.png' },
+    ],
+    shortcut: [
+      { url: '/favicon/favicon.ico' },
+    ],
   },
 };
 
