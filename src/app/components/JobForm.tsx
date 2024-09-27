@@ -17,6 +17,7 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
   const [countryName, setCountryName] = useState(jobDoc?.country || '');
   const [stateName, setStateName] = useState(jobDoc?.state || '');
   const [cityName, setCityName] = useState(jobDoc?.city || '');
+  const [seniority, setSeniority] = useState(jobDoc?.seniority || 'entry');
 
   async function handleSaveJob(data: FormData) {
     data.set('country', countryName.toString());
@@ -26,6 +27,7 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
     data.set('stateId', stateId.toString());
     data.set('cityId', cityId.toString());
     data.set('orgId', orgId);
+    data.set('seniority', seniority);
     const jobDoc = await saveJobAction(data);
     redirect(`/jobs/${jobDoc.orgId}`);
   }
@@ -62,10 +64,20 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
           </div>
         </div>
         <div>
+          Seniority
+          <RadioGroup.Root defaultValue={seniority} name="seniority" onValueChange={setSeniority}>
+            <RadioGroup.Item value="intern">Intern</RadioGroup.Item>
+            <RadioGroup.Item value="entry">Entry</RadioGroup.Item>
+            <RadioGroup.Item value="mid">Mid</RadioGroup.Item>
+            <RadioGroup.Item value="senior">Senior</RadioGroup.Item>
+          </RadioGroup.Root>
+        </div>
+        <div>
           Location
           <div className="flex flex-col sm:flex-row gap-4 *:grow">
             <CountrySelect
               defaultValue={countryId ? { id: countryId, name: countryName } : { id: 21, name: 'Belgium' }}
+              value={countryId ? { id: countryId, name: countryName } : { id: 21, name: 'Belgium' }}
               onChange={(e: any) => {
                 setCountryId(e.id);
                 setCountryName(e.name);
@@ -74,6 +86,7 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
             />
             <StateSelect
               defaultValue={stateId ? { id: stateId, name: stateName } : { id: 1, name: 'Brussels-Capital Region' }}
+              value={stateId ? { id: stateId, name: stateName } : { id: 1, name: 'Brussels-Capital Region' }}
               countryid={countryId}
               onChange={(e: any) => {
                 setStateId(e.id);
@@ -83,6 +96,7 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
             />
             <CitySelect
               defaultValue={cityId ? { id: cityId, name: cityName } : { id: 1, name: 'Brussels' }}
+              value={cityId ? { id: cityId, name: cityName } : { id: 1, name: 'Brussels' }}
               countryid={countryId}
               stateid={stateId}
               onChange={(e: any) => {

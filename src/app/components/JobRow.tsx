@@ -19,7 +19,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
             <Image
               className="size-12"
               src={jobDoc?.jobIcon}
-              alt=""
+              alt="Icon for job listing company"
               width={48}
               height={48}
             />
@@ -33,9 +33,10 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                 <Link className="hover:underline" href={'/show/'+jobDoc._id}>{jobDoc.title}</Link>
               </div>
               <div className="text-gray-400 text-sm capitalize">
-                {jobDoc.remote}
+                {jobDoc.seniority}
                 {' '}&middot;{' '}
-                {jobDoc.city}, {jobDoc.country}
+                {/* need to fix jobDoc it doesn't appear to be defined */} 
+                {jobDoc.city || 'Brussels'}, {jobDoc.country || 'Belgium'}
                 {' '}&middot;{' '}
                 {jobDoc.type}-time
                 {jobDoc.isAdmin && (

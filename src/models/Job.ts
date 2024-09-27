@@ -23,6 +23,7 @@ export type Job = {
   createdAt: string;
   updatedAt: string;
   isAdmin?: boolean;
+  seniority: string;
 };
 
 const JobSchema = new Schema({
@@ -41,6 +42,7 @@ const JobSchema = new Schema({
   contactPhone: {type: String },
   contactEmail: {type: String },
   orgId: {type: String },
+  seniority: {type: String },
 }, {
   timestamps: true,
 });
