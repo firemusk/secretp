@@ -8,7 +8,7 @@ export async function saveJobAction(formData: FormData) {
   await mongoose.connect(process.env.MONGO_URI as string);
   const {id, ...jobData} = Object.fromEntries(formData);
   const jobDoc = (id)
-    ? await JobModel.findByIdAndUpdate(id, jobData)
+    ? await JobModel.findByIdAndUpdate(id, jobData, { new: true })
     : await JobModel.create( jobData );
   if ('orgId' in jobData) {
     revalidatePath('/jobs/'+jobData?.orgId);
