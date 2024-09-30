@@ -20,7 +20,7 @@ export default async function Home() {
   await connectDB();  // Ensure connection is established
   const { user } = await getUser();
   const latestJobs = await addOrgAndUserData(
-    await JobModel.find({}, {}, { limit: 5, sort: '-createdAt' }),
+    await JobModel.find({}, {}, { sort: '-createdAt' }),
     user,
   );
   return (
