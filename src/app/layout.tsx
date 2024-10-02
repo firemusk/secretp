@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "EU Jobs",
   description: "Find a job in Policy or Advocacy in Brussels. We also have vacancies at NGOs, EU institutions, political parties etc.",
   verification: {
-    google: "google0da16e8bbbbb0732",
+    google: "IPQK9o-Ctj-mRI0LGd7JAXC9e1eSeMpA0J25py8xg7c",
   },
   icons: {
     icon: [
