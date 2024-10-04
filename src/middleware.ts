@@ -13,5 +13,9 @@ export const config = {
     '/jobs/:orgId*',
     '/jobs/edit/:jobId*',
     '/show/:jobId*',
+    '/pricing',
+    '/user',
+    '/checkout',
+    '/api/checkout_sessions'
   ]
 };
