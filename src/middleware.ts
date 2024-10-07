@@ -8,6 +8,7 @@ export const config = {
   matcher: [
     '/',
     '/new-listing',
+    '/new-listing/form',
     '/new-listing/:orgId*',
     '/new-company',
     '/jobs/:orgId*',
@@ -16,6 +17,7 @@ export const config = {
     '/pricing',
     '/user',
     '/checkout',
-    '/api/checkout_sessions'
+    '/api/checkout_sessions',
+    '/list-prices'
   ]
 };

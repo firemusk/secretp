@@ -1,35 +1,39 @@
 'use client';
+
 import { saveJobAction } from "@/app/actions/jobActions";
 import ImageUpload from "@/app/components/ImageUpload";
 import type { Job } from "@/models/Job";
-import { faEnvelope, faMobile, faPerson, faPhone, faStar, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faPhone, faStar, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, RadioGroup, TextArea, TextField, Theme } from "@radix-ui/themes"; // This is correct
+import { Button, RadioGroup, TextArea, TextField, Theme } from "@radix-ui/themes";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 import "react-country-state-city/dist/react-country-state-city.css";
 import { CitySelect, CountrySelect, StateSelect } from "react-country-state-city";
 
-export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job }) {
-  const [countryId, setCountryId] = useState(jobDoc?.countryId || 0);
-  const [stateId, setStateId] = useState(jobDoc?.stateId || 0);
-  const [cityId, setCityId] = useState(jobDoc?.cityId || 0);
+interface JobFormProps {
+  jobDoc?: Job;
+}
+
+export default function JobForm({ jobDoc }: JobFormProps) {
+  const [countryId, setCountryId] = useState(jobDoc?.countryId ? parseInt(jobDoc.countryId) : 0);
+  const [stateId, setStateId] = useState(jobDoc?.stateId ? parseInt(jobDoc.stateId) : 0);
+  const [cityId, setCityId] = useState(jobDoc?.cityId ? parseInt(jobDoc.cityId) : 0);
   const [countryName, setCountryName] = useState(jobDoc?.country || '');
   const [stateName, setStateName] = useState(jobDoc?.state || '');
   const [cityName, setCityName] = useState(jobDoc?.city || '');
   const [seniority, setSeniority] = useState(jobDoc?.seniority || 'entry');
 
   async function handleSaveJob(data: FormData) {
-    data.set('country', countryName.toString());
-    data.set('state', stateName.toString());
-    data.set('city', cityName.toString());
+    data.set('country', countryName);
+    data.set('state', stateName);
+    data.set('city', cityName);
     data.set('countryId', countryId.toString());
     data.set('stateId', stateId.toString());
     data.set('cityId', cityId.toString());
-    data.set('orgId', orgId);
     data.set('seniority', seniority);
-    const jobDoc = await saveJobAction(data);
-    redirect(`/jobs/${jobDoc.orgId}`);
+    const savedJob = await saveJobAction(data);
+    redirect(`/jobs/${savedJob._id}`);
   }
 
   return (
@@ -39,9 +43,10 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
         className="container mt-6 flex flex-col gap-4"
       >
         {jobDoc && (
-          <input type="hidden" name="id" value={jobDoc?._id} />
+          <input type="hidden" name="id" value={jobDoc._id} />
         )}
         <TextField.Root name="title" placeholder="Job title" defaultValue={jobDoc?.title || ''} />
+        <TextField.Root name="companyName" placeholder="Company name" defaultValue={jobDoc?.companyName || ''} />
         <div className="grid sm:grid-cols-3 gap-6 *:grow">
           <div>
             Full time?
@@ -53,7 +58,7 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
           </div>
           <div>
             Salary
-            <TextField.Root name="salary" defaultValue={jobDoc?.salary || ''}>
+            <TextField.Root name="salary" defaultValue={jobDoc?.salary?.toString() || ''}>
               <TextField.Slot>
                 $
               </TextField.Slot>
@@ -76,8 +81,7 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
           Location
           <div className="flex flex-col sm:flex-row gap-4 *:grow">
             <CountrySelect
-              defaultValue={countryId ? { id: countryId, name: countryName } : { id: 21, name: 'Belgium' }}
-              value={countryId ? { id: countryId, name: countryName } : { id: 21, name: 'Belgium' }}
+              defaultValue={countryId ? { id: countryId, name: countryName } : undefined}
               onChange={(e: any) => {
                 setCountryId(e.id);
                 setCountryName(e.name);
@@ -85,8 +89,7 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
               placeHolder="Select Country"
             />
             <StateSelect
-              defaultValue={stateId ? { id: stateId, name: stateName } : { id: 1, name: 'Brussels-Capital Region' }}
-              value={stateId ? { id: stateId, name: stateName } : { id: 1, name: 'Brussels-Capital Region' }}
+              defaultValue={stateId ? { id: stateId, name: stateName } : undefined}
               countryid={countryId}
               onChange={(e: any) => {
                 setStateId(e.id);
@@ -95,8 +98,7 @@ export default function JobForm({ orgId, jobDoc }: { orgId: string; jobDoc?: Job
               placeHolder="Select State"
             />
             <CitySelect
-              defaultValue={cityId ? { id: cityId, name: cityName } : { id: 1, name: 'Brussels' }}
-              value={cityId ? { id: cityId, name: cityName } : { id: 1, name: 'Brussels' }}
+              defaultValue={cityId ? { id: cityId, name: cityName } : undefined}
               countryid={countryId}
               stateid={stateId}
               onChange={(e: any) => {

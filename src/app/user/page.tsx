@@ -1,7 +1,7 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createUser } from "@/app/actions/userActions";
+import { createUser, isProfileComplete } from "@/app/actions/userActions";
 
 export default function CreateUserPage() {
   const router = useRouter();
@@ -11,10 +11,30 @@ export default function CreateUserPage() {
   const [redirectMessage, setRedirectMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    async function checkProfileStatus() {
+      try {
+        const profileComplete = await isProfileComplete();
+        if (profileComplete) {
+          console.log('Profile is already completed');
+          router.push('/');
+        } else {
+          //setIsLoading(false);
+        }
+      } catch (error) {
+        console.error('Error checking profile status:', error);
+        setMessage('An error occurred while checking your profile status.');
+        //setIsLoading(false);
+      }
+    }
+
+    checkProfileStatus();
+  }, [router]);
+
+
   async function handleSubmit(formData: FormData) {
     setIsSubmitting(true);
     formData.set('isJobPoster', isJobPoster ? 'true' : 'false');
-    
     try {
       const result = await createUser(formData);
       console.log(Object.fromEntries(formData));
