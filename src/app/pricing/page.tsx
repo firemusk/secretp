@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react';
-import Head from 'next/head';
 import { useRouter } from 'next/navigation';
 
 const PricingPage = () => {
@@ -10,7 +9,8 @@ const PricingPage = () => {
   const handleCheckout = async (planName: string, price: number) => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/checkout', {
+      const endpoint = planName === 'Basic Plan' ? '/api/checkout-basic' : '/api/checkout-pro';
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const PricingPage = () => {
         ))}
       </ul>
       <button
-        onClick={() => handleCheckout(title, parseFloat(price.replace('$', '')))}
+        onClick={() => handleCheckout(title, parseFloat(price.replace('€', '')))}
         disabled={isLoading}
         className="transition-colors hover:bg-blue-600 bg-blue-500 text-white px-4 py-2 rounded disabled:bg-blue-300"
       >
@@ -52,27 +52,29 @@ const PricingPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <Head>
-        <title>Pricing - Your App Name</title>
-        <meta name="description" content="Pricing plans for Your App Name" />
-      </Head>
       <h1 className="text-3xl font-bold mb-6">Pricing Plans</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <PricingCard
           title="Basic Plan"
-          price="$9.99/month"
+          price="€100.00"
           features={[
-            "Post up to 5 job listings per month",
-            "Basic job listing appearance"
+            "Your job visible on the homepage for 7 days",
+            "Your vacancy in the newsletter for 1 day",
+            "Your vacancy in a LinkedIn post alongside other vacancies",
+            "Instant post after submission",
+            "Unlimited revisions"
           ]}
           buttonText="Choose Plan"
         />
         <PricingCard
           title="Pro Plan"
-          price="$19.99/month"
+          price="€200.00"
           features={[
-            "Unlimited job postings",
-            "Featured listings with priority placement"
+            "Your vacancy on the homepage for 30 days",
+            "Your vacancy in the newsletter for 30 days",
+            "Your vacancy in a dedicated LinkedIn Post",
+            "Instant post after submission",
+            "Unlimited revisions"
           ]}
           buttonText="Choose Plan"
         />
