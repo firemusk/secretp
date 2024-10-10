@@ -13,8 +13,8 @@ export async function POST(req: Request) {
     
     // Define prices for each plan
     const prices = {
-      basic: 1000, // $10
-      pro: 2000, // $20
+      basic: 9999, // 10
+      pro: 19999, // $20
     };
 
     if (!prices[plan as keyof typeof prices]) {
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       line_items: [
         {
           price_data: {
-            currency: 'usd',
+            currency: 'eur',
             product_data: {
               name: `Job Posting - ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan`,
             },

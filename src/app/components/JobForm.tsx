@@ -30,6 +30,20 @@ export default function JobForm({ jobDoc }: JobFormProps) {
   const [plan, setPlan] = useState(jobDoc?.plan || 'basic');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const planFeatures = {
+    basic: [
+      'Your job visible on the homepage for 7 days',
+      'Instant post after submission',
+      'Unlimited revisions',
+    ],
+    pro: [
+      'Your vacancy on the homepage for 30 days',
+      'Priority placement + Highlighted',
+      'Instant post after submission',
+      'Unlimited revisions',
+    ],
+  };
+
   async function handleSaveJob(data: FormData) {
     setIsSubmitting(true);
     try {
@@ -201,13 +215,56 @@ export default function JobForm({ jobDoc }: JobFormProps) {
           resize="vertical"
           name="description"
         />
-        <div>
-          Select a vacancy type
-          <RadioGroup.Root defaultValue={plan} name="plan" onValueChange={setPlan}>
-            <RadioGroup.Item value="basic">Basic ($10)</RadioGroup.Item>
-            <RadioGroup.Item value="pro">Pro ($20)</RadioGroup.Item>
-          </RadioGroup.Root>
-        </div>
+<div className="mt-6 space-y-4">
+  <h3 className="text-xl font-bold">Select a plan</h3>
+  <RadioGroup.Root 
+    defaultValue={plan} 
+    name="plan" 
+    onValueChange={setPlan}
+    className="space-y-4"
+  >
+    <div className="border border-gray-200 rounded-lg p-4 shadow-sm">
+      <div className="flex items-center mb-2">
+        <RadioGroup.Item 
+          value="basic" 
+          id="basic"
+          className="w-4 h-4 rounded-full mr-2 cursor-pointer"
+        />
+        <label className="pl-2 font-bold text-lg cursor-pointer" htmlFor="basic">Basic (€99.99)</label>
+      </div>
+      <ul className="space-y-2 ml-6">
+        {planFeatures.basic.map((feature, index) => (
+          <li key={index} className="flex items-start">
+            <svg className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div className="border border-gray-200 rounded-lg p-4 shadow-sm">
+      <div className="flex items-center mb-2">
+        <RadioGroup.Item 
+          value="pro" 
+          id="pro"
+          className="w-4 h-4 rounded-full mr-2 cursor-pointer"
+        />
+        <label className="pl-2 font-bold text-lg cursor-pointer" htmlFor="pro">Pro (€200.00)</label>
+      </div>
+      <ul className="space-y-2 ml-6">
+        {planFeatures.pro.map((feature, index) => (
+          <li key={index} className="flex items-start">
+            <svg className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </RadioGroup.Root>
+      </div>
         <div className="flex justify-center">
           <Button size="3">
             <span className="px-8">Save</span>
