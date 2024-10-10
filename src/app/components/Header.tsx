@@ -42,7 +42,7 @@ export default async function Header() {
           {isJobPoster && (
             <Link
             className="rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
-            href="/new-listing"
+            href="/new-listing/form"
             >
             Post a job
             </Link>
