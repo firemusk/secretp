@@ -11,7 +11,6 @@ export default async function Header() {
     try {
       const customUser = await getCustomUser();
       isJobPoster = customUser?.isJobPoster ?? true;  // Use nullish coalescing with true as default
-      console.log("isJobPoster: ", isJobPoster);
     } catch (error) {
       console.error("Error fetching custom user:", error);
       // Error occurred, but we'll keep isJobPoster as true
@@ -38,17 +37,17 @@ export default async function Header() {
                   Logout
                 </button>
               </form>
-              {isJobPoster && (
-                <Link
-                  className="rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
-                  href="/new-listing"
-                >
-                  Post a job
-                </Link>
-              )}
             </>
           )}
-        </nav>
+          {isJobPoster && (
+            <Link
+            className="rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
+            href="/new-listing"
+            >
+            Post a job
+            </Link>
+          )}
+          </nav>
       </div>
     </header>
   );
