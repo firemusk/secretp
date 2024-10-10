@@ -32,8 +32,36 @@ export default function JobSuccessPage() {
 
   return (
     <div>
-      <h1>Payment Successful!</h1>
-      <p>Your job posting has been successfully published.</p>
+<div style={{
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',
+  backgroundColor: '#f0f8ff'
+}}>
+  <div style={{
+    border: '2px solid #28a745',
+    backgroundColor: '#d4edda',
+    padding: '30px',
+    borderRadius: '20px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    maxWidth: '500px',
+    textAlign: 'center'
+  }}>
+    <h1 style={{
+      color: '#28a745',
+      marginBottom: '20px',
+      fontSize: '2.5rem'
+    }}>🎉 Payment Successful!</h1>
+    <p style={{
+      fontSize: '1.2rem',
+      lineHeight: '1.6',
+      color: '#333'
+    }}>
+      Your job posting has been successfully published. Thank you for choosing our platform!
+    </p>
+  </div>
+</div>
     </div>
   );
 }

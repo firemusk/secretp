@@ -19,6 +19,8 @@ export const config = {
     '/checkout',
     '/api/checkout_sessions',
     '/list-prices',
-    '/job-listings'
+    '/job-listings',
+    '/job-cancel',
+    '/job-success'
   ]
 };
