@@ -21,6 +21,8 @@ export type Job = {
   createdAt: string;
   updatedAt: string;
   seniority: string;
+  plan?: string;
+  userWorkosId: string;
 };
 
 const JobSchema = new Schema({
@@ -40,6 +42,13 @@ const JobSchema = new Schema({
   contactPhone: { type: String },
   contactEmail: { type: String },
   seniority: { type: String },
+  userWorkosId: { type: String },
+  plan: {
+    type: String, 
+    enum: ['pending', 'basic', 'premium', 'unlimited'],
+    required: false,
+    default: 'pending' // this will change after stripe confirmation
+  }
 }, {
   timestamps: true,
 });

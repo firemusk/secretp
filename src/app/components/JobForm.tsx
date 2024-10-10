@@ -10,12 +10,16 @@ import { redirect } from "next/navigation";
 import { useState } from "react";
 import "react-country-state-city/dist/react-country-state-city.css";
 import { CitySelect, CountrySelect, StateSelect } from "react-country-state-city";
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY');
 
 interface JobFormProps {
   jobDoc?: Job;
 }
 
 export default function JobForm({ jobDoc }: JobFormProps) {
+
   const [countryId, setCountryId] = useState(jobDoc?.countryId ? parseInt(jobDoc.countryId) : 0);
   const [stateId, setStateId] = useState(jobDoc?.stateId ? parseInt(jobDoc.stateId) : 0);
   const [cityId, setCityId] = useState(jobDoc?.cityId ? parseInt(jobDoc.cityId) : 0);
@@ -23,17 +27,62 @@ export default function JobForm({ jobDoc }: JobFormProps) {
   const [stateName, setStateName] = useState(jobDoc?.state || '');
   const [cityName, setCityName] = useState(jobDoc?.city || '');
   const [seniority, setSeniority] = useState(jobDoc?.seniority || 'entry');
+  const [plan, setPlan] = useState(jobDoc?.plan || 'basic');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSaveJob(data: FormData) {
-    data.set('country', countryName);
-    data.set('state', stateName);
-    data.set('city', cityName);
-    data.set('countryId', countryId.toString());
-    data.set('stateId', stateId.toString());
-    data.set('cityId', cityId.toString());
-    data.set('seniority', seniority);
-    const savedJob = await saveJobAction(data);
-    redirect(`/jobs/${savedJob._id}`);
+    setIsSubmitting(true);
+    try {
+      data.set('country', countryName);
+      data.set('state', stateName);
+      data.set('city', cityName);
+      data.set('countryId', countryId.toString());
+      data.set('stateId', stateId.toString());
+      data.set('cityId', cityId.toString());
+      data.set('seniority', seniority);
+      data.set('plan', plan);
+      const savedJob = await saveJobAction(data);
+
+      const stripe = await stripePromise;
+      if (!stripe) {
+        throw new Error('Stripe failed to load');
+      }
+
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          jobId: savedJob._id,
+          plan: plan,
+        }),
+      });
+
+      const responseData = await response.json();
+      console.log('Server response:', responseData);
+
+      if (!response.ok) {
+        throw new Error(`Failed to create checkout session: ${responseData.error || 'Unknown error'}`);
+      }
+
+      if (!responseData.sessionId) {
+        throw new Error('No session ID returned from the server');
+      }
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: responseData.sessionId,
+      });
+
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
+    } catch (error) {
+      console.error('Error during job save or checkout:', error);
+      // Here you might want to show an error message to the user
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -152,6 +201,13 @@ export default function JobForm({ jobDoc }: JobFormProps) {
           resize="vertical"
           name="description"
         />
+        <div>
+          Select a vacancy type
+          <RadioGroup.Root defaultValue={plan} name="plan" onValueChange={setPlan}>
+            <RadioGroup.Item value="basic">Basic ($10)</RadioGroup.Item>
+            <RadioGroup.Item value="pro">Pro ($20)</RadioGroup.Item>
+          </RadioGroup.Root>
+        </div>
         <div className="flex justify-center">
           <Button size="3">
             <span className="px-8">Save</span>

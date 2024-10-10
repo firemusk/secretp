@@ -27,7 +27,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
           <div className="grow sm:flex">
             <div className="grow">
               <div>
-                <Link href={`/jobs/${jobDoc.orgId}`} className="hover:underline text-gray-500 text-sm">{jobDoc.orgName || '?'}</Link>
+                <Link href={`/jobs/${jobDoc.orgId}`} className="hover:underline text-gray-500 text-sm">{jobDoc.companyName || '?'}</Link>
               </div>
               <div className="font-bold text-lg mb-1">
                 <Link className="hover:underline" href={'/show/'+jobDoc._id}>{jobDoc.title}</Link>

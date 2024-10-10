@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
             product_data: {
               name: 'Pro Plan',
             },
-            unit_amount: 20000, // €200.00
+            unit_amount: 19999, // €199.00
           },
           quantity: 1,
         },

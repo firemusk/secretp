@@ -9,12 +9,6 @@ const UserSchema = new Schema({
   name: { type: String, required: true }, // this can be either the name of the job seeker or the name of the company
   isJobPoster: { type: Boolean, required: true }, // true for job poster, false for job seeker
   isProfileComplete: { type: Boolean, required: false, default: false},
-  plan: { 
-    type: String, 
-    enum: ['free', 'basic', 'premium', 'unlimited'],
-    default: 'free',
-    required: false
-  },
 }, {
   timestamps: true,
 });

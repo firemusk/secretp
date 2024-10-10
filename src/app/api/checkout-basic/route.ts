@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripe = new Stripe(process.env.TEST_STRIPE_SECRET_KEY!, {
   apiVersion: '2023-10-16',
 });
+console.log(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,7 +18,7 @@ export async function POST(request: NextRequest) {
             product_data: {
               name: 'Basic Plan',
             },
-            unit_amount: 10000, // €100.00
+            unit_amount: 9999, // €99.00
           },
           quantity: 1,
         },

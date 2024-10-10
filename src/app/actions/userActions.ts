@@ -119,7 +119,7 @@ export async function getCustomUser(): Promise<User | null> {
     if (!workosUser) {
       return null;
     }
-    const user = await UserModel.findOne({ workosId: workosUser.id });
+    const user = await UserModel.findOne({ workosId: workosUser.user.id });
     return user ? user.toObject() : null;
   } catch (error) {
     console.error('Error fetching custom user:', error);

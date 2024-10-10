@@ -18,6 +18,7 @@ export const config = {
     '/user',
     '/checkout',
     '/api/checkout_sessions',
-    '/list-prices'
+    '/list-prices',
+    '/job-listings'
   ]
 };
