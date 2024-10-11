@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <Jobs initialJobs={initialJobs} />
+      <Jobs header="latest jobs" initialJobs={initialJobs} />
     </>
   );
 }

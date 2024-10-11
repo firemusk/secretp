@@ -1,5 +1,4 @@
 'use server'
-
 import { UserModel, User } from '@/models/User';
 import dbConnect from '@/lib/dbConnect';
 import { getUser } from "@workos-inc/authkit-nextjs";
@@ -39,8 +38,8 @@ export async function isProfileComplete(): Promise<boolean> {
 
 export async function getWorkosId(): Promise<string> {
   const workosUser = await getUser();
-  if (!workosUser) {
-    throw new Error('WorkOS user not found');
+  if (!workosUser || !workosUser.user || !workosUser.user.id) {
+    throw new Error('WorkOS user not found or invalid');
   }
   return workosUser.user.id;
 }
@@ -49,7 +48,6 @@ export async function getWorkosId(): Promise<string> {
 export async function createUser(formData: FormData): Promise<CreateUserResult> {
   try {
     await dbConnect();
-
     // Check if profile is already complete
     if (await isProfileComplete()) {
       console.log('Cannot create user twice, profile is already complete');
@@ -58,22 +56,21 @@ export async function createUser(formData: FormData): Promise<CreateUserResult> 
         message: 'User profile is already complete. Cannot create or update.',
       };
     }
-
     const workosUser = await getUser();
+    if (!workosUser || !workosUser.user || !workosUser.user.id || !workosUser.user.email) {
+      throw new Error('Invalid WorkOS user data');
+    }
     console.log('here is the workosUserId: ', workosUser.user.id);
     
     const name = formData.get('name');
     const isJobPosterString = formData.get('isJobPoster');
-
     if (typeof name !== 'string' || name.length === 0) {
       throw new Error('Invalid name');
     }
     if (typeof isJobPosterString !== 'string') {
       throw new Error('Invalid value for isJobPoster');
     }
-
     const isJobPoster = isJobPosterString === 'true';
-
     let user = await UserModel.findOne({ workosId: workosUser.user.id });
     if (user) {
       // Update existing user
@@ -97,8 +94,7 @@ export async function createUser(formData: FormData): Promise<CreateUserResult> 
         email: workosUser.user.email
       });
     }
-
-  if (!user) {
+    if (!user) {
       throw new Error('Failed to create or update user');
     }
     
@@ -111,12 +107,11 @@ export async function createUser(formData: FormData): Promise<CreateUserResult> 
   }
 }
 
-
 export async function getCustomUser(): Promise<User | null> {
   try {
     await dbConnect();
     const workosUser = await getUser();
-    if (!workosUser) {
+    if (!workosUser || !workosUser.user || !workosUser.user.id) {
       return null;
     }
     const user = await UserModel.findOne({ workosId: workosUser.user.id });

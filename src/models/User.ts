@@ -1,16 +1,22 @@
 import mongoose, { model, models, Schema } from 'mongoose';
 
-const UserSchema = new Schema({
-  // these two fields are retrieved from workOS
-  workosId: {type: String, required:true, unique: true},
-  email: {type: String, required:false, unique:true},
+interface IUser {
+  workosId: string;
+  email?: string;
+  name: string;
+  isJobPoster: boolean;
+  isProfileComplete: boolean;
+}
 
-  // these fields are what the user gives us by the sing up forms
-  name: { type: String, required: true }, // this can be either the name of the job seeker or the name of the company
-  isJobPoster: { type: Boolean, required: true }, // true for job poster, false for job seeker
-  isProfileComplete: { type: Boolean, required: false, default: false},
+const UserSchema = new Schema<IUser>({
+  workosId: { type: String, required: true, unique: true },
+  email: { type: String, required: false, unique: true },
+  name: { type: String, required: true },
+  isJobPoster: { type: Boolean, required: true },
+  isProfileComplete: { type: Boolean, required: false, default: false },
 }, {
   timestamps: true,
 });
 
-export const UserModel = models?.User || model('User', UserSchema);
+export const UserModel = models?.User || model<IUser>('User', UserSchema);
+export type User = mongoose.Document & IUser;

@@ -96,7 +96,7 @@ export default function JobListingsPage() {
       {jobs.length === 0 ? (
         <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
           <p className="font-bold">No jobs found</p>
-          <p>You haven't posted any job listings yet.</p>
+          <p>You have not posted any job listings yet.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

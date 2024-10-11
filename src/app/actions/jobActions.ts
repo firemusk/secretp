@@ -1,5 +1,4 @@
 'use server';
-
 import { JobModel, Job } from '@/models/Job';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
@@ -54,7 +53,6 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
     if (!user || !user.workosId) {
       throw new Error('User not found or missing workosId');
     }
-
     // Convert FormData to an object
     const jobData = Object.fromEntries(formData);
     console.log(jobData);
@@ -65,10 +63,8 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
       ...jobData,
       userWorkosId: user.workosId
     };
-
     // Validate the data
     const validatedData = JobSchema.parse(jobDataWithWorkosId);
-
     let job;
     if (validatedData.id) {
       // For updates, ensure the user owns this job
@@ -80,11 +76,9 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
     } else {
       job = await JobModel.create(validatedData);
     }
-
     if (!job) {
       throw new Error('Failed to save job');
     }
-
     revalidatePath('/jobs');
     return job.toObject(); // Convert to a plain JavaScript object
   } catch (error) {
@@ -98,20 +92,20 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
   }
 }
 
-
 export async function getMyJobs(): Promise<Job[]> {
   try {
     await dbConnect();
     const user = await getCustomUser();
+    if (!user || !user.workosId) {
+      throw new Error('User not found or missing workosId');
+    }
     const userWorkosId = user.workosId;
-
     // Find all jobs where companyName matches the user's name
     const jobs = await JobModel.find({ userWorkosId: userWorkosId });
-
     console.log('Retrieved jobs:', jobs);
-
     return jobs.map(job => job.toObject());  // Convert to plain JavaScript objects
   } catch (error) {
+    console.error('Error retrieving jobs:', error);
     throw new Error('Failed to retrieve jobs');
   }
 }

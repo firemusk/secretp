@@ -34,7 +34,9 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
           <div className="grow sm:flex">
             <div className="grow">
               <div>
-                <Link href={`/jobs/${jobDoc.orgId}`} className="hover:underline text-gray-600 text-sm font-medium">{jobDoc.companyName || '?'}</Link>
+<div className="text-gray-600 text-sm font-medium">
+  {jobDoc.companyName || '?'}
+</div>
               </div>
               <div className="font-bold text-lg mb-1">
                 <Link className="hover:underline text-gray-800" href={'/show/'+jobDoc._id}>{jobDoc.title}</Link>
@@ -43,7 +45,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                 <span className="bg-gray-100 px-2 py-0.5 rounded-full">{jobDoc.seniority}</span>
                 <span className="bg-gray-100 px-2 py-0.5 rounded-full">{jobDoc.city || 'Brussels'}, {jobDoc.country || 'Belgium'}</span>
                 <span className="bg-gray-100 px-2 py-0.5 rounded-full">{jobDoc.type}-time</span>
-                {jobDoc.isAdmin && (
+                {/*jobDoc.isAdmin && (
                   <>
                     <Link href={'/jobs/edit/'+jobDoc._id} className="text-blue-500 hover:underline">Edit</Link>
                     <button
@@ -56,7 +58,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                       Delete
                     </button>
                   </>
-                )}
+                )*/}
               </div>
             </div>
             {jobDoc.createdAt && (
