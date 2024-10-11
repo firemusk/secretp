@@ -7,13 +7,12 @@ export const revalidate = 60; // revalidate this page every 60 seconds
 
 export default async function Home() {
   await dbConnect();
-
-  const latestJobs = await fetchJobs(10); // Fetch 10 latest jobs
+  const initialJobs = await fetchJobs(10); // Fetch initial 10 jobs
 
   return (
     <>
       <Hero />
-      <Jobs header={''} jobs={latestJobs} />
+      <Jobs initialJobs={initialJobs} />
     </>
   );
 }
