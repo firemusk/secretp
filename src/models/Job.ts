@@ -1,11 +1,10 @@
-import {AutoPaginatable, OrganizationMembership, User, WorkOS} from "@workos-inc/node";
-import mongoose, {model, models, Schema} from 'mongoose';
+import mongoose, { model, models, Schema } from 'mongoose';
 
 export type Job = {
   _id: string;
   title: string;
   description: string;
-  orgName?: string;
+  companyName: string;
   remote: string;
   type: string;
   salary: number;
@@ -19,54 +18,66 @@ export type Job = {
   contactName: string;
   contactPhone: string;
   contactEmail: string;
-  orgId: string;
   createdAt: string;
   updatedAt: string;
-  isAdmin?: boolean;
   seniority: string;
+  plan?: string;
+  userWorkosId: string;
 };
 
 const JobSchema = new Schema({
-  title: {type: String },
-  description: {type: String },
-  type: {type: String },
-  salary: {type: Number },
-  country: {type: String },
-  state: {type: String },
-  city: {type: String },
-  countryId: {type: String },
-  stateId: {type: String },
-  cityId: {type: String },
-  jobIcon: {type: String},
-  contactName: {type: String },
-  contactPhone: {type: String },
-  contactEmail: {type: String },
-  orgId: {type: String },
-  seniority: {type: String },
+  title: { type: String },
+  description: { type: String },
+  companyName: { type: String },
+  type: { type: String },
+  salary: { type: Number },
+  country: { type: String },
+  state: { type: String },
+  city: { type: String },
+  countryId: { type: String },
+  stateId: { type: String },
+  cityId: { type: String },
+  jobIcon: { type: String },
+  contactName: { type: String },
+  contactPhone: { type: String },
+  contactEmail: { type: String },
+  seniority: { type: String },
+  userWorkosId: { type: String },
+  plan: {
+    type: String, 
+    enum: ['pending', 'basic', 'premium', 'unlimited'],
+    required: false,
+    default: 'pending' // this will change after stripe confirmation
+  }
 }, {
   timestamps: true,
 });
 
-export async function addOrgAndUserData(jobsDocs:Job[], user:User|null) {
-  jobsDocs = JSON.parse(JSON.stringify(jobsDocs));
+export const JobModel = models?.Job || model('Job', JobSchema);
+
+// If you need to perform any additional processing on job documents, you can create a new function here
+
+export async function fetchJobs(limit: number = 10) {
   try {
     await mongoose.connect(process.env.MONGO_URI as string);
-    const workos = new WorkOS(process.env.WORKOS_API_KEY);
-    let oms: AutoPaginatable<OrganizationMembership> | null = null;
-    if (user) {
-      oms = await workos.userManagement.listOrganizationMemberships({ userId: user?.id });
-    }
-    for (const job of jobsDocs) {
-      const org = await workos.organizations.getOrganization(job.orgId);
-      job.orgName = org.name;
-      if (oms && oms.data.length > 0) {
-        job.isAdmin = !!oms.data.find(om => om.organizationId === job.orgId);
-      }
-    }
-  } catch (error) {
-    console.error('Error in addOrgAndUserData:', error);
-  }
-  return jobsDocs;
-}
+    
+    // First, fetch pro jobs
+    const proJobs = await JobModel.find({ plan: 'pro' }, {}, { sort: '-createdAt', limit });
+    
+    // Then, fetch non-pro jobs
+    const remainingLimit = limit - proJobs.length;
+    const otherJobs = await JobModel.find(
+      { plan: { $ne: 'pro' } }, // not equal to 'pro'
+      {},
+      { sort: '-createdAt', limit: remainingLimit }
+    );
 
-export const JobModel = models?.Job || model('Job', JobSchema);
+    // Combine the results
+    const allJobs = [...proJobs, ...otherJobs];
+
+    return JSON.parse(JSON.stringify(allJobs));
+  } catch (error) {
+    console.error('Error fetching jobs:', error);
+    return [];
+  }
+}
