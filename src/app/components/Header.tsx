@@ -1,5 +1,6 @@
 import { getSignInUrl, getUser, signOut } from "@workos-inc/authkit-nextjs";
 import Link from "next/link";
+import Image from "next/image";
 import { getCustomUser } from "@/app/actions/userActions";
 
 export default async function Header() {
@@ -20,7 +21,15 @@ export default async function Header() {
   return (
     <header>
       <div className="container flex items-center justify-between mx-auto my-4">
-        <Link href={'/'} className="font-bold text-xl">Job Board</Link>
+        <Link href={'/'} className="font-bold text-xl">Job Board
+<Image 
+  src="/eu-flag.png" 
+  alt="High paying EU jobs" 
+  width={32} 
+  height={32} 
+  className="ml-2 inline-block"
+/>
+        </Link>
         <nav className="flex gap-2">
           {!user && (
             <Link className="rounded-md bg-gray-200 py-1 px-2 sm:py-2 sm:px-4" href={signInUrl}>
@@ -45,6 +54,14 @@ export default async function Header() {
             href="/new-listing/form"
             >
             Post a job
+            </Link>
+          )}
+          {isJobPoster && user && (
+            <Link
+            className="rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-gray-600 text-white hover:bg-gray-700 transition-colors duration-200"
+            href="/dashboard"
+            >
+              Dashboard
             </Link>
           )}
           </nav>
