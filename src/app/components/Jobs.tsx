@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import JobRow from "@/app/components/JobRow";
 import type { Job } from "@/models/Job";
 import { Button } from '@radix-ui/themes';
@@ -8,18 +8,25 @@ import { Button } from '@radix-ui/themes';
 interface JobsProps {
   header: string;
   initialJobs: Job[];
+  isSearchResult?: boolean;
 }
 
-export default function Jobs({ header, initialJobs }: JobsProps) {
+export default function Jobs({ header, initialJobs, isSearchResult = false }: JobsProps) {
   const [jobs, setJobs] = useState<Job[]>(initialJobs);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    setJobs(initialJobs);
+  }, [initialJobs]);
+
   const loadMoreJobs = async () => {
+    if (isSearchResult) return; // Don't load more for search results
+
     setLoading(true);
     try {
       const response = await fetch(`/api/jobs?count=${jobs.length}`);
       const newJobs = await response.json();
-      setJobs([...jobs, ...newJobs]);
+      setJobs(prevJobs => [...prevJobs, ...newJobs]);
     } catch (error) {
       console.error('Error loading more jobs:', error);
     }
@@ -29,7 +36,7 @@ export default function Jobs({ header, initialJobs }: JobsProps) {
   return (
     <div className="bg-slate-200 py-6 rounded-3xl">
       <div className="container">
-        <h2 className="font-bold mb-4">{header || 'Recent jobs'}</h2>
+        <h2 className="font-bold mb-4">{header}</h2>
         <div className="flex flex-col gap-4">
           {jobs.length === 0 ? (
             <div>No jobs found</div>
@@ -39,7 +46,7 @@ export default function Jobs({ header, initialJobs }: JobsProps) {
             ))
           )}
         </div>
-        {jobs.length >= 10 && (
+        {!isSearchResult && jobs.length >= 10 && (
           <div className="mt-6 text-center">
             <Button onClick={loadMoreJobs} disabled={loading} 
             className="!text-white !rounded-md !py-1 !px-2 sm:py-2 sm:px-4 !bg-gray-500 text-white hover:!bg-gray-600 !transition-colors">

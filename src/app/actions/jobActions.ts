@@ -109,3 +109,29 @@ export async function getMyJobs(): Promise<Job[]> {
     throw new Error('Failed to retrieve jobs');
   }
 }
+
+// search jobs with the search input field on the home page 
+export async function searchJobs(searchPhrase: string, limit: number = 10): Promise<Job[]> {
+  try {
+    await dbConnect();
+    
+    const searchRegex = new RegExp(searchPhrase, 'i');
+    
+    const jobs = await JobModel.find(
+      {
+        $or: [
+          { title: searchRegex },
+          { description: searchRegex },
+          { companyName: searchRegex },
+        ]
+      },
+      {},
+      { sort: '-createdAt', limit }
+    );
+    
+    return JSON.parse(JSON.stringify(jobs));
+  } catch (error) {
+    console.error('Error searching jobs:', error);
+    return [];
+  }
+}

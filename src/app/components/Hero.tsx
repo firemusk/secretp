@@ -1,18 +1,31 @@
-export default async function Hero() {
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function Hero() {
+  const [searchPhrase, setSearchPhrase] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push(`/?search=${encodeURIComponent(searchPhrase)}`);
+  };
+
   return (
     <section className="container my-16">
       <h1 className="text-4xl font-bold text-center">
         Jobs in Brussels<br />Work in the EU
       </h1>
-      {/*<p className="text-center text-gray-600 mt-2">*/}
-      {/*  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, obcaecati quas! Aliquam at, dignissimos eius esse ex excepturi ipsa.*/}
-      {/*</p>*/}
-      <form className="flex gap-2 mt-4 max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="flex gap-2 mt-4 max-w-md mx-auto">
         <input
           type="search"
           className="border border-gray-400 w-full py-2 px-3 rounded-md"
-          placeholder="Search phrase.." />
-        <button className="bg-blue-600 text-white py-2 px-4 rounded-md">
+          placeholder="Search phrase.."
+          value={searchPhrase}
+          onChange={(e) => setSearchPhrase(e.target.value)}
+        />
+        <button type="submit" className="transition-colors bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
           Search
         </button>
       </form>
