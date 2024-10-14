@@ -1,5 +1,14 @@
 import { handleAuth } from '@workos-inc/authkit-nextjs';
+import { redirect } from 'next/navigation';
+import { isProfileComplete } from '@/app/actions/userActions';
 
-// Redirect the user to `/` after successful sign in
-// The redirect can be customized: `handleAuth({ returnPathname: '/foo' })`
-export const GET = handleAuth({returnPathname: '/user'});
+export const GET = handleAuth({
+  async onSuccess(user) {
+    const profileComplete = await isProfileComplete();
+    if (profileComplete) {
+      redirect('/');
+    } else {
+      redirect('/user');
+    }
+  },
+});
