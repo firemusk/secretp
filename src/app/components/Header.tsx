@@ -33,7 +33,7 @@ export default async function Header() {
             className="ml-2 inline-block"
           />
         </Link>
-        <nav className="flex gap-2 flex-row content-center">
+        <nav className="flex gap-2 flex-row items-center">
           {!user && (
             <Link className="transition-colors rounded-md bg-gray-200 hover:bg-gray-300 duration-200 py-1 px-2 sm:py-2 sm:px-4" href={signInUrl}>
               Login
