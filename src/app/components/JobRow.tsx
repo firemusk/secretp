@@ -10,7 +10,7 @@ import Image from 'next/image';
 export default function JobRow({jobDoc}:{jobDoc:Job}) {
   const isPro = jobDoc.plan === "pro";
   const isIcon = jobDoc.jobIcon !== "";
-  console.log(jobDoc) 
+
   return (
     <div className={`rounded-lg shadow-sm relative`}>
       <div className={`bg-white p-4 rounded-lg relative`}>
@@ -23,17 +23,6 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
           <FontAwesomeIcon className="size-4 text-gray-300 hover:text-red-500 transition-colors" icon={faHeart} />
         </div>*/}
         <div className="flex grow gap-4">
-        {isIcon && (
-          <div className="content-center w-12 basis-12 shrink-0">
-            <Image
-              className="size-12"
-              src={jobDoc?.jobIcon}
-              alt="Icon for job listing company"
-              width={48}
-              height={48}
-            />
-          </div>
-        )}
           <div className="grow sm:flex pl-2">
             <div className="grow">
               <div>
