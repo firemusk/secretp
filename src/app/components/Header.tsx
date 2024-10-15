@@ -24,7 +24,7 @@ export default async function Header() {
     <header>
       <div className="container flex items-center justify-between mx-auto my-4">
         <Link href={'/'} className="font-bold text-xl">
-          Job Board
+          EUjobs.co
           <Image 
             src="/eu-flag.png" 
             alt="High paying EU jobs" 
