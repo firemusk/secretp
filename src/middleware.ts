@@ -7,6 +7,7 @@ export default authkitMiddleware();
 export const config = {
   matcher: [
     '/',
+    '/dashboard',
     '/new-listing',
     '/new-listing/form',
     '/new-listing/:orgId*',

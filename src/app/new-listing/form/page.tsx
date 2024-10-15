@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import JobForm from '@/app/components/JobForm';
 import { saveJobAction } from "@/app/actions/jobActions";
-import { Theme, Button } from '@radix-ui/themes';
+import { Theme } from '@radix-ui/themes';
 
 export default function NewListingFormPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
