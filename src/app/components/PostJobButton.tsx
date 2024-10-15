@@ -2,7 +2,11 @@
 import Link from "next/link";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
-export default function PostJobButton({ isLoggedIn }) {
+interface PostJobButtonProps {
+  isLoggedIn: boolean;
+}
+
+export default function PostJobButton({ isLoggedIn }: PostJobButtonProps) {
   return (
     <Tooltip.Provider>
       <Tooltip.Root>
