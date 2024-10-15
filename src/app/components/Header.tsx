@@ -20,7 +20,7 @@ export default async function Header() {
   return (
     <header>
       <div className="container flex items-center justify-between mx-auto my-4">
-        <Link href={'/'} className="font-bold text-xl">Job Board</Link>
+        <Link href={'/'} className="font-bold text-xl">EUjobs.co</Link>
         <nav className="flex gap-2">
           {!user && (
             <Link className="rounded-md bg-gray-200 py-1 px-2 sm:py-2 sm:px-4" href={signInUrl}>
