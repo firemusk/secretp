@@ -8,7 +8,7 @@ import dbConnect from '@/lib/dbConnect';
 const JobSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(1, "Job title is required"),
-  userWorkosId: z.string(), //maybe add min ...
+  userWorkosId: z.string().optional(), 
   companyName: z.string().min(1, "Company name is required"),
   type: z.enum(["project", "part", "full"]),
   salary: z.string().optional(),
@@ -48,37 +48,47 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
   try {
     await dbConnect();
     
-    // Get the current user
-    const user = await getCustomUser();
-    if (!user || !user.workosId) {
-      throw new Error('User not found or missing workosId');
-    }
     // Convert FormData to an object
     const jobData = Object.fromEntries(formData);
     console.log(jobData);
-    console.log(user.workosId);
-    
-    // Add the user's workosId to the job data
-    const jobDataWithWorkosId = {
-      ...jobData,
-      userWorkosId: user.workosId
-    };
+
+    let user;
+    try {
+      // Attempt to get the current user, but don't throw an error if not found
+      user = await getCustomUser();
+    } catch (error) {
+      console.log('No authenticated user found, proceeding as guest');
+    }
+
+    let jobDataWithOptionalWorkosId = jobData;
+    if (user && user.workosId) {
+      jobDataWithOptionalWorkosId = {
+        ...jobData,
+        userWorkosId: user.workosId
+      };
+    }
+
     // Validate the data
-    const validatedData = JobSchema.parse(jobDataWithWorkosId);
+    const validatedData = JobSchema.parse(jobDataWithOptionalWorkosId);
+
     let job;
     if (validatedData.id) {
-      // For updates, ensure the user owns this job
-      const existingJob = await JobModel.findOne({ _id: validatedData.id, userWorkosId: user.workosId });
-      if (!existingJob) {
-        throw new Error('Job not found or you do not have permission to edit it');
+      // For updates, check ownership only if there's a user
+      if (user && user.workosId) {
+        const existingJob = await JobModel.findOne({ _id: validatedData.id, userWorkosId: user.workosId });
+        if (!existingJob) {
+          throw new Error('Job not found or you do not have permission to edit it');
+        }
       }
       job = await JobModel.findByIdAndUpdate(validatedData.id, validatedData, { new: true });
     } else {
       job = await JobModel.create(validatedData);
     }
+
     if (!job) {
       throw new Error('Failed to save job');
     }
+
     revalidatePath('/jobs');
     return job.toObject(); // Convert to a plain JavaScript object
   } catch (error) {
@@ -135,3 +145,4 @@ export async function searchJobs(searchPhrase: string, limit: number = 10): Prom
     return [];
   }
 }
+
