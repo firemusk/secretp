@@ -18,7 +18,6 @@ export default async function Home({
   const jobs = searchPhrase
     ? await searchJobs(searchPhrase)
     : await fetchJobs(10);
-
   const header = searchPhrase ? `Search Results for "${searchPhrase}"` : "Latest Jobs";
 
   return (
