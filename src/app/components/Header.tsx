@@ -50,7 +50,7 @@ export default async function Header() {
             </form>
           )}
           {isJobPoster && (
-            <PostJobButton isLoggedIn={!!user} />
+            <PostJobButton />
           )}
           {isJobPoster && user && (
             <Link
