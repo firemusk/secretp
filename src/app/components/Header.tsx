@@ -23,18 +23,21 @@ export default async function Header() {
   return (
     <header>
       <div className="container flex items-center justify-between mx-auto my-4">
-        <Link href={'/'} className="font-bold text-xl">Job Board
-<Image 
-  src="/eu-flag.png" 
-  alt="High paying EU jobs" 
-  width={32} 
-  height={32} 
-  className="ml-2 inline-block"
-/>
+        <Link href={'/'} className="font-bold text-xl group">
+          <span className="flex items-center">
+            Job Board
+          <Image 
+            src="/eu-flag.png" 
+            alt="High paying EU jobs" 
+            width={32} 
+            height={32} 
+            className="ml-2 inline-block transition-all group-hover:rotate-90 duration-300"
+          />
+          </span>
         </Link>
         <nav className="flex gap-2">
           {!user && (
-            <Link className="rounded-md bg-gray-200 py-1 px-2 sm:py-2 sm:px-4" href={signInUrl}>
+            <Link className="transition-colors hover:bg-gray-300 rounded-md bg-gray-200 py-1 px-2 sm:py-2 sm:px-4" href={signInUrl}>
               Login
             </Link>
           )}
