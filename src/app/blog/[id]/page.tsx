@@ -14,7 +14,7 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4">{postData.title}</h1>
       <div className="text-gray-500 mb-6">{postData.date}</div>
-      <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      <div className="!prose max-w-none" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
     </div>
   );
 }

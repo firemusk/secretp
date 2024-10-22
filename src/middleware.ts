@@ -22,6 +22,7 @@ export const config = {
     '/job-listings',
     '/job-cancel',
     '/job-success',
+    '/blog/:path*', // Add this to protect all blog routes
     
     // Exclude public routes like '/', '/blog', etc.
     '/((?!api|blog|_next/static|_next/image|favicon.ico).*)', // Auth applied to everything except public routes
