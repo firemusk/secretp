@@ -1,5 +1,5 @@
 ---
-title: 'Why we're better than euractiv jobs'
+title: "Why we're better than euractiv jobs"
 date: '2024-03-20'
 author: 'eujobs team'
 ---
