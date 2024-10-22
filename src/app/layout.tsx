@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import '@radix-ui/themes/styles.css';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,7 +40,12 @@ export default function RootLayout({
         <Header />
         {children}
         <footer className="container py-8 text-gray-500">
-          EUjobs.co &copy; 2024 - All rights reserved
+          <div className="flex justify-between items-center">
+            <div>EUjobs.co &copy; 2024 - All rights reserved</div>
+            <nav>
+              <Link href="/blog" className="hover:text-gray-700 transition-colors">Blog</Link>
+            </nav>
+          </div>
         </footer>
       </body>
     </html>
