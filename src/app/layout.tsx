@@ -7,8 +7,8 @@ import '@radix-ui/themes/styles.css';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "EU Jobs",
-  description: "Find a job in Policy or Advocacy in Brussels. We also have vacancies at NGOs, EU institutions, political parties etc.",
+  title: "EU Jobs in Brussels: Commission, Agencies, & Government Affairs Opportunities",
+  description: "Find top EU Commission jobs, EU jobs in Brussels, and opportunities in EU agencies. Explore vacancies for government affairs and public affairs specialists across Europe.",
   verification: {
     google: "IPQK9o-Ctj-mRI0LGd7JAXC9e1eSeMpA0J25py8xg7c",
   },
