@@ -25,10 +25,10 @@ export default async function Header() {
       <div className="container flex items-center justify-between mx-auto my-4">
         <Link href={'/'} className="font-bold text-xl group">
           <span className="flex items-center">
-            Job Board
+            eujobs.co
           <Image 
             src="/eu-flag.png" 
-            alt="High paying EU jobs" 
+            alt="EU commission jobs opportunities in Brussels" 
             width={32} 
             height={32} 
             className="ml-2 inline-block transition-all group-hover:rotate-90 duration-300"

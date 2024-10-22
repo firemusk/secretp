@@ -181,7 +181,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
             <h3>Contact person</h3>
             <div className="flex gap-2">
               <TextField.Root
-                placeholder="John Doe"
+                placeholder="John Wick"
                 name="contactName"
                 defaultValue={jobDoc?.contactName || ''}>
                 <TextField.Slot>
