@@ -3,10 +3,9 @@ import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
 export default authkitMiddleware();
 
 // Match against pages that require authentication
-// Leave this out if you want authentication on every page in your application
 export const config = {
   matcher: [
-    '/',
+    // Paths that require authentication
     '/dashboard',
     '/new-listing',
     '/new-listing/form',
@@ -22,6 +21,9 @@ export const config = {
     '/list-prices',
     '/job-listings',
     '/job-cancel',
-    '/job-success'
-  ]
+    '/job-success',
+    
+    // Exclude public routes like '/', '/blog', etc.
+    '/((?!api|blog|_next/static|_next/image|favicon.ico).*)', // Auth applied to everything except public routes
+  ],
 };
