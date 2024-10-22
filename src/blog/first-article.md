@@ -1,7 +1,7 @@
 ---
 title: 'Welcome to the EUjobs.co Blog'
 date: '2024-03-20'
-author: 'Your Name'
+author: 'eujobs team'
 ---
 
 # Welcome to the EUjobs.co Blog
