@@ -20,6 +20,9 @@ We're leveraging our **communications and digital skills** as a startup. Here's 
 
 ## Our Competitive Edge
 
-One of our biggest advantages over Eurobrussels is that, much like we discussed in our Euractiv Jobs article, we offer a **better product** that is always more affordable.
+One of our biggest advantages over Eurobrussels is that, much like we discussed in our Euractiv Jobs article, we offer a **better product** that is always more affordable.
 
-By **2025**, we aim to be the largest job board for EU policy, law firms, legal jobs, and EU institutions.
+Lastly our technical competence gives us a edge over competition, especially when it comes to recruitment in the European union (international relations and all the different policy areas such as trade, energy, transport, and education).
+
+By **2025**, we aim to be the largest job board for EU policy, law firms, legal jobs, and EU institutions. Hopefully some successful candidate or happy law firms will mention us!
+
