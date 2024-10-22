@@ -1,15 +1,11 @@
 import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
 
-export default authkitMiddleware({
-  // Add any paths you want to be public (not require authentication)
-  publicRoutes: ["/", "/blog", "/blog/:id*", "/api/(.*)"],
-});
+export default authkitMiddleware();
 
 // Match against pages that require authentication
-// Leave this out if you want authentication on every page in your application
 export const config = {
   matcher: [
-    '/',
+    // Paths that require authentication
     '/dashboard',
     '/new-listing',
     '/new-listing/form',
@@ -26,8 +22,8 @@ export const config = {
     '/job-listings',
     '/job-cancel',
     '/job-success',
-    //This might need fixing -- it was a Madan quick SEO solution
-    '/blog',
-    '/blog/:id*'
-  ]
+    
+    // Exclude public routes like '/', '/blog', etc.
+    '/((?!api|blog|_next/static|_next/image|favicon.ico).*)', // Auth applied to everything except public routes
+  ],
 };
