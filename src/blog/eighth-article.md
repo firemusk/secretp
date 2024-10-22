@@ -1,5 +1,5 @@
 ---
-title: 'Can I Work in Brussels with English?'
+title: "How We're Beating Eurobrussels"
 date: '2024-03-20'
 author: 'eujobs team'
 ---
