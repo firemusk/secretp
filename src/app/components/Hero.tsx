@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section className="container my-16">
       <h1 className="text-4xl font-bold text-center">
-        Jobs in Brussels<br />Work in the EU
+        eujobs.co<br />Policy work in the EU
       </h1>
       <form onSubmit={handleSubmit} className="flex gap-2 mt-4 max-w-md mx-auto">
         <input
