@@ -15,16 +15,18 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
 
   return (
     <div 
-      className={`rounded-lg shadow-sm relative transition-all duration-200 ${isExpanded ? 'shadow-md' : ''}`}
-      onClick={() => setIsExpanded(!isExpanded)}
+      className={`rounded-lg shadow-sm relative`}
     >
-      <div className={`bg-white hover:bg-gray-50 hover:cursor-pointer p-4 rounded-lg relative`}>
+      <div className={`bg-white p-4 rounded-lg relative  ${isExpanded && 'shadow-md'}`}
+      >
         {isPro && (
           <div className="absolute top-0 right-0 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg rounded-tr-lg">
             <FontAwesomeIcon icon={faStar} className="mr-1" /> featured
           </div>
         )}
-        <div className="flex grow gap-4">
+        <div className="flex grow gap-4 hover:bg-gray-50 hover:cursor-pointer"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
           <div className="grow sm:flex pl-2">
             <div className="grow">
               <div>
@@ -42,7 +44,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
               </div>
             </div>
             {jobDoc.createdAt && (
-              <div className="content-end text-gray-500 text-sm mt-2 sm:mt-0">
+              <div className="content-end text-gray-500 text-xs mt-2 sm:mt-0">
                 <TimeAgo createdAt={jobDoc.createdAt} />
               </div>
             )}
