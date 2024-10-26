@@ -2,7 +2,8 @@
 import { JobModel, Job } from '@/models/Job';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
-import { getCustomUser } from '@/app/actions/userActions';
+//import { getCustomUser } from '@/app/actions/userActions';
+import { getUser } from "@workos-inc/authkit-nextjs";
 import dbConnect from '@/lib/dbConnect';
 
 const JobSchema = z.object({
@@ -47,24 +48,28 @@ export async function updateJobStatusAfterPayment(jobId: string, plan: string): 
 export async function saveJobAction(formData: FormData): Promise<Job> {
   try {
     await dbConnect();
+    console.log("we have entered the save job action function you get me.");
     
     // Convert FormData to an object
     const jobData = Object.fromEntries(formData);
-    console.log(jobData);
+    //console.log(jobData);
 
-    let user;
+    let workosUserId = null;
     try {
       // Attempt to get the current user, but don't throw an error if not found
-      user = await getCustomUser();
+      const workosUser = await getUser();
+      workosUserId = workosUser.user.id;
     } catch (error) {
       console.log('No authenticated user found, proceeding as guest');
     }
 
+    console.log(workosUserId);
+
     let jobDataWithOptionalWorkosId = jobData;
-    if (user && user.workosId) {
+    if (workosUserId) { //make sure that this value is not null or empty
       jobDataWithOptionalWorkosId = {
         ...jobData,
-        userWorkosId: user.workosId
+        userWorkosId: workosUserId
       };
     }
 
@@ -104,12 +109,14 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
 
 export async function getMyJobs(): Promise<Job[]> {
   try {
-    await dbConnect();
-    const user = await getCustomUser();
-    if (!user || !user.workosId) {
+    const workosUser = await getUser();
+
+    if (!workosUser || !workosUser.user.id) {
       throw new Error('User not found or missing workosId');
     }
-    const userWorkosId = user.workosId;
+
+    const userWorkosId = workosUser.user.id;
+
     // Find all jobs where companyName matches the user's name
     const jobs = await JobModel.find({ userWorkosId: userWorkosId });
     console.log('Retrieved jobs:', jobs);
