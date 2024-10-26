@@ -8,7 +8,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default async function NewListingPage() {
   const { user } = await getUser();
-  console.log(user);
+  //console.log(user);
   
   if (!user) {
     return (
