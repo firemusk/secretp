@@ -1,3 +1,8 @@
+---
+title: "The Different Types of EU Job Vacancies"
+date: '2024-10-26'
+author: 'eujobs team'
+---
 # The Different Types of EU Job Vacancies
 
 There are so many different types of EU institutions and EU careers, but often people who arrive in Brussels just think about the sacred trio: **The European Commission, The European Parliament**, and sometimes, **The European Council**.
