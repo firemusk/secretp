@@ -1,3 +1,8 @@
+---
+title: 'How Euractiv Jobs could save Euractiv (and the euractiv jobsite)'
+date: '2024-03-20'
+author: 'eujobs team'
+---
 # How Euractiv Jobs could save Euractiv (and the euractiv jobsite)
 
 Euractiv is Brussels second biggest eu policy news source, founded by Christophe Leclercq and then expanded by David Mekkaoui - who also built the job board- it has been acquired by mediahuis.
