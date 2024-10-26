@@ -49,7 +49,7 @@ export default function Jobs({ header, initialJobs, isSearchResult = false }: Jo
         {!isSearchResult && jobs.length >= 10 && (
           <div className="mt-6 text-center">
             <Button onClick={loadMoreJobs} disabled={loading} 
-            className="!text-white !rounded-md !py-1 !px-2 sm:py-2 sm:px-4 !bg-gray-500 text-white hover:!bg-gray-600 !transition-colors">
+            className="!text-white !rounded-md !py-1 !px-2 sm:py-2 sm:px-4 !bg-gray-500 text-white hover:!bg-gray-600 !transition-colors cursor-pointer">
               {loading ? 'Loading...' : 'Load More Jobs'}
             </Button>
           </div>
