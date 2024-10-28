@@ -20,12 +20,16 @@ interface JobFormProps {
 
 export default function JobForm({ jobDoc }: JobFormProps) {
   const router = useRouter();
-  const [countryId, setCountryId] = useState(jobDoc?.countryId ? parseInt(jobDoc.countryId) : 0);
-  const [stateId, setStateId] = useState(jobDoc?.stateId ? parseInt(jobDoc.stateId) : 0);
-  const [cityId, setCityId] = useState(jobDoc?.cityId ? parseInt(jobDoc.cityId) : 0);
-  const [countryName, setCountryName] = useState(jobDoc?.country || '');
-  const [stateName, setStateName] = useState(jobDoc?.state || '');
-  const [cityName, setCityName] = useState(jobDoc?.city || '');
+  // Default to Belgium (ID: 21)
+  const [countryId, setCountryId] = useState(jobDoc?.countryId ? parseInt(jobDoc.countryId) : 21);
+  // Default to Brussels-Capital Region (ID: 254)
+  const [stateId, setStateId] = useState(jobDoc?.stateId ? parseInt(jobDoc.stateId) : 254);
+  // Default to Brussels (ID: 34248)
+  const [cityId, setCityId] = useState(jobDoc?.cityId ? parseInt(jobDoc.cityId) : 34248);
+  // Set default location names
+  const [countryName, setCountryName] = useState(jobDoc?.country || 'Belgium');
+  const [stateName, setStateName] = useState(jobDoc?.state || 'Brussels-Capital Region');
+  const [cityName, setCityName] = useState(jobDoc?.city || 'Brussels');
   const [seniority, setSeniority] = useState(jobDoc?.seniority || 'entry');
   const [plan, setPlan] = useState(jobDoc?.plan || 'basic');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -163,36 +167,36 @@ export default function JobForm({ jobDoc }: JobFormProps) {
         </div>
 
         <div>
-          Location
-          <div className="flex flex-col sm:flex-row gap-4 *:grow">
-            <CountrySelect
-              defaultValue={countryId ? { id: countryId, name: countryName } : undefined}
-              onChange={(e: any) => {
-                setCountryId(e.id);
-                setCountryName(e.name);
-              }}
-              placeHolder="Select Country"
-            />
-            <StateSelect
-              defaultValue={stateId ? { id: stateId, name: stateName } : undefined}
-              countryid={countryId}
-              onChange={(e: any) => {
-                setStateId(e.id);
-                setStateName(e.name);
-              }}
-              placeHolder="Select State"
-            />
-            <CitySelect
-              defaultValue={cityId ? { id: cityId, name: cityName } : undefined}
-              countryid={countryId}
-              stateid={stateId}
-              onChange={(e: any) => {
-                setCityId(e.id);
-                setCityName(e.name);
-              }}
-              placeHolder="Select City"
-            />
-          </div>
+        Location
+        <div className="flex flex-col sm:flex-row gap-4 *:grow">
+        <CountrySelect
+        defaultValue={{ id: countryId, name: countryName }}
+        onChange={(e: any) => {
+          setCountryId(e.id);
+          setCountryName(e.name);
+        }}
+        placeHolder="Select Country"
+        />
+        <StateSelect
+        defaultValue={{ id: stateId, name: stateName }}
+        countryid={countryId}
+        onChange={(e: any) => {
+          setStateId(e.id);
+          setStateName(e.name);
+        }}
+        placeHolder="Select State"
+        />
+        <CitySelect
+        defaultValue={{ id: cityId, name: cityName }}
+        countryid={countryId}
+        stateid={stateId}
+        onChange={(e: any) => {
+          setCityId(e.id);
+          setCityName(e.name);
+        }}
+        placeHolder="Select City"
+        />
+        </div>
         </div>
 
         <div className="sm:flex">
