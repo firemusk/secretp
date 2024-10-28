@@ -9,11 +9,9 @@ export const config = {
     '/dashboard',
     '/new-listing',
     '/new-listing/form',
-    '/new-listing/:orgId*',
     '/new-company',
-    '/jobs/:orgId*',
-    '/jobs/edit/:jobId*',
-    '/show/:jobId*',
+    '/jobs/edit/:jobId*', 
+    '/jobs/edit/[id]',
     '/pricing',
     '/user',
     '/checkout',
@@ -22,8 +20,12 @@ export const config = {
     '/job-listings',
     '/job-cancel',
     '/job-success',
-    '/blog/:path*', // Add this to protect all blog routes
+    '/blog/:path*',
     
+    '/api/jobs/:path*',
+    '/api/jobs/[id]',
+    '/api/:path*',
+
     // Exclude public routes like '/', '/blog', etc.
     '/((?!api|blog|_next/static|_next/image|favicon.ico).*)', // Auth applied to everything except public routes
   ],

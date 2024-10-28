@@ -2,7 +2,7 @@
 import { JobModel, Job } from '@/models/Job';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
-import { getCustomUser } from '@/app/actions/userActions';
+import { getUser } from "@workos-inc/authkit-nextjs";
 import dbConnect from '@/lib/dbConnect';
 
 const JobSchema = z.object({
@@ -47,24 +47,31 @@ export async function updateJobStatusAfterPayment(jobId: string, plan: string): 
 export async function saveJobAction(formData: FormData): Promise<Job> {
   try {
     await dbConnect();
+    console.log("we have entered the save job action function you get me.");
     
     // Convert FormData to an object
     const jobData = Object.fromEntries(formData);
-    console.log(jobData);
 
-    let user;
+    let workosUserId = null;
     try {
-      // Attempt to get the current user, but don't throw an error if not found
-      user = await getCustomUser();
+      const workosUser = await getUser();
+      // Add proper null checks
+      if (workosUser?.user?.id) {
+        workosUserId = workosUser.user.id;
+      } else {
+        console.log('User or user ID is null');
+      }
     } catch (error) {
       console.log('No authenticated user found, proceeding as guest');
     }
 
+    console.log(workosUserId);
+
     let jobDataWithOptionalWorkosId = jobData;
-    if (user && user.workosId) {
+    if (workosUserId) {
       jobDataWithOptionalWorkosId = {
         ...jobData,
-        userWorkosId: user.workosId
+        userWorkosId: workosUserId
       };
     }
 
@@ -74,8 +81,8 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
     let job;
     if (validatedData.id) {
       // For updates, check ownership only if there's a user
-      if (user && user.workosId) {
-        const existingJob = await JobModel.findOne({ _id: validatedData.id, userWorkosId: user.workosId });
+      if (workosUserId) {
+        const existingJob = await JobModel.findOne({ _id: validatedData.id, userWorkosId: workosUserId });
         if (!existingJob) {
           throw new Error('Job not found or you do not have permission to edit it');
         }
@@ -90,11 +97,10 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
     }
 
     revalidatePath('/jobs');
-    return job.toObject(); // Convert to a plain JavaScript object
+    return job.toObject();
   } catch (error) {
     console.error('Error saving job:', error);
     if (error instanceof z.ZodError) {
-      // If it's a validation error, we can provide more specific feedback
       const errorMessages = error.errors.map(err => err.message).join(", ");
       throw new Error(`Validation failed: ${errorMessages}`);
     }
@@ -104,23 +110,23 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
 
 export async function getMyJobs(): Promise<Job[]> {
   try {
-    await dbConnect();
-    const user = await getCustomUser();
-    if (!user || !user.workosId) {
+    const workosUser = await getUser();
+
+    if (!workosUser?.user?.id) {
       throw new Error('User not found or missing workosId');
     }
-    const userWorkosId = user.workosId;
-    // Find all jobs where companyName matches the user's name
+
+    const userWorkosId = workosUser.user.id;
+
     const jobs = await JobModel.find({ userWorkosId: userWorkosId });
     console.log('Retrieved jobs:', jobs);
-    return jobs.map(job => job.toObject());  // Convert to plain JavaScript objects
+    return jobs.map(job => job.toObject());
   } catch (error) {
     console.error('Error retrieving jobs:', error);
     throw new Error('Failed to retrieve jobs');
   }
 }
 
-// search jobs with the search input field on the home page 
 export async function searchJobs(searchPhrase: string, limit: number = 10): Promise<Job[]> {
   try {
     await dbConnect();
@@ -145,4 +151,3 @@ export async function searchJobs(searchPhrase: string, limit: number = 10): Prom
     return [];
   }
 }
-

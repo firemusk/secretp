@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { getMyJobs } from '@/app/actions/jobActions';
 import { Job } from '@/models/Job';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBriefcase, faBuilding, faChartLine, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBriefcase, faBuilding, faChartLine, faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function JobListingsPage() {
+  const router = useRouter();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -37,6 +39,10 @@ export default function JobListingsPage() {
       setError('Failed to delete job');
     }
   }
+
+  const handleEdit = (job: Job) => {
+    router.push(`/jobs/edit/${job._id}`);
+  };
 
   function ConfirmationDialog() {
     if (!jobToDelete) return null;
@@ -105,12 +111,20 @@ export default function JobListingsPage() {
               <div className="p-6">
                 <div className="flex justify-between items-start mb-2">
                   <h2 className="text-xl font-semibold text-gray-800">{job.title}</h2>
+                  <div className="flex gap-2">
                   <button 
-                    onClick={() => setJobToDelete(job)}
-                    className="text-red-500 hover:text-red-700 transition-colors duration-200"
+                  onClick={() => handleEdit(job)}
+                  className="text-blue-500 hover:text-blue-700 transition-colors duration-200"
                   >
-                    <FontAwesomeIcon icon={faTrash} className="h-5 w-5" />
+                  <FontAwesomeIcon icon={faPencilAlt} className="h-5 w-5" />
                   </button>
+                  <button 
+                  onClick={() => setJobToDelete(job)}
+                  className="text-red-500 hover:text-red-700 transition-colors duration-200"
+                  >
+                  <FontAwesomeIcon icon={faTrash} className="h-5 w-5" />
+                  </button>
+                  </div>
                 </div>
                 <div className="flex items-center text-gray-600 mb-2">
                   <FontAwesomeIcon icon={faBuilding} className="mr-2 h-4 w-4" />
