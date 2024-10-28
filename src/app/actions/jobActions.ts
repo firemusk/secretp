@@ -2,7 +2,6 @@
 import { JobModel, Job } from '@/models/Job';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
-//import { getCustomUser } from '@/app/actions/userActions';
 import { getUser } from "@workos-inc/authkit-nextjs";
 import dbConnect from '@/lib/dbConnect';
 
@@ -52,13 +51,16 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
     
     // Convert FormData to an object
     const jobData = Object.fromEntries(formData);
-    //console.log(jobData);
 
     let workosUserId = null;
     try {
-      // Attempt to get the current user, but don't throw an error if not found
       const workosUser = await getUser();
-      workosUserId = workosUser.user.id;
+      // Add proper null checks
+      if (workosUser?.user?.id) {
+        workosUserId = workosUser.user.id;
+      } else {
+        console.log('User or user ID is null');
+      }
     } catch (error) {
       console.log('No authenticated user found, proceeding as guest');
     }
@@ -66,7 +68,7 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
     console.log(workosUserId);
 
     let jobDataWithOptionalWorkosId = jobData;
-    if (workosUserId) { //make sure that this value is not null or empty
+    if (workosUserId) {
       jobDataWithOptionalWorkosId = {
         ...jobData,
         userWorkosId: workosUserId
@@ -95,11 +97,10 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
     }
 
     revalidatePath('/jobs');
-    return job.toObject(); // Convert to a plain JavaScript object
+    return job.toObject();
   } catch (error) {
     console.error('Error saving job:', error);
     if (error instanceof z.ZodError) {
-      // If it's a validation error, we can provide more specific feedback
       const errorMessages = error.errors.map(err => err.message).join(", ");
       throw new Error(`Validation failed: ${errorMessages}`);
     }
@@ -111,23 +112,21 @@ export async function getMyJobs(): Promise<Job[]> {
   try {
     const workosUser = await getUser();
 
-    if (!workosUser || !workosUser.user.id) {
+    if (!workosUser?.user?.id) {
       throw new Error('User not found or missing workosId');
     }
 
     const userWorkosId = workosUser.user.id;
 
-    // Find all jobs where companyName matches the user's name
     const jobs = await JobModel.find({ userWorkosId: userWorkosId });
     console.log('Retrieved jobs:', jobs);
-    return jobs.map(job => job.toObject());  // Convert to plain JavaScript objects
+    return jobs.map(job => job.toObject());
   } catch (error) {
     console.error('Error retrieving jobs:', error);
     throw new Error('Failed to retrieve jobs');
   }
 }
 
-// search jobs with the search input field on the home page 
 export async function searchJobs(searchPhrase: string, limit: number = 10): Promise<Job[]> {
   try {
     await dbConnect();
@@ -152,4 +151,3 @@ export async function searchJobs(searchPhrase: string, limit: number = 10): Prom
     return [];
   }
 }
-

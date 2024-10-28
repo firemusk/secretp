@@ -11,7 +11,8 @@ export async function GET(
     await dbConnect();
     
     const workosUser = await getUser();
-    if (!workosUser) {
+    // Check both workosUser and workosUser.user
+    if (!workosUser?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
