@@ -79,8 +79,8 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
     let job;
     if (validatedData.id) {
       // For updates, check ownership only if there's a user
-      if (user && user.workosId) {
-        const existingJob = await JobModel.findOne({ _id: validatedData.id, userWorkosId: user.workosId });
+      if (workosUserId) {
+        const existingJob = await JobModel.findOne({ _id: validatedData.id, userWorkosId: workosUserId });
         if (!existingJob) {
           throw new Error('Job not found or you do not have permission to edit it');
         }
