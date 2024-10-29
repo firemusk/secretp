@@ -20,9 +20,13 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
       <div className={`bg-white p-4 rounded-lg relative  ${isExpanded && 'shadow-md'}`}
       >
         {isPro && (
-          <div className="absolute top-0 right-0 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg rounded-tr-lg">
-            <FontAwesomeIcon icon={faStar} className="mr-1 inline-block" width={"14px"} height={"14px"} /> featured
-          </div>
+            <div className="absolute top-0 right-0 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg rounded-tr-lg">
+              <FontAwesomeIcon 
+              icon={faStar} 
+              className="mr-1 inline-block align-middle w-3.5 h-3.5" 
+            />
+                <span className="align-middle">featured</span>
+              </div>
         )}
         <div className="flex grow gap-4 hover:bg-gray-50 hover:cursor-pointer"
           onClick={() => setIsExpanded(!isExpanded)}
