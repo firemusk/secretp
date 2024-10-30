@@ -4,8 +4,6 @@ date: '2024-03-20'
 author: 'eujobs team'
 ---
 
-# Can I Work in Brussels with English? (as in only knowing)
-
 **Date:** March 20, 2024  
 **Author:** EUJobs Team  
 

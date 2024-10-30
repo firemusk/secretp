@@ -3,7 +3,6 @@ title: "How EU Jobsite Fits in Zmanic's Strategy"
 date: '2024-10-26'
 author: 'eujobs team'
 ---
-# How EU Jobsite Fits in Zmanic's Strategy
 
 Zmanic aims to bring software to lobbying, and later the government contract or tender industry.  
 So how does this work with a job search/career website (or as the Flemish would say "een job" website)?

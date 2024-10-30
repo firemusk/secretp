@@ -3,7 +3,6 @@ title: "Why we're better than euractiv jobs"
 date: '2024-03-20'
 author: 'eujobs team'
 ---
-# Why We're Better Than Euractiv Jobs, the Euractiv Jobsite
 
 Euractiv Jobs, short for Euroactive Jobs, is one of the oldest job boards in Brussels. It was created by the former CEO of Euractiv, someone our team deeply admires because he can sell, program, and write really well.
 

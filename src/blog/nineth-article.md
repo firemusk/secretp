@@ -3,7 +3,6 @@ title: 'The Eurobubble: european jobs brussels A World Apart from the Locals'
 date: '2024-03-20'
 author: 'eujobs team'
 ---
-# The Eurobubble: european jobs brussels A World Apart from the Locals
 
 Brussels, home to the European Union's most influential institutions, is a hub for international professionals working in EU jobs. Thousands of individuals flock to the city in hopes of securing one of the **job openings in Europe**, particularly those in the EU sector. However, an interesting phenomenon has emerged: despite the significant presence of expatriates working in the EU agencies, there is a stark division between these professionals and the local population. This divide, often referred to as the "Eurobubble," creates a sense of detachment between those in EU-related careers and the residents of Brussels.
 

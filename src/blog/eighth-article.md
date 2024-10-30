@@ -4,8 +4,6 @@ date: '2024-03-20'
 author: 'eujobs team'
 ---
 
-# How We're Beating Eurobrussels
-
 **Eurobrussels** is a job board that started in 2001. Initially, they specialized in European affairs jobs, but later expanded to cover EU institutions, policy, data protection, and legal jobs (such as law firms). Despite making over a million euros annually, they've failed to build a strong social media presence and haven't leveraged their data to track successful candidates.
 
 ## So, how are we going to beat Eurobrussels?

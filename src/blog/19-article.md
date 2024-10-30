@@ -3,11 +3,10 @@ title: "Jobs, for Now It Makes Sense"
 date: '2024-10-26'
 author: 'eujobs team'
 ---
-# Jobs, for Now It Makes Sense
 
 **Eujobs.co** is a platform dedicated to listing job opportunities. Our business may be centered on vacancies, but jobs aren’t the ultimate purpose of life. Let’s look at some numbers: on average, a person will work 36.9 years. Given a life expectancy around 80 years in the developed world, that’s nearly half a lifetime spent working.
 
-### Questions to Ponder at Job Fairs
+## Questions to Ponder at Job Fairs
 Whenever I attend a job fair, I find myself asking:
 - Do I really want to work for the rest of my life?
 - Why are we all working? Is it simply to survive?

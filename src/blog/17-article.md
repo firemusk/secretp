@@ -3,13 +3,12 @@ title: "How Much Money Does EuroBrussels Make?"
 date: '2024-10-26'
 author: 'eujobs team'
 ---
-# How Much Money Does EuroBrussels Make?
 
 EuroBrussels, one of the oldest job boards for policy-related positions, was founded in 2001. Specializing in EU jobs, it also posts vacancies in the legal and communications fields, and even has a sister site for international relations roles.
 
 Last month alone, EuroBrussels posted around 70 vacancies, each listing priced between 1000 and 2000 euros. Estimating revenue, EuroBrussels likely generated approximately 70,000 euros in that month. On an average month, however, the platform may bring in closer to 100k. Surprisingly, despite being an established job board, it lacks social media presence, has minimal digital features like uniform icons, and relies on a sluggish payment process.
 
-### Why Does the European EuroBrussels Community Accept a Subpar Job Board?
+## Why Does the European EuroBrussels Community Accept a Subpar Job Board?
 EU policy professionals, along with EU institutions, focus on legislative work, research monitoring, and networking. The lack of a competitive alternative or improved system means that users settle for what is available. In niche markets like international relations or public affairs careers, monopolies or limited options are common, often leading to a less-than-ideal user experience.
 
 ### What Are My Goals with EUJobs.com and How Will I Compete?

@@ -3,7 +3,6 @@ title: 'Your first internship in the EU instituions'
 date: '2024-03-20'
 author: 'eujobs team'
 ---
-# Your First Internship in the EU Institutions
 
 The big question we always get from recent graduates and current students is: 
 

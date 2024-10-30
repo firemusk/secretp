@@ -4,8 +4,6 @@ date: '2024-03-20'
 author: 'eujobs team'
 ---
 
-# Welcome to the EUjobs.co Blog
-
 Hello and welcome to the official blog of EUjobs.co! We're excited to launch this platform to share insights, tips, and news about EU jobs, particularly focusing on opportunities in Brussels and within EU institutions.
 
 ## What to Expect

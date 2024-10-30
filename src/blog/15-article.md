@@ -3,7 +3,6 @@ title: "What Euractiv Jobs Should Do In SEO"
 date: '2024-10-26'
 author: 'eujobs team'
 ---
-# What Euractiv Jobs Should Do In SEO
 
 What Euractiv jobs should do, right now, is hire us for their SEO. Despite covering EU policies, Prime Minister Meloni, and other policy affairs, they haven’t protected their "name" — Euractiv.
 

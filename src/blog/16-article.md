@@ -3,11 +3,10 @@ title: "Jobs in Brussels or Employment in Brussels is a Huge Business"
 date: '2024-10-26'
 author: 'eujobs team'
 ---
-# Jobs in Brussels or Employment in Brussels is a Huge Business
 
 In the EU jobs sector alone, websites like "Jobs in Brussels" or "EuroBrussels" generate over 10k every month. Currently, Euractiv jobs has 68 listings. Without any guaranteed successful candidates and minimal administrative support, Euractiv earned over 50k just this month.
 
-### Recruiting Senior Management Roles: The Costs and Justifications
+## Recruiting Senior Management Roles: The Costs and Justifications
 Recruiting for senior management or key roles typically results in a flat fee between 10% and 20% of the successful candidate's salary. While substantial, this fee is justifiable — recruiters often have to call hundreds of candidates to find the right fit. Matching the right person with the right role is no small task!
 
 ### Sustainability of Sites like Eurojobs Brussels or Jobs in Brussels

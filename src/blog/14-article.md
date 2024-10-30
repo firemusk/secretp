@@ -3,7 +3,6 @@ title: "The Different Types of EU Job Vacancies"
 date: '2024-10-26'
 author: 'eujobs team'
 ---
-# The Different Types of EU Job Vacancies
 
 There are so many different types of EU institutions and EU careers, but often people who arrive in Brussels just think about the sacred trio: **The European Commission, The European Parliament**, and sometimes, **The European Council**.
 
@@ -29,7 +28,7 @@ Also, if you are working on an important file (let's say the "law that made all 
 
 The third and fourth categories are less desirable because you are often passive. Especially as a lobbyist consultant, you are always slightly worried that the client isn't happy with your work.
 
-## What Is My Advice?
+##3 What Is My Advice?
 
 Well, since you're reading this, you are likely new to the European Union joint undertaking. I'd probably tell you to start your own company so you're working for yourself and in a way you can test your own value. But you're here because you want to know about European Union jobs, so here are my 2 cents.
 
@@ -42,6 +41,6 @@ If you're looking for open European Union positions, think about why you want it
 3. **Try Getting a Job in Parliament as an APA (Accredited Parliamentary Assistant)** or at some European Institute (a think tank).
 4. **The Last Thing I'd Do is Try the EPSO**: Or try to get through the "European Personnel Selection Office." Do you really want to take a gamble and maybe become a paper pusher that can't leave their job because the pay is too good and it was too hard to get to that position?
 
-## I've Been a Bit Hard on European Union Jobs
+### I've Been a Bit Hard on European Union Jobs
 
 The truth is many people don't know what they want in life. They think they will find happiness in this joint undertaking—and many people are very happy. But I think you should think about your goal and then try to give your life meaning. Either way, good luck with your EU career.

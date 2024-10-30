@@ -3,7 +3,6 @@ title: "Eurobrussels - How Brussels Became the EU Capital"
 date: '2024-10-26'
 author: 'eujobs team'
 ---
-# Eurobrussels - How Brussels Became the EU Capital
 
 Philippe Van Parijs, one of the first authors to have written about basic income, also happens to be one of the few sources on why the EU institutions are all based in Brussels.  
 Apparently, back in the day, when the EU was still something which was part of the realm of international relations, the powers at be decided in alphabetical order.
