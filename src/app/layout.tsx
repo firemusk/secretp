@@ -42,8 +42,9 @@ export default function RootLayout({
         <footer className="container py-8 text-gray-500">
           <div className="flex justify-between items-center">
             <div>EUjobs.co &copy; 2024 - All rights reserved</div>
-            <nav>
+            <nav className="space-x-6">
               <Link href="/blog" className="hover:text-gray-700 transition-colors">Blog</Link>
+              <Link href="/contact" className="hover:text-gray-700 transition-colors">Contact</Link>
             </nav>
           </div>
         </footer>
