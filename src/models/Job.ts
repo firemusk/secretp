@@ -1,4 +1,5 @@
 import mongoose, { model, models, Schema } from 'mongoose';
+import dbConnect from '@/lib/dbConnect';
 
 export type Job = {
   _id: string;
@@ -59,22 +60,29 @@ export const JobModel = models?.Job || model('Job', JobSchema);
 
 export async function fetchJobs(limit: number = 10) {
   try {
-    await mongoose.connect(process.env.MONGO_URI as string);
+    await dbConnect();
     
     // First, fetch pro jobs
-    const proJobs = await JobModel.find({ plan: 'pro' }, {}, { sort: '-createdAt', limit });
+    const proJobs = await JobModel.find(
+      { plan: 'pro' },
+      {},
+      { sort: '-createdAt', limit }
+    );
     
-    // Then, fetch non-pro jobs
+    // Then, fetch basic jobs (excluding both pro and pending)
     const remainingLimit = limit - proJobs.length;
     const otherJobs = await JobModel.find(
-      { plan: { $ne: 'pro' } }, // not equal to 'pro'
+      { 
+        plan: { 
+          $nin: ['pro', 'pending'] // not in ['pro', 'pending']
+        }
+      },
       {},
       { sort: '-createdAt', limit: remainingLimit }
     );
 
     // Combine the results
     const allJobs = [...proJobs, ...otherJobs];
-
     return JSON.parse(JSON.stringify(allJobs));
   } catch (error) {
     console.error('Error fetching jobs:', error);
