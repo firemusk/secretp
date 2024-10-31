@@ -130,14 +130,14 @@ export default function JobForm({ jobDoc }: JobFormProps) {
             <label className="block text-sm font-medium text-gray-700 mb-1">
             Job Title <span className="text-red-500">*</span>
             </label>
-            <TextField.Root name="title" placeholder="e.g. Senior Frontend Developer" defaultValue={jobDoc?.title || ''} />
+            <TextField.Root required name="title" placeholder="e.g. Senior Frontend Developer" defaultValue={jobDoc?.title || ''} />
           </div>
 
           <div className="">
             <label className="block text-sm font-medium text-gray-700 mb-1">
             Company Name <span className="text-red-500">*</span>
             </label>
-            <TextField.Root name="companyName" placeholder="e.g. Acme Inc." defaultValue={jobDoc?.companyName || ''} />
+            <TextField.Root required name="companyName" placeholder="e.g. Acme Inc." defaultValue={jobDoc?.companyName || ''} />
           </div>
 
           <div className="flex flex-row gap-8">
@@ -264,6 +264,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
               placeholder="Email Address"
               type="email"
               name="contactEmail"
+              required
               defaultValue={jobDoc?.contactEmail || ''}>
                 <TextField.Slot>
                   <FontAwesomeIcon icon={faEnvelope} className="text-gray-400" />
