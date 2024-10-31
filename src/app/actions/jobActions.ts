@@ -8,11 +8,12 @@ import dbConnect from '@/lib/dbConnect';
 const JobSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(1, "Job title is required"),
-  userWorkosId: z.string().optional(), 
+  seniority: z.enum(["intern", "entry", "mid", "senior"]),
   companyName: z.string().min(1, "Company name is required"),
   type: z.enum(["project", "part", "full"]),
+  contactEmail: z.string().email(),
+  userWorkosId: z.string().optional(), 
   salary: z.string().optional(),
-  seniority: z.enum(["intern", "entry", "mid", "senior"]),
   country: z.string().optional(),
   state: z.string().optional(),
   city: z.string().optional(),
@@ -22,7 +23,6 @@ const JobSchema = z.object({
   jobIcon: z.string().optional(),
   contactName: z.string().optional(),
   contactPhone: z.string().optional(),
-  contactEmail: z.string().email().optional(),
   description: z.string().optional(),
 });
 
@@ -65,7 +65,7 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
       console.log('No authenticated user found, proceeding as guest');
     }
 
-    console.log(workosUserId);
+    //console.log(workosUserId);
 
     let jobDataWithOptionalWorkosId = jobData;
     if (workosUserId) {
@@ -74,7 +74,7 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
         userWorkosId: workosUserId
       };
     }
-
+    console.log(jobDataWithOptionalWorkosId)
     // Validate the data
     const validatedData = JobSchema.parse(jobDataWithOptionalWorkosId);
 
