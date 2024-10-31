@@ -74,7 +74,7 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
         userWorkosId: workosUserId
       };
     }
-    console.log(jobDataWithOptionalWorkosId)
+
     // Validate the data
     const validatedData = JobSchema.parse(jobDataWithOptionalWorkosId);
 
