@@ -5,32 +5,13 @@ import {faStar} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
 
-// Function to convert URLs in text to clickable links and replace site reference
-const convertUrlsToLinks = (text:string) => {
-  // Replace Euractiv with Eujobs.co in the message
-  const cleanedText = text.replace(/Do not forget to mention that you found this job ad on the Euractiv Jobsite!/g, 
-    'Do not forget to mention that you found this job ad on the Eujobs.co Jobsite!');
-  
-  // Then handle URLs
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const parts = cleanedText.split(urlRegex);
-  
-  return parts.map((part, index) => {
-    if (part.match(urlRegex)) {
-      return (
-        <a 
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:underline"
-        >
-          {part}
-        </a>
-      );
-    }
-    return part;
-  });
+const JobDescription = ({ description }: { description: string }) => {
+  return (
+    <div 
+      className="prose prose-sm sm:prose lg:prose-lg max-w-none"
+      dangerouslySetInnerHTML={{ __html: description }}
+    />
+  );
 };
 
 // Rest of the component remains the same
@@ -53,7 +34,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                 <span className="align-middle">featured</span>
               </div>
           )}
-          <div className="flex grow gap-4 hover:bg-gray-50 hover:cursor-pointer"
+          <div className="flex grow gap-4 w-full hover:bg-gray-50 hover:cursor-pointer"
           onClick={() => setIsExpanded(!isExpanded)}
         >
             <div className="grow sm:flex pl-2">
@@ -84,23 +65,20 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
           {isExpanded && (
             <div className="mt-4 border-t pt-4 space-y-6 transition-all duration-200">
               {/* Job Description Section */}
-                <div>
-                  <h3 className="font-semibold text-gray-700 mb-2">Job Description</h3>
-                  <p className="text-gray-600 whitespace-pre-wrap">
-                    {convertUrlsToLinks(jobDoc.description)}
-                  </p>
+                <div className="mt-4">
+                  <JobDescription description={jobDoc.description} />
                 </div>
 
                 {/* Job Details Section */}
                 <div className="bg-gray-100 p-4 rounded-lg">
                   <h3 className="font-semibold text-gray-700 mb-3">Job Details</h3>
                   <div className="space-y-2">
-                    {jobDoc.salary && (
+                    {/**jobDoc.salary && (
                       <div className="flex justify-between">
                         <span className="text-gray-600">Salary:</span>
                           <span className="font-medium">${jobDoc.salary.toLocaleString()}/year</span>
                         </div>
-                    )}
+                    )**/}
                     <div className="flex justify-between">
                       <span className="text-gray-600">Location:</span>
                       <span className="font-medium">{jobDoc.city}, {jobDoc.state}, {jobDoc.country}</span>
