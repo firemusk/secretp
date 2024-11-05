@@ -4,7 +4,9 @@ date: '2024-10-31'
 author: 'eujobs team'
 ---
 
-In so many ways, Brussels mirrors Washington DC, the capital of the United States. There is an imposing Senatorial building (The European Council) and a European Parliament. Brussels has its own K-street, Rue de la Loi (or more commonly known as Arts/Loi). Yet there is one aspect Brussels is lacking in the European Quarter: Grandiose Monuments.
+# In so many ways, Brussels mirrors Washington DC, the capital of the United States.
+
+There is an imposing Senatorial building (The European Council) and a European Parliament. Brussels has its own K-street, Rue de la Loi (or more commonly known as Arts/Loi). Yet there is one aspect Brussels is lacking in the European Quarter: Grandiose Monuments.
 
 Although the EU institutions stand proud over the Brussels Capital Region, the European Institutions have an ambiguous, in a way bi-curious role.
 
@@ -20,7 +22,7 @@ For example, in Washington, or even Belgium's Brussels, when it comes to nationa
 
 The European institutions don't have a diplomatic service; they have the European External Action Service. The EU doesn't have a direct way to issue bonds, but they have various mechanisms that look almost identical.
 
-## Hidden Symbols of Power in the EU Institutions
+### Hidden Symbols of Power in the EU Institutions
 
 For instance, the European Parliament has its hidden staircase of further union. In contrast with the 365 steps to Capitol Hill in the United States, or the stairs to Rome's Campidoglio, Brussels has a more low-key symbolic staircase that goes down towards the hemicycle. It's not in the fancy styles typical of Antwerp or other Belgian cities—no art nouveau and fancy frills—only a hidden stairway that one has to descend in a 2-2 marching step.
 
@@ -40,4 +42,4 @@ Bringing together such talent and cultural diversity is bound to create future w
 
 There is no other place better suited for the European Union's capital. Brussels embodies the spirit of cohesion and diversity that the EU member states bring. At the same time, it also manages to represent the cautious building and negotiation—a key aspect of EU politics.
 
-There is no better place to have the European Parliament, The European Council, and The European Commission. Cities like Leuven, o
+There is no better place to have the European Parliament, The European Council, and The European Commission. Cities like Leuven, Bruges, or even Ghent (arguably the most beautiful city in Belgium), are just not built for big European institutions and can't represent the Euro-Zone.
