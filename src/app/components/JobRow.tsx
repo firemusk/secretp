@@ -5,10 +5,15 @@ import {faStar} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
 
-// Function to convert URLs in text to clickable links
+// Function to convert URLs in text to clickable links and replace site reference
 const convertUrlsToLinks = (text:string) => {
+  // Replace Euractiv with Eujobs.co in the message
+  const cleanedText = text.replace(/Do not forget to mention that you found this job ad on the Euractiv Jobsite!/g, 
+    'Do not forget to mention that you found this job ad on the Eujobs.co Jobsite!');
+  
+  // Then handle URLs
   const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const parts = text.split(urlRegex);
+  const parts = cleanedText.split(urlRegex);
   
   return parts.map((part, index) => {
     if (part.match(urlRegex)) {
@@ -28,6 +33,7 @@ const convertUrlsToLinks = (text:string) => {
   });
 };
 
+// Rest of the component remains the same
 export default function JobRow({jobDoc}:{jobDoc:Job}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const isPro = jobDoc.plan === "pro";
