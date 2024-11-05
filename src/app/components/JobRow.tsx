@@ -111,28 +111,39 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                 </div>
 
                 {/* Contact Information Section */}
-                <div className="bg-gray-100 p-4 rounded-lg">
-                  <h3 className="font-semibold text-gray-700 mb-3">Contact Information</h3>
-                  <div className="space-y-2">
-                    {jobDoc.contactName && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Contact Person:</span>
+                {(jobDoc.contactName || jobDoc.contactEmail || jobDoc.contactPhone) && (
+                  <div className="bg-gray-100 p-4 rounded-lg">
+                    <h3 className="font-semibold text-gray-700 mb-3">Contact Information</h3>
+                    <div className="space-y-2">
+                      {jobDoc.contactName && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Contact Person:</span>
                           <span className="font-medium">{jobDoc.contactName}</span>
                         </div>
-                    )}
-                    {jobDoc.contactEmail && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Email:</span>
+                      )}
+                      {jobDoc.contactEmail && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Email:</span>
                           <span className="font-medium">{jobDoc.contactEmail}</span>
                         </div>
-                    )}
-                    {jobDoc.contactPhone && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Phone:</span>
+                      )}
+                      {jobDoc.contactPhone && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Phone:</span>
                           <span className="font-medium">{jobDoc.contactPhone}</span>
                         </div>
-                    )}
+                      )}
+                    </div>
                   </div>
+                )}
+              
+                <div className="text-sm text-gray-600 italic mt-3 text-center">
+                  {parseInt(jobDoc._id.slice(-1), 16) % 3 === 0
+                    ? "Don't forget to mention EUJobs.co as your source for policy jobs in Brussels! Other sites like Euractiv Jobs and EuroBrussels are also out there, but we're glad you found us!"
+                    : parseInt(jobDoc._id.slice(-1), 16) % 3 === 1
+                    ? "Discover why EUJobs.co is a leading source for policy jobs in Brussels. Feel free to explore other options, like Euractiv Jobs and EuroBrussels, but we're confident you'll find the best here!"
+                    : "Looking for policy jobs in Brussels? EUJobs.co has you covered! We bring you roles similar to those on Euractiv Jobs and EuroBrussels, tailored for the EU bubble."
+                  }
                 </div>
               </div>
           )}
