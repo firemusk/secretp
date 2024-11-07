@@ -19,7 +19,6 @@
     "@radix-ui/themes": "^3.0.5",
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.6.0",
-    "@types/stripe": "^8.0.416",
     "@workos-inc/authkit-nextjs": "^0.5.3",
     "@workos-inc/node": "^7.4.0",
     "axios": "^1.6.8",
@@ -33,13 +32,13 @@
     "react-timeago": "^7.2.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "stripe": "^17.1.0",
+    "stripe": "^17.3.1",
     "uniqid": "^5.4.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/uniqid": "^5.3.4",
