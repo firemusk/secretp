@@ -111,15 +111,21 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
 export async function getMyJobs(): Promise<Job[]> {
   try {
     const workosUser = await getUser();
-
     if (!workosUser?.user?.id) {
       throw new Error('User not found or missing workosId');
     }
 
     const userWorkosId = workosUser.user.id;
+    const userWorkosEmail = workosUser.user.email;
 
-    const jobs = await JobModel.find({ userWorkosId: userWorkosId });
-    console.log('Retrieved jobs:', jobs);
+    // Define admin emails in a constant for better maintainability
+    const ADMIN_EMAILS = ['mouise12345@gmail.com', 'chaollapark@gmail.com'];
+
+    // Use conditional assignment
+    const jobs = ADMIN_EMAILS.includes(userWorkosEmail)
+      ? await JobModel.find({})
+      : await JobModel.find({ userWorkosId: userWorkosId });
+
     return jobs.map(job => job.toObject());
   } catch (error) {
     console.error('Error retrieving jobs:', error);
