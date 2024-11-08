@@ -19,7 +19,7 @@
     "@radix-ui/themes": "^3.0.5",
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.6.0",
-    "@workos-inc/authkit-nextjs": "^0.13.2",
+    "@workos-inc/authkit-nextjs": "^0.5.3",
     "@workos-inc/node": "^7.4.0",
     "axios": "^1.6.8",
     "gray-matter": "^4.0.3",
