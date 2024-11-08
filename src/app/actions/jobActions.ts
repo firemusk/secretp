@@ -2,7 +2,7 @@
 import { JobModel, Job } from '@/models/Job';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
-import { getUser } from "@workos-inc/authkit-nextjs";
+import { withAuth } from "@workos-inc/authkit-nextjs";
 import dbConnect from '@/lib/dbConnect';
 
 const JobSchema = z.object({
@@ -54,7 +54,7 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
 
     let workosUserId = null;
     try {
-      const workosUser = await getUser();
+      const workosUser = await withAuth();
       // Add proper null checks
       if (workosUser?.user?.id) {
         workosUserId = workosUser.user.id;
@@ -110,7 +110,7 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
 
 export async function getMyJobs(): Promise<Job[]> {
   try {
-    const workosUser = await getUser();
+    const workosUser = await withAuth();
     if (!workosUser?.user?.id) {
       throw new Error('User not found or missing workosId');
     }
