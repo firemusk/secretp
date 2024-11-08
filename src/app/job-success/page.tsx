@@ -1,9 +1,10 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { updateJobStatusAfterPayment } from '@/app/actions/jobActions';
 
-export default function JobSuccessPage() {
+// Create a separate component for the success content
+function SuccessContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -27,12 +28,10 @@ export default function JobSuccessPage() {
       .catch(error => console.error('Error:', error));
     }
 
-    // Set a timeout to redirect after 5 seconds (5000 milliseconds)
     const redirectTimeout = setTimeout(() => {
-      router.push('/'); // Redirect to the home page
+      router.push('/');
     }, 5000);
 
-    // Clean up the timeout if the component unmounts
     return () => clearTimeout(redirectTimeout);
   }, [searchParams, router]);
 
@@ -74,5 +73,29 @@ export default function JobSuccessPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+// Loading component
+function LoadingContent() {
+  return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      backgroundColor: '#f0f8ff'
+    }}>
+      <div>Loading...</div>
+    </div>
+  );
+}
+
+// Main component with Suspense
+export default function JobSuccessPage() {
+  return (
+    <Suspense fallback={<LoadingContent />}>
+      <SuccessContent />
+    </Suspense>
   );
 }
