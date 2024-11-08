@@ -1,6 +1,8 @@
 import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
 
-export default authkitMiddleware();
+export default authkitMiddleware({
+  redirectUri: process.env.WORKOS_REDIRECT_URI || 'http://localhost:3000/api/auth/callback',
+});
 
 // Match against pages that require authentication
 export const config = {

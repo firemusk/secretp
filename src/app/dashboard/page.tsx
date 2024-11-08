@@ -2,12 +2,12 @@
 
 import { redirect } from 'next/navigation';
 import Link from "next/link";
-import { getUser } from "@workos-inc/authkit-nextjs";
+import { withAuth } from "@workos-inc/authkit-nextjs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default async function NewListingPage() {
-  const { user } = await getUser();
+  const { user } = await withAuth();
   //console.log(user);
   
   if (!user) {

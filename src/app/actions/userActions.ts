@@ -1,7 +1,7 @@
 'use server'
 import { UserModel, User } from '@/models/User';
 import dbConnect from '@/lib/dbConnect';
-import { getUser } from "@workos-inc/authkit-nextjs";
+import { withAuth } from "@workos-inc/authkit-nextjs";
 
 // Types
 type WorkOSUser = {
@@ -37,7 +37,7 @@ export async function isProfileComplete(): Promise<boolean> {
 }
 
 export async function getWorkosId(): Promise<string> {
-  const workosUser = await getUser();
+  const workosUser = await withAuth();
   if (!workosUser || !workosUser.user || !workosUser.user.id) {
     throw new Error('WorkOS user not found or invalid');
   }
@@ -56,7 +56,7 @@ export async function createUser(formData: FormData): Promise<CreateUserResult> 
         message: 'User profile is already complete. Cannot create or update.',
       };
     }
-    const workosUser = await getUser();
+    const workosUser = await withAuth();
     if (!workosUser || !workosUser.user || !workosUser.user.id || !workosUser.user.email) {
       throw new Error('Invalid WorkOS user data');
     }
@@ -110,7 +110,7 @@ export async function createUser(formData: FormData): Promise<CreateUserResult> 
 export async function getCustomUser(): Promise<User | null> {
   try {
     await dbConnect();
-    const workosUser = await getUser();
+    const workosUser = await withAuth();
     if (!workosUser || !workosUser.user || !workosUser.user.id) {
       return null;
     }

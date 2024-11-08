@@ -1,5 +1,5 @@
 "use server"
-import { getSignInUrl, getUser, signOut } from "@workos-inc/authkit-nextjs";
+import { getSignInUrl, withAuth, signOut } from "@workos-inc/authkit-nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { getCustomUser } from "@/app/actions/userActions";
@@ -9,7 +9,7 @@ export default async function Header() {
   const isAuthDisabled = process.env.DISABLE_AUTH === 'true';
   
   // Only fetch user and auth data if auth is not disabled
-  const { user } = !isAuthDisabled ? await getUser() : { user: null };
+  const { user } = !isAuthDisabled ? await withAuth() : { user: null };
   const signInUrl = !isAuthDisabled ? await getSignInUrl() : '';
   
   let isJobPoster = true;  // Default to true

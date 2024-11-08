@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { JobModel } from '@/models/Job';
 import dbConnect from '@/lib/dbConnect';
-import { getUser } from "@workos-inc/authkit-nextjs";
+import { withAuth } from "@workos-inc/authkit-nextjs";
 
 export async function GET(
   request: Request,
@@ -10,7 +10,7 @@ export async function GET(
   try {
     await dbConnect();
     
-    const workosUser = await getUser();
+    const workosUser = await withAuth();
     // Check both workosUser and workosUser.user
     if (!workosUser?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
