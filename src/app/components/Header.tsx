@@ -30,7 +30,7 @@ export default async function Header() {
             eujobs.co
             <Image 
               src="/eu-flag.png" 
-              alt="EU commission jobs opportunities in Brussels" 
+              alt="EU jobs in brussels" 
               width={32} 
               height={32} 
               className="ml-2 inline-block transition-all group-hover:rotate-90 duration-300"

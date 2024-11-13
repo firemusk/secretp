@@ -25,7 +25,7 @@ export default function Hero() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <div className="flex flex-col gap-1">
               <label htmlFor="search" className="text-sm text-gray-600">
-                Find your next opportunity
+                Search for your next job in policy
               </label>
               <input
                 id="search"
@@ -58,7 +58,7 @@ export default function Hero() {
           >
             <div className="flex flex-col gap-1">
               <label htmlFor="mce-EMAIL" className="text-sm text-gray-600">
-                The 5 best Brussels events & jobs weekly <span className="text-red-500">*</span>
+                eurobrussels bubble events & jobs weekly <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"

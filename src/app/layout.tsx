@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "EU Jobs in Brussels: Commission, Agencies, & Government Affairs Opportunities",
-  description: "Find top EU Commission jobs, EU jobs in Brussels, and opportunities in EU agencies. Explore vacancies for government affairs and public affairs specialists across Europe.",
+  description: "Find top Eurobrussels bubble jobs, and opportunities in EU agencies. Vacancies for government affairs & public affairs in Brussels.",
   verification: {
     google: "IPQK9o-Ctj-mRI0LGd7JAXC9e1eSeMpA0J25py8xg7c",
   },
