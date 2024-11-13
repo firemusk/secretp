@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import '@radix-ui/themes/styles.css';
 import Link from 'next/link';
+import GoogleAnalytics from "@/app/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <GoogleAnalytics />
         <Header />
         {children}
         <footer className="container py-8 text-gray-500">
