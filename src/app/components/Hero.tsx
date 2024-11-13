@@ -13,22 +13,78 @@ export default function Hero() {
   };
 
   return (
-    <section className="container my-16">
-      <h1 className="text-4xl font-bold text-center">
-        eujobs.co<br />Policy jobs in Brussels
+    <section className="container my-8">
+      <h1 className="text-4xl font-bold text-center mb-6">
+        eujobs.co - Policy jobs in Brussels
       </h1>
-      <form onSubmit={handleSubmit} className="flex gap-2 mt-4 max-w-md mx-auto">
-        <input
-          type="search"
-          className="border border-gray-400 w-full py-2 px-3 rounded-md"
-          placeholder="Search phrase.."
-          value={searchPhrase}
-          onChange={(e) => setSearchPhrase(e.target.value)}
-        />
-        <button type="submit" className="transition-colors bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">
-          Search
-        </button>
-      </form>
+      
+      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Search Section */}
+        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-shadow">
+          <h2 className="text-lg font-semibold mb-3 text-gray-800">Search Jobs</h2>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1">
+              <label htmlFor="search" className="text-sm text-gray-600">
+                Find your next opportunity
+              </label>
+              <input
+                id="search"
+                type="search"
+                className="border border-gray-300 w-full py-2 px-4 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Search job here.."
+                value={searchPhrase}
+                onChange={(e) => setSearchPhrase(e.target.value)}
+              />
+            </div>
+            <button 
+              type="submit" 
+              className="transition-colors bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+
+        {/* Newsletter Signup Section */}
+        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-shadow">
+          <h2 className="text-lg font-semibold mb-3 text-gray-800">Weekly Updates</h2>
+          <form 
+            action="https://eujobs.us3.list-manage.com/subscribe/post?u=7dbc2eeed61fd04abc087d331&amp;id=889f03a7b8&amp;f_id=003923e1f0" 
+            method="post" 
+            id="mc-embedded-subscribe-form" 
+            name="mc-embedded-subscribe-form" 
+            className="validate flex flex-col gap-3" 
+            target="_blank"
+          >
+            <div className="flex flex-col gap-1">
+              <label htmlFor="mce-EMAIL" className="text-sm text-gray-600">
+                The 5 best Brussels events & jobs weekly <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                name="EMAIL"
+                id="mce-EMAIL"
+                required
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter your email"
+              />
+            </div>
+            
+            <div aria-hidden="true" style={{ position: 'absolute', left: '-5000px' }}>
+              <input type="text" name="b_7dbc2eeed61fd04abc087d331_889f03a7b8" tabIndex={-1} />
+            </div>
+            
+            <button
+              type="submit"
+              name="subscribe"
+              id="mc-embedded-subscribe"
+              className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
     </section>
   );
 }
