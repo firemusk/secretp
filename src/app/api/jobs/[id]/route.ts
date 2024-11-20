@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { JobModel } from '@/models/Job';
 import dbConnect from '@/lib/dbConnect';
+import mongoose from 'mongoose';
 
 export async function GET(
   request: NextRequest,
@@ -9,8 +10,14 @@ export async function GET(
   try {
     await dbConnect();
     
-    const job = await JobModel.findById(params.id);
-    console.log("this is the job", job);
+    let job;
+    // Check if the ID is a valid MongoDB ObjectId
+    if (mongoose.Types.ObjectId.isValid(params.id)) {
+      job = await JobModel.findById(params.id);
+    } else {
+      // If not a valid ObjectId, try to find by slug
+      job = await JobModel.findOne({ slug: params.id });
+    }
     
     if (!job) {
       return NextResponse.json(

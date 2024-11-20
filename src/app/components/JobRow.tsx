@@ -18,7 +18,7 @@ const JobDescription = ({ description }: { description: string }) => {
 export default function JobRow({jobDoc}:{jobDoc:Job}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const isPro = jobDoc.plan === "pro";
-  const jobId: string = jobDoc._id;
+  const slug: string = jobDoc.slug;
   return (
     <div 
       className={`rounded-lg shadow-sm relative`}
@@ -37,7 +37,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
           <div className="flex grow gap-4 w-full hover:bg-gray-50 hover:cursor-pointer"
           onClick={() => 
             {setIsExpanded(!isExpanded)
-              window.history.pushState({}, '', `/jobs/${jobId}`);
+              window.history.pushState({}, '', `/jobs/${slug}`);
             }}
         >
             <div className="grow sm:flex pl-2">
