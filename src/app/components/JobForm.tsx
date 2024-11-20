@@ -46,7 +46,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
       'Instant post after submission',
       'Unlimited revisions',
     ],
-    Recruiter:[
+    recruiter:[
       'You join the call we do the rest',
       'We fiter the job applications and give you best 20',
       'You can customize what applicant you want',
@@ -345,14 +345,14 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                   <div className="border border-gray-200 rounded-lg p-4 shadow-sm hover:border-blue-500 transition-colors">
                     <div className="flex items-center mb-2">
                       <RadioGroup.Item 
-                      value="Recruiter" 
-                      id="Recruiter"
+                      value="recruiter" 
+                      id="recruiter"
                       className="w-4 h-4 rounded-full mr-2 cursor-pointer"
                     />
-                      <label className="pl-2 font-bold text-lg cursor-pointer" htmlFor="Recruiter">Recruiter (€999.99)</label>
+                      <label className="pl-2 font-bold text-lg cursor-pointer" htmlFor="recruiter">Recruiter (€999.99)</label>
                     </div>
                     <ul className="space-y-2 ml-6">
-                      {planFeatures.Recruiter.map((feature, index) => (
+                      {planFeatures.recruiter.map((feature, index) => (
                         <li key={index} className="flex items-start">
                           <svg className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
