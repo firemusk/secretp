@@ -15,6 +15,7 @@ export async function POST(req: Request) {
     const prices = {
       basic: 9999, 
       pro: 19999, 
+      enterprise: 99999, 
     };
 
     if (!prices[plan as keyof typeof prices]) {

@@ -17,7 +17,7 @@ const JobDescription = ({ description }: { description: string }) => {
 // Rest of the component remains the same
 export default function JobRow({jobDoc}:{jobDoc:Job}) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const isPro = jobDoc.plan === "pro";
+  const isPro = jobDoc.plan === "pro" || jobDoc.plan === "enterprise";
 
   return (
     <div 
