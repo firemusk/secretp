@@ -4,6 +4,7 @@ import dbConnect from '@/lib/dbConnect';
 export type Job = {
   _id: string;
   title: string;
+  slug: string;  
   description: string;
   companyName: string;
   remote: string;
@@ -26,8 +27,30 @@ export type Job = {
   userWorkosId?: string;
 };
 
+function generateSlug(title: string | null | undefined, companyName: string | null | undefined, id: string): string {
+  // Convert to lowercase and remove special characters
+  const processString = (str: string | null | undefined) => 
+    (str || '')  // Use empty string if null/undefined
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim();
+
+  const titleSlug = processString(title) || 'untitled';  // Default value if empty
+  const companySlug = processString(companyName) || 'unknown-company';  // Default value if empty
+  const shortId = id.slice(-6);
+
+  return `${titleSlug}-at-${companySlug}-${shortId}`;
+}
+
 const JobSchema = new Schema({
   title: { type: String },
+  slug: { 
+    type: String,
+    unique: true,
+    sparse: true  // Allows null/undefined values
+  },
   description: { type: String },
   companyName: { type: String },
   type: { type: String },
@@ -48,16 +71,26 @@ const JobSchema = new Schema({
     type: String, 
     enum: ['pending', 'basic', 'premium', 'enterprise', 'unlimited'],
     required: false,
-    default: 'pending' // this will change after stripe confirmation
+    default: 'pending'
   }
 }, {
-  timestamps: true,
+  timestamps: true
 });
+
+// Pre-save middleware to generate slug
+JobSchema.pre('save', function(next) {
+  if (this.isModified('title') || this.isModified('companyName') || !this.slug) {
+    this.slug = generateSlug(this.title, this.companyName, this._id.toString());
+  }
+  next();
+});
+
+// Add an index for slug
+JobSchema.index({ slug: 1 });
 
 export const JobModel = models?.Job || model('Job', JobSchema);
 
-// If you need to perform any additional processing on job documents, you can create a new function here
-
+// Updated fetchJobs function
 export async function fetchJobs(limit: number = 10) {
   try {
     await dbConnect();
@@ -74,18 +107,29 @@ export async function fetchJobs(limit: number = 10) {
     const otherJobs = await JobModel.find(
       { 
         plan: { 
-          $nin: ['pro', 'pending'] // not in ['pro', 'pending']
+          $nin: ['pro', 'pending']
         }
       },
       {},
       { sort: '-createdAt', limit: remainingLimit }
     );
-
-    // Combine the results
+    
     const allJobs = [...proJobs, ...otherJobs];
     return JSON.parse(JSON.stringify(allJobs));
   } catch (error) {
     console.error('Error fetching jobs:', error);
     return [];
+  }
+}
+
+// Add a function to find job by slug
+export async function findJobBySlug(slug: string) {
+  try {
+    await dbConnect();
+    const job = await JobModel.findOne({ slug });
+    return job ? JSON.parse(JSON.stringify(job)) : null;
+  } catch (error) {
+    console.error('Error finding job by slug:', error);
+    return null;
   }
 }

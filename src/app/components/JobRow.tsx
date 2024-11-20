@@ -1,7 +1,8 @@
 'use client';
 import TimeAgo from "@/app/components/TimeAgo";
 import {Job} from "@/models/Job";
-import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {faStar, faCopy} from "@fortawesome/free-solid-svg-icons";
+
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
 
@@ -18,6 +19,19 @@ const JobDescription = ({ description }: { description: string }) => {
 export default function JobRow({jobDoc}:{jobDoc:Job}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const isPro = jobDoc.plan === "pro" || jobDoc.plan === "enterprise";
+  const slug: string = jobDoc.slug;
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = async (slug: string) => {
+    try {
+      const url = `${window.location.origin}/jobs/${slug}`;
+      await navigator.clipboard.writeText(url);
+      return true;
+    } catch (err) {
+      console.error('Failed to copy:', err);
+      return false;
+    }
+  };
 
   return (
     <div 
@@ -35,7 +49,10 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
               </div>
           )}
           <div className="flex grow gap-4 w-full hover:bg-gray-50 hover:cursor-pointer"
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={() => 
+            {setIsExpanded(!isExpanded)
+              window.history.pushState({}, '', `/jobs/${slug}`);
+            }}
         >
             <div className="grow sm:flex pl-2">
               <div className="grow">
@@ -64,8 +81,29 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
           {/* Expanded Content */}
           {isExpanded && (
             <div className="mt-4 border-t pt-4 space-y-6 transition-all duration-200">
+              <div className="flex justify-end">
+                <button
+                onClick={async (e) => {
+                  e.stopPropagation(); // Prevent expanding/collapsing when clicking the button
+                  const success = await copyToClipboard(slug);
+                  if (success) {
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+                  }
+                }}
+                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                  <FontAwesomeIcon 
+                  icon={faCopy} 
+                  className={`w-4 h-4 ${copied ? 'text-green-500' : ''}`} 
+                />
+                  <span className="text-sm">
+                    {copied ? 'Copied!' : 'Copy link'}
+                  </span>
+                </button>
+              </div>
               {/* Job Description Section */}
-                <div className="mt-4">
+                <div className="mt-2">
                   <JobDescription description={jobDoc.description} />
                 </div>
 
