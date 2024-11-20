@@ -69,7 +69,7 @@ const JobSchema = new Schema({
   userWorkosId: { type: String, required: false },
   plan: {
     type: String, 
-    enum: ['pending', 'basic', 'premium', 'unlimited'],
+    enum: ['pending', 'basic', 'premium', 'enterprise', 'unlimited'],
     required: false,
     default: 'pending'
   }
