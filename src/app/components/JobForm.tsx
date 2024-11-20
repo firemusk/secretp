@@ -345,14 +345,14 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                   <div className="border border-gray-200 rounded-lg p-4 shadow-sm hover:border-blue-500 transition-colors">
                     <div className="flex items-center mb-2">
                       <RadioGroup.Item 
-                      value="enterprise" 
-                      id="enterprise"
+                      value="Recruiter" 
+                      id="Recruiter"
                       className="w-4 h-4 rounded-full mr-2 cursor-pointer"
                     />
-                      <label className="pl-2 font-bold text-lg cursor-pointer" htmlFor="enterprise">Enterprise (€999.99)</label>
+                      <label className="pl-2 font-bold text-lg cursor-pointer" htmlFor="Recruiter">Recruiter (€999.99)</label>
                     </div>
                     <ul className="space-y-2 ml-6">
-                      {planFeatures.enterprise.map((feature, index) => (
+                      {planFeatures.Recruiter.map((feature, index) => (
                         <li key={index} className="flex items-start">
                           <svg className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
