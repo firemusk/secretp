@@ -46,9 +46,12 @@ export default function JobForm({ jobDoc }: JobFormProps) {
       'Instant post after submission',
       'Unlimited revisions',
     ],
-    enterprise:[
-      'test',
-      'cv test'
+    Recruiter:[
+      'You join the call we do the rest',
+      'We fiter the job applications and give you best 20',
+      'You can customize what applicant you want',
+      'We organize the interviews for you',
+      'Everything the pro plan has'
     ]
   };
 
