@@ -1,33 +1,37 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { JobModel } from '@/models/Job';
 import dbConnect from '@/lib/dbConnect';
-import { withAuth } from "@workos-inc/authkit-nextjs";
+import mongoose from 'mongoose';
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
     await dbConnect();
     
-    const workosUser = await withAuth();
-    // Check both workosUser and workosUser.user
-    if (!workosUser?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    let job;
+    // Check if the ID is a valid MongoDB ObjectId
+    if (mongoose.Types.ObjectId.isValid(params.id)) {
+      job = await JobModel.findById(params.id);
+    } else {
+      // If not a valid ObjectId, try to find by slug
+      job = await JobModel.findOne({ slug: params.id });
     }
-
-    const job = await JobModel.findOne({
-      _id: params.id,
-      userWorkosId: workosUser.user.id
-    });
-
+    
     if (!job) {
-      return NextResponse.json({ error: 'Job not found' }, { status: 404 });
+      return NextResponse.json(
+        { error: 'Job not found' },
+        { status: 404 }
+      );
     }
-
+    
     return NextResponse.json(job);
   } catch (error) {
     console.error('Error fetching job:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to fetch job' },
+      { status: 500 }
+    );
   }
 }
