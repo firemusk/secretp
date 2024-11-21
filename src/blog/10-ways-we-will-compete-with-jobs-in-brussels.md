@@ -3,6 +3,9 @@ title: "10 Ways We’ll Compete with Jobs in Brussels"
 date: '2024-11-19'
 author: 'eujobs team'
 ---
+
+# 10 Ways We’ll Compete with Jobs in Brussels
+
 ## Redefining Brussels Employment Opportunities
 The job space in Brussels is defined by three different hiring practices. For executives, most of the time specialized headhunters are employed - these people get 10% to 20% of the yearly salary of the hire as a bonus, but their cost is covered by the high value of the hire.  
 Then there is the coffee interview method, where a job is published on the vacancies section of the company, but some people get fast-tracked to the interview stage through an informal coffee interview.  
