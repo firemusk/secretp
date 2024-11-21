@@ -36,15 +36,22 @@ export default function JobForm({ jobDoc }: JobFormProps) {
 
   const planFeatures = {
     basic: [
-      'Your job visible on the homepage for 7 days',
+      'Job listing visible on our homepage for 30 days',
       'Instant post after submission',
       'Unlimited revisions',
     ],
     pro: [
-      'Your vacancy on the homepage for 30 days',
-      'Priority placement + Highlighted',
-      'Instant post after submission',
-      'Unlimited revisions',
+      'Everything in the Basic Plan, plus:',
+      'Priority placement at the top of the homepage',
+      'Highlighted listing to stand out from the crowd',
+    ],
+    recruiter: [
+      'We handle everything—you join the call, and we take care of the rest.',
+      'Filter and deliver the top 20 candidates tailored to your needs.',
+      "You’re in control: Choose how many candidates you’d like to interview.",
+      'Customize your ideal candidate profile.',
+      'Interview scheduling (Zoom or in-person)—seamlessly organized for you.',
+      'Includes all features of the Pro Plan.'
     ],
   };
 
@@ -130,14 +137,14 @@ export default function JobForm({ jobDoc }: JobFormProps) {
             <label className="block text-sm font-medium text-gray-700 mb-1">
             Job Title <span className="text-red-500">*</span>
             </label>
-            <TextField.Root required name="title" placeholder="e.g. Senior Frontend Developer" defaultValue={jobDoc?.title || ''} />
+            <TextField.Root required name="title" placeholder="e.g. Policy Officer" defaultValue={jobDoc?.title || ''} />
           </div>
 
           <div className="">
             <label className="block text-sm font-medium text-gray-700 mb-1">
             Company Name <span className="text-red-500">*</span>
             </label>
-            <TextField.Root required name="companyName" placeholder="e.g. Acme Inc." defaultValue={jobDoc?.companyName || ''} />
+            <TextField.Root required name="companyName" placeholder="e.g. Park Consulting Inc." defaultValue={jobDoc?.companyName || ''} />
           </div>
 
           <div className="flex flex-row gap-8">
@@ -244,7 +251,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
             <label className="block text-sm font-medium text-gray-700 mb-3">Contact Information</label>
             <div className="grid sm:grid-cols-3 gap-4">
               <TextField.Root
-              placeholder="Contact Name"
+              placeholder="John Wick"
               name="contactName"
               defaultValue={jobDoc?.contactName || ''}>
                 <TextField.Slot>
@@ -332,6 +339,33 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                           </svg>
                             {feature}
                           </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="border border-gray-200 rounded-lg p-4 shadow-sm hover:border-blue-500 transition-colors">
+                    <div className="flex items-center mb-2">
+                      <RadioGroup.Item 
+                      value="recruiter" 
+                      id="recruiter"
+                      className="w-4 h-4 rounded-full mr-2 cursor-pointer"
+                    />
+                      <div className="pl-2">
+                        <label className="font-bold text-lg cursor-pointer" htmlFor="recruiter">
+                          Recruiter
+                          <span className="ml-2 text-gray-500 line-through">€2000</span>
+                          <span className="ml-2 text-green-600">€999.99</span>
+                        </label>
+                        <div className="text-sm text-green-600">Save over 50% for a limited time!</div>
+                      </div>
+                    </div>
+                    <ul className="space-y-2 ml-6">
+                      {planFeatures.recruiter.map((feature, index) => (
+                        <li key={index} className="flex items-start">
+                          <svg className="w-4 h-4 text-green-500 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                          {feature}
+                        </li>
                       ))}
                     </ul>
                   </div>
