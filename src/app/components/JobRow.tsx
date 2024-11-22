@@ -1,7 +1,7 @@
 'use client';
 import TimeAgo from "@/app/components/TimeAgo";
 import {Job} from "@/models/Job";
-import {faStar, faCopy} from "@fortawesome/free-solid-svg-icons";
+import {faStar, faCopy, faShareAlt} from "@fortawesome/free-solid-svg-icons";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
@@ -31,6 +31,12 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
       console.error('Failed to copy:', err);
       return false;
     }
+  };
+
+  const shareOnLinkedIn = () => {
+    const url = `${window.location.origin}/jobs/${slug}`;
+    const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    window.open(linkedInShareUrl, '_blank');
   };
 
   return (
@@ -100,6 +106,16 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                   <span className="text-sm">
                     {copied ? 'Copied!' : 'Copy link'}
                   </span>
+                </button>
+                <button
+                  onClick={shareOnLinkedIn}
+                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors ml-8"
+                >
+                  <FontAwesomeIcon 
+                    icon={faShareAlt} 
+                    className="w-4 h-4" 
+                  />
+                  <span className="text-sm">Share on LinkedIn</span>
                 </button>
               </div>
               {/* Job Description Section */}
