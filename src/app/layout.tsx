@@ -44,8 +44,9 @@ export default function RootLayout({
         <footer className="container py-8 text-gray-500">
           <div className="flex justify-between items-center">
             <div>EUjobs.co &copy; 2024 - All rights reserved</div>
-            <nav className="space-x-6">
+            <nav className="space-x-8">
               <Link href="/blog" className="hover:text-gray-700 transition-colors">Blog</Link>
+              <Link href="/fairpay" className="hover:text-gray-700 transition-colors">Fair Pay Calculator</Link>
               <Link href="/contact" className="hover:text-gray-700 transition-colors">Contact</Link>
               <Link href="https://www.lobbyinglondon.com" className="hover:text-gray-700 transition-colors" target="_blank" rel="noopener noreferrer">Jobs In London</Link>
             </nav>
