@@ -151,17 +151,13 @@ const FairPayCalculator = () => {
               </Accordion.Trigger>
               <Accordion.Content>
                 <div className="space-y-3 p-4 bg-gray-100 border-x border-b border-gray-200 rounded-b-lg">
-                  <a href="/blog/salary-negotiation-tips" className="block p-3 bg-white border rounded-lg hover:bg-gray-50 transition-colors">
-                    <span className="font-medium">How to Negotiate Your Salary in Brussels</span>
-                    <p className="text-sm text-gray-600 mt-1">Learn the best practices for salary negotiations in the Brussels job market</p>
+                  <a href="https://www.doberpartners.com/corporate-eu-public-affairs-compensation-benefits-report/" className="block p-3 bg-white border rounded-lg hover:bg-gray-50 transition-colors">
+                    <span className="font-medium">Salaries for In House Lobbyists</span>
+                    <p className="text-sm text-gray-600 mt-1">Beneifts, salaries and ranges in the Eurobrussels context</p>
                   </a>
-                  <a href="/blog/benefits-guide" className="block p-3 bg-white border rounded-lg hover:bg-gray-50 transition-colors">
-                    <span className="font-medium">Understanding Belgian Benefits Packages</span>
-                    <p className="text-sm text-gray-600 mt-1">A comprehensive guide to standard benefits in Belgian employment</p>
-                  </a>
-                  <a href="/blog/market-trends-2024" className="block p-3 bg-white border rounded-lg hover:bg-gray-50 transition-colors">
-                    <span className="font-medium">Brussels Salary Trends 2024</span>
-                    <p className="text-sm text-gray-600 mt-1">Latest insights into salary trends across different sectors</p>
+                  <a href="https://www.doberpartners.com/european-trade-association-compensation-benefits-2023-24-report/" className="block p-3 bg-white border rounded-lg hover:bg-gray-50 transition-colors">
+                    <span className="font-medium">Salaries for Trade Associations</span>
+                    <p className="text-sm text-gray-600 mt-1">Beneifts, salaries and ranges in the Eurobrussels context</p>
                   </a>
                 </div>
               </Accordion.Content>
