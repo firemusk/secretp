@@ -50,7 +50,7 @@ const FairPayCalculator = () => {
   const shareOnLinkedIn = () => {
     const url = encodeURIComponent(window.location.href);
     const message = encodeURIComponent("Are you getting paid fairly? Check on the Fair Pay Calculator.");
-    const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${message}`;
+    const linkedInShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
     window.open(linkedInShareUrl, '_blank');
   };
 
