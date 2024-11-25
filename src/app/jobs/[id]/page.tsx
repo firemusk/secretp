@@ -204,7 +204,8 @@ export default function JobPage({ params }: { params: { id: string } }) {
       {/* Apply Button */}
       <div className="mt-6 flex justify-center">
         <a
-          href={`mailto:${job.contactEmail}?subject=Application for ${job.title} position`}
+          href={`${job.applyLink}`}
+          target="_blank" rel="noopener noreferrer"
           className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
         >
           Apply for this position

@@ -20,6 +20,7 @@ export type Job = {
   contactName: string;
   contactPhone: string;
   contactEmail: string;
+  applyLink: string;  
   createdAt: string;
   updatedAt: string;
   seniority: string;
@@ -36,11 +37,9 @@ function generateSlug(title: string | null | undefined, companyName: string | nu
       .replace(/\s+/g, '-')
       .replace(/-+/g, '-')
       .trim();
-
   const titleSlug = processString(title) || 'untitled';  // Default value if empty
   const companySlug = processString(companyName) || 'unknown-company';  // Default value if empty
   const shortId = id.slice(-6);
-
   return `${titleSlug}-at-${companySlug}-${shortId}`;
 }
 
@@ -65,6 +64,22 @@ const JobSchema = new Schema({
   contactName: { type: String },
   contactPhone: { type: String },
   contactEmail: { type: String },
+  applyLink: {  
+    type: String,
+    required: false,
+    validate: {
+      validator: function(v: string) {
+        // Basic URL validation
+        try {
+          new URL(v);
+          return true;
+        } catch (err) {
+          return false;
+        }
+      },
+      message: 'Invalid URL format for apply link'
+    }
+  },
   seniority: { type: String },
   userWorkosId: { type: String, required: false },
   plan: {

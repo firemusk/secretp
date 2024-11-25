@@ -8,10 +8,20 @@ import { useState } from 'react';
 
 const JobDescription = ({ description }: { description: string }) => {
   return (
-    <div 
-      className="prose prose-sm sm:prose lg:prose-lg max-w-none"
-      dangerouslySetInnerHTML={{ __html: description }}
-    />
+    <div className="relative">
+      <div 
+        className="prose prose-sm sm:prose lg:prose-lg max-w-none overflow-y-auto h-96 px-4 custom-scrollbar"
+        style={{
+          // Custom scrollbar styles
+          scrollbarWidth: 'thin',
+          scrollbarColor: '#CBD5E0 #EDF2F7'
+        }}
+      >
+        <div
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      </div>
+    </div>
   );
 };
 
