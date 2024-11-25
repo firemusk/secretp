@@ -13,22 +13,22 @@ export default function ContactPage() {
       <div className="container max-w-2xl mx-auto py-12">
         <div className="bg-white p-8 rounded-lg shadow-sm">
           <h1 className="text-2xl font-bold mb-6 text-gray-800">Contact us</h1>
-          
+
           <p className="text-gray-600 mb-8">
-            Have questions or need assistance? Feel free to reach out to our team directly:
-          </p>
+          Have questions or need assistance? Feel free to reach out to our team directly:
+        </p>
 
           <div className="space-y-6">
             <div className="flex items-center gap-3 text-gray-700">
-              <FontAwesomeIcon icon={faEnvelope} className="text-gray-400" />
+              <FontAwesomeIcon icon={faEnvelope} className="text-gray-400 w-6" />
               <div>
-                <div className="font-medium">Madan Park - CEO</div>
-                <a href="mailto:madan@eujobs.co" className="text-blue-600 hover:text-blue-700">
-                  madan@eujobs.co
-                </a>
+                <div className="font-medium">Madan Chaolla Park - CEO</div>
+                <a href="mailto:chaollapark@gmail.com" className="text-blue-600 hover:text-blue-700">
+                chaollapark@gmail.com
+              </a>
               </div>
             </div>
-
+            {/*
             <div className="flex items-center gap-3 text-gray-700">
               <FontAwesomeIcon icon={faEnvelope} className="text-gray-400" />
               <div>
@@ -38,15 +38,16 @@ export default function ContactPage() {
                 </a>
               </div>
             </div>
+          */}
           </div>
 
           <div className="mt-8 pt-6 border-t border-gray-100">
             <p className="text-sm text-gray-500">
-              We typically respond to emails within 24-48 business hours. 
-            </p>
+            We typically respond to emails within 24-48 business hours. 
+          </p>
           </div>
         </div>
       </div>
-    </Theme>
+      </Theme>
   );
 }
