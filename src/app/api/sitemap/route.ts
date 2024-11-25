@@ -3,7 +3,7 @@ import { JobModel } from '@/models/Job';
 import dbConnect from '@/lib/dbConnect';
 
 export async function GET() {
-  const baseUrl = 'http://localhost:3000'; // Replace with your production domain when deploying
+  const baseUrl = 'https://www.eujobs.co'; // Replace with your production domain when deploying
   
   // Static routes with priority and changefreq
   const staticRoutes = [
