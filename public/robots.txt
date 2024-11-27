@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /*.woff2$
 
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://www.eujobs.co/sitemap.xml
