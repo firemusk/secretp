@@ -5,14 +5,11 @@ import Image from "next/image";
 import { getCustomUser } from "@/app/actions/userActions";
 
 export default async function Header() {
-  // Get DISABLE_AUTH from environment variable
   const isAuthDisabled = process.env.DISABLE_AUTH === 'true';
-  
-  // Only fetch user and auth data if auth is not disabled
   const { user } = !isAuthDisabled ? await withAuth() : { user: null };
   const signInUrl = !isAuthDisabled ? await getSignInUrl() : '';
   
-  let isJobPoster = true;  // Default to true
+  let isJobPoster = true;
   if (user && !isAuthDisabled) {
     try {
       const customUser = await getCustomUser();
@@ -24,7 +21,7 @@ export default async function Header() {
 
   return (
     <header>
-      <div className="container flex items-center justify-between mx-auto my-4">
+      <div className="container flex flex-wrap items-center justify-between mx-auto my-4 gap-4">
         <Link href={'/'} className="font-bold text-xl group">
           <span className="flex items-center">
             eujobs.co
@@ -37,18 +34,17 @@ export default async function Header() {
             />
           </span>
         </Link>
-        <nav className="flex gap-2">
-          {/* Only show login button if auth is not disabled and user is not logged in */}
+
+        <nav className="flex flex-wrap gap-2 w-full md:w-auto">
           {!isAuthDisabled && !user && (
             <Link 
-              className="transition-colors hover:bg-gray-300 rounded-md bg-gray-200 py-1 px-2 sm:py-2 sm:px-4" 
+              className="text-sm sm:text-base transition-colors hover:bg-gray-300 rounded-md bg-gray-200 py-1 px-2 sm:py-2 sm:px-4 whitespace-nowrap" 
               href={signInUrl}
             >
               Login
             </Link>
           )}
           
-          {/* Only show logout button if auth is not disabled and user is logged in */}
           {!isAuthDisabled && user && (
             <form action={async () => {
               'use server';
@@ -56,25 +52,23 @@ export default async function Header() {
             }}>
               <button 
                 type="submit" 
-                className="transition-colors hover:bg-gray-300 rounded-md bg-gray-200 py-1 px-2 sm:py-2 sm:px-4"
+                className="text-sm sm:text-base transition-colors hover:bg-gray-300 rounded-md bg-gray-200 py-1 px-2 sm:py-2 sm:px-4 whitespace-nowrap"
               >
                 Logout
               </button>
             </form>
           )}
           
-          {/* Always show Post a job button */}
           <Link
-            className="rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
+            className="text-sm sm:text-base rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 whitespace-nowrap"
             href="/new-listing/form"
           >
             Post a job
           </Link>
           
-          {/* Only show Dashboard if auth is not disabled and user is logged in */}
           {!isAuthDisabled && isJobPoster && user && (
             <Link
-              className="rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-gray-600 text-white hover:bg-gray-700 transition-colors duration-200"
+              className="text-sm sm:text-base rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-gray-600 text-white hover:bg-gray-700 transition-colors duration-200 whitespace-nowrap"
               href="/dashboard"
             >
               Dashboard

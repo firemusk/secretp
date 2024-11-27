@@ -1,7 +1,7 @@
 'use client';
 import TimeAgo from "@/app/components/TimeAgo";
 import {Job} from "@/models/Job";
-import {faStar, faCopy, faShareAlt} from "@fortawesome/free-solid-svg-icons";
+import {faStar, faCopy, faShareAlt, faUpRightFromSquare} from "@fortawesome/free-solid-svg-icons";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
@@ -10,18 +10,18 @@ const JobDescription = ({ description }: { description: string }) => {
   return (
     <div className="relative">
       <div 
-        className="prose prose-sm sm:prose lg:prose-lg max-w-none overflow-y-auto h-96 px-4 custom-scrollbar"
-        style={{
-          // Custom scrollbar styles
-          scrollbarWidth: 'thin',
-          scrollbarColor: '#CBD5E0 #EDF2F7'
-        }}
-      >
+      className="border-y border-gray-100 prose prose-sm sm:prose lg:prose-lg max-w-none overflow-y-auto h-96 px-4 custom-scrollbar"
+      style={{
+        // Custom scrollbar styles
+        scrollbarWidth: 'thin',
+        scrollbarColor: '#CBD5E0 #EDF2F7'
+      }}
+    >
         <div
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
       </div>
-    </div>
+      </div>
   );
 };
 
@@ -53,7 +53,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
     <div 
       className={`rounded-lg shadow-sm relative`}
     >
-        <div className={`bg-white p-4 rounded-lg relative  ${isExpanded && 'shadow-md'}`}
+        <div className={`bg-white lg:p-4 py-4 p-2 rounded-lg relative ${isExpanded && 'shadow-md'}`}
       >
           {isPro && (
             <div className="absolute top-0 right-0 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg rounded-tr-lg">
@@ -66,7 +66,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
           )}
           <div className="flex grow gap-4 w-full hover:bg-gray-50 hover:cursor-pointer"
           onClick={() => 
-            {setIsExpanded(!isExpanded)
+          {setIsExpanded(!isExpanded)
               window.history.pushState({}, '', `/jobs/${slug}`);
             }}
         >
@@ -97,7 +97,20 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
           {/* Expanded Content */}
           {isExpanded && (
             <div className="mt-4 border-t pt-4 space-y-6 transition-all duration-200">
-              <div className="flex justify-end">
+              <div className="flex lg:flex-row flex-col justify-end gap-4 px-2 text-sm">
+                <button>
+                  <a href={`${window.location.origin}/jobs/${slug}`}
+                  target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                >
+                  <FontAwesomeIcon 
+                  icon={faUpRightFromSquare} 
+                  className="w-4 h-4" 
+                />
+                  Open Job in new tab
+                </a>
+
+                </button> 
                 <button
                 onClick={async (e) => {
                   e.stopPropagation(); // Prevent expanding/collapsing when clicking the button
@@ -113,29 +126,29 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                   icon={faCopy} 
                   className={`w-4 h-4 ${copied ? 'text-green-500' : ''}`} 
                 />
-                  <span className="text-sm">
+                  <span className="">
                     {copied ? 'Copied!' : 'Copy link'}
                   </span>
                 </button>
                 <button
-                  onClick={shareOnLinkedIn}
-                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors ml-8"
-                >
+                onClick={shareOnLinkedIn}
+                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+              >
                   <FontAwesomeIcon 
-                    icon={faShareAlt} 
-                    className="w-4 h-4" 
-                  />
-                  <span className="text-sm">Share on LinkedIn</span>
+                  icon={faShareAlt} 
+                  className="w-4 h-4" 
+                />
+                  <span className="">Share on LinkedIn</span>
                 </button>
               </div>
-              {/* Job Description Section */}
+                {/* Job Description Section */}
                 <div className="mt-2">
                   <JobDescription description={jobDoc.description} />
                 </div>
 
                 {/* Job Details Section */}
                 <div className="bg-gray-100 p-4 rounded-lg">
-                  <h3 className="font-semibold text-gray-700 mb-3">Job Details</h3>
+                  <h3 className="font-semibold text-gray-700 mb-2">Job Details</h3>
                   <div className="space-y-2">
                     {/**jobDoc.salary && (
                       <div className="flex justify-between">
@@ -145,15 +158,15 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                     )**/}
                     <div className="flex justify-between">
                       <span className="text-gray-600">Location:</span>
-                      <span className="font-medium">{jobDoc.city}, {jobDoc.state}, {jobDoc.country}</span>
+                      <span className="font-medium text-right">{jobDoc.city}, {jobDoc.state}, {jobDoc.country}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Type:</span>
-                      <span className="font-medium capitalize">{jobDoc.type}-time</span>
+                      <span className="font-medium capitalize text-right">{jobDoc.type}-time</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Seniority:</span>
-                      <span className="font-medium capitalize">{jobDoc.seniority}</span>
+                      <span className="font-medium capitalize text-right">{jobDoc.seniority}</span>
                     </div>
                   </div>
                 </div>
@@ -161,37 +174,37 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                 {/* Contact Information Section */}
                 {(jobDoc.contactName || jobDoc.contactEmail || jobDoc.contactPhone) && (
                   <div className="bg-gray-100 p-4 rounded-lg">
-                    <h3 className="font-semibold text-gray-700 mb-3">Contact Information</h3>
-                    <div className="space-y-2">
-                      {jobDoc.contactName && (
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Contact Person:</span>
-                          <span className="font-medium">{jobDoc.contactName}</span>
-                        </div>
-                      )}
-                      {jobDoc.contactEmail && (
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Email:</span>
-                          <span className="font-medium">{jobDoc.contactEmail}</span>
-                        </div>
-                      )}
-                      {jobDoc.contactPhone && (
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Phone:</span>
-                          <span className="font-medium">{jobDoc.contactPhone}</span>
-                        </div>
-                      )}
+                    <h3 className="font-semibold text-gray-700 mb-2">Contact Information</h3>
+                      <div className="space-y-2">
+                        {jobDoc.contactName && (
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Contact Person:</span>
+                              <span className="font-medium">{jobDoc.contactName}</span>
+                            </div>
+                        )}
+                        {jobDoc.contactEmail && (
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Email:</span>
+                              <span className="font-medium">{jobDoc.contactEmail}</span>
+                            </div>
+                        )}
+                        {jobDoc.contactPhone && (
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Phone:</span>
+                              <span className="font-medium">{jobDoc.contactPhone}</span>
+                            </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
                 )}
-              
-                <div className="text-sm text-gray-600 italic mt-3 text-center">
+
+                <div className="text-xs text-gray-600 italic mt-2 text-center">
                   {parseInt(jobDoc._id.slice(-1), 16) % 3 === 0
                     ? "Don't forget to mention EUJobs.co as your source for policy jobs in Brussels! Other sites like Euractiv Jobs and EuroBrussels are also out there, but we're glad you found us!"
                     : parseInt(jobDoc._id.slice(-1), 16) % 3 === 1
-                    ? "Discover why EUJobs.co is a leading source for policy jobs in Brussels. Feel free to explore other options, like Euractiv Jobs and EuroBrussels, but we're confident you'll find the best here!"
-                    : "Looking for policy jobs in Brussels? EUJobs.co has you covered! We bring you roles similar to those on Euractiv Jobs and EuroBrussels, tailored for the EU bubble."
-                  }
+                      ? "Discover why EUJobs.co is a leading source for policy jobs in Brussels. Feel free to explore other options, like Euractiv Jobs and EuroBrussels, but we're confident you'll find the best here!"
+                      : "Looking for policy jobs in Brussels? EUJobs.co has you covered! We bring you roles similar to those on Euractiv Jobs and EuroBrussels, tailored for the EU bubble."
+                }
                 </div>
               </div>
           )}
