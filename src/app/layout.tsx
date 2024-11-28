@@ -9,8 +9,8 @@ import GoogleAnalytics from "@/app/components/GoogleAnalytics";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "EU Jobs in Brussels: Commission, Agencies, & Government Affairs Opportunities",
-  description: "Find top Eurobrussels bubble jobs, and opportunities in EU agencies. Vacancies for government affairs & public affairs in Brussels.",
+  title: "Top EU Jobs in Brussels | EU Agencies, Government, & Policy Roles",
+  description: "Find top Eurobrussels bubble jobs, including roles in EU agencies, government affairs, and public policy. Apply today to top career opportunities!.",
   verification: {
     google: "IPQK9o-Ctj-mRI0LGd7JAXC9e1eSeMpA0J25py8xg7c",
   },
@@ -45,10 +45,11 @@ export default function RootLayout({
           <div className="flex justify-between items-center">
             <div>EUjobs.co &copy; 2024 - All rights reserved</div>
             <nav className="flex flex-col">
-              <Link href="/blog" className="hover:text-gray-700 transition-colors">Blog</Link>
-              <Link href="/fairpay" className="hover:text-gray-700 transition-colors">Fair Pay Calculator</Link>
-              <Link href="/contact" className="hover:text-gray-700 transition-colors">Contact</Link>
+              <Link href="/blog" className="hover:text-gray-700 transition-colors">Eujobs Blog</Link>
+              <Link href="/fairpay" className="hover:text-gray-700 transition-colors">EUjobs Fair Pay Calculator</Link>
+              <Link href="/contact" className="hover:text-gray-700 transition-colors">Eujobs Contact</Link>
               <Link href="https://www.lobbyinglondon.com" className="hover:text-gray-700 transition-colors" target="_blank" rel="noopener noreferrer">Jobs In London</Link>
+              <Link href="/eu-jobs" className="hover:text-gray-700 transition-colors">Browse EU Jobs</Link>
             </nav>
           </div>
         </footer>
