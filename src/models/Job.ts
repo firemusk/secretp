@@ -1,4 +1,4 @@
-import mongoose, { model, models, Schema } from 'mongoose';
+import { model, models, Schema } from 'mongoose';
 import dbConnect from '@/lib/dbConnect';
 
 export type Job = {
@@ -17,12 +17,15 @@ export type Job = {
   stateId: string;
   cityId: string;
   jobIcon: string;
+  postalCode: number;
+  street: string;
   contactName: string;
   contactPhone: string;
   contactEmail: string;
   applyLink: string;  
   createdAt: string;
   updatedAt: string;
+  expiresOn: string;
   seniority: string;
   plan?: string;
   userWorkosId?: string;
@@ -60,10 +63,13 @@ const JobSchema = new Schema({
   countryId: { type: String },
   stateId: { type: String },
   cityId: { type: String },
+  postalCode: { type: Number, required: false},
+  street: {type: String, required: false},
   jobIcon: { type: String },
   contactName: { type: String },
   contactPhone: { type: String },
   contactEmail: { type: String },
+  expiresOn: {type: String, required: false},
   applyLink: {  
     type: String,
     required: false,

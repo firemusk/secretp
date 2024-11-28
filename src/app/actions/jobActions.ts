@@ -24,6 +24,10 @@ const JobSchema = z.object({
   contactName: z.string().optional(),
   contactPhone: z.string().optional(),
   description: z.string().optional(),
+  postalCode: z.number().optional(),
+  street: z.string().optional(),
+  expiresOn: z.date().optional(),
+  applyLink: z.string().optional()
 });
 
 export async function updateJobStatusAfterPayment(jobId: string, plan: string): Promise<Job> {
@@ -48,10 +52,16 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
   try {
     await dbConnect();
     console.log("we have entered the save job action function you get me.");
-    
+
     // Convert FormData to an object
     const jobData = Object.fromEntries(formData);
 
+if (jobData.postalCode) {
+  jobData.postalCode = parseInt(jobData.postalCode);
+}
+if (jobData.expiresOn) {
+  jobData.expiresOn = new Date(jobData.expiresOn);
+}
     let workosUserId = null;
     try {
       const workosUser = await withAuth();
