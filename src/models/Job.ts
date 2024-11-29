@@ -70,23 +70,12 @@ const JobSchema = new Schema({
   contactPhone: { type: String },
   contactEmail: { type: String },
   expiresOn: {type: String, required: false},
-  applyLink: {  
+  applyLink: { type: String, required: false},
+  seniority: { 
     type: String,
-    required: false,
-    validate: {
-      validator: function(v: string) {
-        // Basic URL validation
-        try {
-          new URL(v);
-          return true;
-        } catch (err) {
-          return false;
-        }
-      },
-      message: 'Invalid URL format for apply link'
-    }
+    enum: ["intern", "junior", "medior", "senior"],
+    required: true
   },
-  seniority: { type: String },
   userWorkosId: { type: String, required: false },
   plan: {
     type: String, 

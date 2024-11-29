@@ -71,6 +71,11 @@ export default function JobForm({ jobDoc }: JobFormProps) {
       data.set('seniority', seniority);
       data.set('plan', plan);
 
+      const applyLink = data.get('applyLink') as string;
+      if (applyLink && applyLink.trim() === '') {
+        data.delete('applyLink'); // Remove the field if it's empty
+      }
+
       const savedJob = await saveJobAction(data);
 
       // If we're editing (jobDoc exists), skip the Stripe checkout
@@ -254,6 +259,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                   <input
                   type="number"
                   name="salary"
+                  min={0}
                   defaultValue={jobDoc?.salary?.toString() || ''}
                   className="pl-8 pr-16 py-2 w-full rounded-md border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 />
