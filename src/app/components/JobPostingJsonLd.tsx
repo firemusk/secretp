@@ -25,6 +25,8 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({ job }) => {
     title: job.title,
     description: job.description,
     datePosted: job.createdAt,
+    validThrough: job.expiresOn,
+
     hiringOrganization: {
       '@type': 'Organization',
       name: job.companyName,
@@ -35,6 +37,8 @@ const JobPostingJsonLd: React.FC<JobPostingJsonLdProps> = ({ job }) => {
         '@type': 'PostalAddress',
         addressLocality: job.city,
         addressCountry: job.country,
+        postalCode: job.postalCode,
+        streetAddress: job.street,
         ...(job.state && { addressRegion: job.state }),
       },
     },

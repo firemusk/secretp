@@ -142,9 +142,11 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                 </button>
               </div>
                 {/* Job Description Section */}
-                <div className="mt-2">
-                  <JobDescription description={jobDoc.description} />
-                </div>
+                {jobDoc.description && (
+                  <div className="mt-2">
+                    <JobDescription description={jobDoc.description} />
+                    </div>
+                )}
 
                 {/* Job Details Section */}
                 <div className="bg-gray-100 p-4 rounded-lg">

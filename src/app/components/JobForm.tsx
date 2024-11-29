@@ -222,18 +222,19 @@ export default function JobForm({ jobDoc }: JobFormProps) {
 
             <div className="">
               <label className="block text-sm font-medium text-gray-700 mb-1">
-              Expiry date <span className="text-red-500">*</span>
+              Job Description
+              <span className="text-red-500">*</span>
               </label>
-              <TextField.Root
-              placeholder="Expiry date"
-              type="date"
-              name="expiresOn"
-              required>
-                <TextField.Slot>
-                  <FontAwesomeIcon icon={faCalendar} className="text-gray-400" />
-                </TextField.Slot>
-              </TextField.Root>
+              <TextArea
+              defaultValue={jobDoc?.description || ''}
+              placeholder="Describe the role, responsibilities, requirements, and benefits..."
+              resize="vertical"
+              name="description"
+              className="min-h-32"
+              required
+            />
             </div>
+
           </div>
 
           {/* Optional Fields Toggle */}
@@ -252,6 +253,19 @@ export default function JobForm({ jobDoc }: JobFormProps) {
           {/* Optional Fields Content */}
           {showOptional && (
             <div className="space-y-6">
+            <div className="">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+              Expiry date 
+              </label>
+              <TextField.Root
+              placeholder="Expiry date"
+              type="date"
+              name="expiresOn">
+                <TextField.Slot>
+                  <FontAwesomeIcon icon={faCalendar} className="text-gray-400" />
+                </TextField.Slot>
+              </TextField.Root>
+            </div>
               <div className="">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Salary</label>
                 <div className="relative">
@@ -371,16 +385,6 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                   </div>
                 </div>
 
-                <div className="">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Job Description</label>
-                  <TextArea
-                  defaultValue={jobDoc?.description || ''}
-                  placeholder="Describe the role, responsibilities, requirements, and benefits..."
-                  resize="vertical"
-                  name="description"
-                  className="min-h-32"
-                />
-                </div>
               </div>
           )}
 
