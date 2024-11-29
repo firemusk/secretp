@@ -11,7 +11,11 @@ const JobSchema = z.object({
   seniority: z.enum(["intern", "junior", "medior", "senior"]),
   companyName: z.string().min(1, "Company name is required"),
   type: z.enum(["project", "part", "full"]),
-  contactEmail: z.string().email(),
+  description: z
+    .string()
+    .min(1, "Job description is required")
+    .max(5000, "Description cannot exceed 5000 characters"),
+  contactEmail: z.string().email("A valid email address is required"),
   userWorkosId: z.string().optional(), 
   salary: z.string().optional(),
   country: z.string().optional(),
@@ -23,7 +27,6 @@ const JobSchema = z.object({
   jobIcon: z.string().optional(),
   contactName: z.string().optional(),
   contactPhone: z.string().optional(),
-  description: z.string().optional(),
   postalCode: z.string().optional(),
   street: z.string().optional(),
   expiresOn: z.string().optional(),
