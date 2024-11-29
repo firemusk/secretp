@@ -53,7 +53,7 @@ const JobSchema = new Schema({
     unique: true,
     sparse: true  // Allows null/undefined values
   },
-  description: { type: String },
+  description: { type: String, required: true },
   companyName: { type: String },
   type: { type: String },
   salary: { type: Number },
