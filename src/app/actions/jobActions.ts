@@ -8,7 +8,9 @@ import dbConnect from '@/lib/dbConnect';
 const JobSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(1, "Job title is required"),
-  seniority: z.enum(["intern", "junior", "medior", "senior"]),
+  seniority: z.enum(["intern", "junior", "medior", "senior"], {
+    errorMap: () => ({ message: "Please select a valid seniority level" }),
+  }),
   companyName: z.string().min(1, "Company name is required"),
   type: z.enum(["project", "part", "full"]),
   description: z
