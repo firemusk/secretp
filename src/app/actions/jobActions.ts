@@ -8,10 +8,16 @@ import dbConnect from '@/lib/dbConnect';
 const JobSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(1, "Job title is required"),
-  seniority: z.enum(["intern", "entry", "mid", "senior"]),
+  seniority: z.enum(["intern", "junior", "medior", "senior"], {
+    errorMap: () => ({ message: "Please select a valid seniority level" }),
+  }),
   companyName: z.string().min(1, "Company name is required"),
   type: z.enum(["project", "part", "full"]),
-  contactEmail: z.string().email(),
+  description: z
+    .string()
+    .min(1, "Job description is required")
+    .max(5000, "Description cannot exceed 5000 characters"),
+  contactEmail: z.string().email("A valid email address is required"),
   userWorkosId: z.string().optional(), 
   salary: z.string().optional(),
   country: z.string().optional(),
@@ -23,19 +29,24 @@ const JobSchema = z.object({
   jobIcon: z.string().optional(),
   contactName: z.string().optional(),
   contactPhone: z.string().optional(),
-  description: z.string().optional(),
+  postalCode: z.string().optional(),
+  street: z.string().optional(),
+  expiresOn: z.string().optional(),
+  applyLink: z
+    .string()
+    .optional(), 
 });
 
 export async function updateJobStatusAfterPayment(jobId: string, plan: string): Promise<Job> {
   try {
     await dbConnect();
-    
+
     const job = await JobModel.findByIdAndUpdate(jobId, { plan: plan }, { new: true });
-    
+
     if (!job) {
       throw new Error('Job not found');
     }
-    
+
     revalidatePath('/jobs');
     return job.toObject();
   } catch (error) {
@@ -48,7 +59,7 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
   try {
     await dbConnect();
     console.log("we have entered the save job action function you get me.");
-    
+
     // Convert FormData to an object
     const jobData = Object.fromEntries(formData);
 
@@ -136,9 +147,9 @@ export async function getMyJobs(): Promise<Job[]> {
 export async function searchJobs(searchPhrase: string, limit: number = 10): Promise<Job[]> {
   try {
     await dbConnect();
-    
+
     const searchRegex = new RegExp(searchPhrase, 'i');
-    
+
     const jobs = await JobModel.find(
       {
         $or: [
@@ -150,7 +161,7 @@ export async function searchJobs(searchPhrase: string, limit: number = 10): Prom
       {},
       { sort: '-createdAt', limit }
     );
-    
+
     return JSON.parse(JSON.stringify(jobs));
   } catch (error) {
     console.error('Error searching jobs:', error);

@@ -1,4 +1,4 @@
-import mongoose, { model, models, Schema } from 'mongoose';
+import { model, models, Schema } from 'mongoose';
 import dbConnect from '@/lib/dbConnect';
 
 export type Job = {
@@ -17,12 +17,15 @@ export type Job = {
   stateId: string;
   cityId: string;
   jobIcon: string;
+  postalCode: number;
+  street: string;
   contactName: string;
   contactPhone: string;
   contactEmail: string;
   applyLink: string;  
   createdAt: string;
   updatedAt: string;
+  expiresOn: string;
   seniority: string;
   plan?: string;
   userWorkosId?: string;
@@ -50,7 +53,7 @@ const JobSchema = new Schema({
     unique: true,
     sparse: true  // Allows null/undefined values
   },
-  description: { type: String },
+  description: { type: String, required: true },
   companyName: { type: String },
   type: { type: String },
   salary: { type: Number },
@@ -60,31 +63,23 @@ const JobSchema = new Schema({
   countryId: { type: String },
   stateId: { type: String },
   cityId: { type: String },
+  postalCode: { type: Number, required: false},
+  street: {type: String, required: false},
   jobIcon: { type: String },
   contactName: { type: String },
   contactPhone: { type: String },
   contactEmail: { type: String },
-  applyLink: {  
+  expiresOn: {type: String, required: false},
+  applyLink: { type: String, required: false},
+  seniority: { 
     type: String,
-    required: false,
-    validate: {
-      validator: function(v: string) {
-        // Basic URL validation
-        try {
-          new URL(v);
-          return true;
-        } catch (err) {
-          return false;
-        }
-      },
-      message: 'Invalid URL format for apply link'
-    }
+    enum: ["intern", "junior", "medior", "senior"],
+    required: true
   },
-  seniority: { type: String },
   userWorkosId: { type: String, required: false },
   plan: {
     type: String, 
-    enum: ['pending', 'basic', 'premium', 'enterprise', 'unlimited'],
+    enum: ['pending', 'basic', 'premium', 'recruiter', 'unlimited'],
     required: false,
     default: 'pending'
   }

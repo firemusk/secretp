@@ -28,7 +28,7 @@ const JobDescription = ({ description }: { description: string }) => {
 // Rest of the component remains the same
 export default function JobRow({jobDoc}:{jobDoc:Job}) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const isPro = jobDoc.plan === "pro" || jobDoc.plan === "enterprise";
+  const isPro = jobDoc.plan === "pro" || jobDoc.plan === "recruiter";
   const slug: string = jobDoc.slug;
   const [copied, setCopied] = useState(false);
 
@@ -142,9 +142,11 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                 </button>
               </div>
                 {/* Job Description Section */}
-                <div className="mt-2">
-                  <JobDescription description={jobDoc.description} />
-                </div>
+                {jobDoc.description && (
+                  <div className="mt-2">
+                    <JobDescription description={jobDoc.description} />
+                    </div>
+                )}
 
                 {/* Job Details Section */}
                 <div className="bg-gray-100 p-4 rounded-lg">
