@@ -26,11 +26,11 @@ const FAQ: React.FC = () => {
     },
     {
       question: "Do you offer candidate screening?",
-      answer: "Yes! Euractiv Jobs provides optional candidate screening services to help you find the most qualified professionals for your open positions. Whether you're hiring for Euractive Jobs, Eurobrussels, or other Brussels employment opportunities, we streamline the process to connect you with top-tier candidates in the EU job market."
+      answer: "Yes! We have a recuiter plan that provides optional candidate screening services to help you find the most qualified professionals for your open positions."
     },
     {
-      question: "Are international candidates welcome?",
-      answer: "Absolutely! Euractiv Jobs caters to the diverse, international nature of Brussels and the EU job market. We welcome candidates from all EU member states and beyond, ensuring your listings are visible to those seeking European jobs in Brussels and beyond. Our platform is a key hub for jobs Euractiv, Euroactive Jobs, and more."
+      question: "Why post on eubjos and not linkedin?",
+      answer: "Posting on a local specialized job board like Eubjos allows you to target candidates who are already within your niche or professional 'bubble.' This built-in focus acts as an automatic screening process, ensuring that applicants are more likely to meet your specific needs and qualifications compared to the broader audience on LinkedIn."
     }
   ];
 
