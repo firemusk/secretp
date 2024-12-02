@@ -9,9 +9,9 @@ import {
 
 const ValueProposition = () => {
   const competitorPricing = [
-    { name: 'Competitor A', price: '$299/month' },
-    { name: 'Competitor B', price: '$249/month' },
-    { name: 'Our Platform', price: '$99/month', highlight: true }
+    { name: 'Eurobrussels', price: '$2000/month' },
+    { name: 'Euractiv Jobs', price: '$1000/month' },
+    { name: 'Eujobs Brussels', price: '$99.99/month', highlight: true }
   ];
 
   return (
