@@ -128,14 +128,16 @@ export default function JobForm({ jobDoc }: JobFormProps) {
   const showPlanSelection = !jobDoc;
 
   return (
-    <Theme>
-      <form action={handleSaveJob} className="container mt-6 max-w-3xl mx-auto">
+    <Theme className="md:w-1/2">
+      <h1 className="text-4xl font-extrabold mb-2">Post Your Job in the EU&apos;s Capital</h1>
+        <h4 className="text-md text-gray-600">For Questions, contact us on <a className="text-blue-600 hover:text-blue-700" href="mailto:ceo@zmantic.com">ceo@zmantic.com</a></h4>
+        <form action={handleSaveJob} className="mt-6 mx-auto">
 
         {jobDoc && <input type="hidden" name="id" value={jobDoc._id} />}
 
         <div className="space-y-6">
           {/* Mandatory Fields */}
-          <div className="space-y-6">
+          <div className="space-y-6 bg-gray-50 rounded-md p-4">
             <h2 className="text-xl font-semibold text-gray-900">Required Information</h2>
 
             <div className="">
@@ -411,6 +413,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                       ))}
                     </ul>
                   </div>
+                  {/* Pro plan */}
                   <div className="border border-gray-200 rounded-lg p-4 shadow-sm hover:border-blue-500 transition-colors">
                     <div className="flex items-center mb-2">
                       <RadioGroup.Item 
@@ -431,6 +434,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                       ))}
                     </ul>
                   </div>
+
                   <div className="border border-gray-200 rounded-lg p-4 shadow-sm hover:border-blue-500 transition-colors">
                     <div className="flex items-center mb-2">
                       <RadioGroup.Item 
@@ -462,9 +466,9 @@ export default function JobForm({ jobDoc }: JobFormProps) {
               </div>
           )}
 
-          <div className="flex justify-center pt-6">
-            <Button size="3" disabled={isSubmitting} className="min-w-32">
-              <span className="px-8">{isSubmitting ? 'Saving...' : (jobDoc ? 'Update' : 'Save')}</span>
+          <div className="flex justify-center">
+            <Button size="4" disabled={isSubmitting} className="min-w-full transition-colors">
+              <span className="px-8">{isSubmitting ? 'Loading...' : (jobDoc ? 'Update' : 'Proceed to Checkout')}</span>
             </Button>
           </div>
         </div>
