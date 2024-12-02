@@ -52,7 +52,7 @@ const FAQ: React.FC = () => {
               <span>{faq.question}</span>
               <FontAwesomeIcon 
                 icon={activeIndex === index ? faChevronUp : faChevronDown} 
-                className="text-gray-500"
+                className="text-gray-500 h-4"
               />
             </button>
             

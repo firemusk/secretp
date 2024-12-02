@@ -22,7 +22,7 @@ const ValueProposition = () => {
         {/* Pricing Comparison */}
         <div className="mb-8">
           <h3 className="text-xl font-semibold mb-4 flex items-center">
-            <FontAwesomeIcon icon={faDollarSign} className="mr-2 text-green-600" />
+            <FontAwesomeIcon icon={faDollarSign} className="mr-2 text-green-600 h-4" />
             Unbeatable Pricing
           </h3>
           <div className="grid grid-cols-3 gap-4 text-center">
@@ -43,15 +43,15 @@ const ValueProposition = () => {
         {/* Key Benefits */}
         <div className="space-y-4">
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faCheckCircle} className="mr-3 text-blue-600" />
+            <FontAwesomeIcon icon={faCheckCircle} className="mr-3 text-blue-600 h-4" />
             <p className="text-gray-700">Post unlimited job listings with our affordable pricing</p>
           </div>
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faShieldAlt} className="mr-3 text-purple-600" />
+            <FontAwesomeIcon icon={faShieldAlt} className="mr-3 text-purple-600 h-4" />
             <p className="text-gray-700">Guaranteed candidate quality and screening</p>
           </div>
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faChartLine} className="mr-3 text-green-600" />
+            <FontAwesomeIcon icon={faChartLine} className="mr-3 text-green-600 h-4" />
             <p className="text-gray-700">Higher conversion rates compared to traditional job boards</p>
           </div>
         </div>
