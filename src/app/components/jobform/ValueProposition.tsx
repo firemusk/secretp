@@ -9,13 +9,13 @@ import {
 
 const ValueProposition = () => {
   const competitorPricing = [
-    { name: 'Competitor A', price: '$299/month' },
-    { name: 'Competitor B', price: '$249/month' },
+    { name: 'eurobrussels', price: '$299/month' },
+    { name: 'eu jobs in brussels', price: '$249/month' },
     { name: 'Our Platform', price: '$99/month', highlight: true }
   ];
 
   return (
-    <div className="w-full px-4 py-6">
+    <div className="w-full mb-8">
       <div className="bg-gray-50 rounded-lg p-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Why Choose <span className='text-blue-900'>EUjobs.co?</span></h2>
         
@@ -31,7 +31,7 @@ const ValueProposition = () => {
                 key={competitor.name} 
                 className={`p-4 border rounded-lg ${competitor.highlight ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}
               >
-                <p className="font-medium">{competitor.name}</p>
+                <p className="font-medium text-nowrap">{competitor.name}</p>
                 <p className={`text-lg font-bold ${competitor.highlight ? 'text-green-600' : 'text-gray-800'}`}>
                   {competitor.price}
                 </p>

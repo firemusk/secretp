@@ -2,8 +2,9 @@
 
 import JobForm from '@/app/components/JobForm';
 import { Theme } from '@radix-ui/themes';
-import ValueProposition from '@/app/components/ValueProposition';
-import FAQ from '@/app/components/FAQ';
+import ValueProposition from '@/app/components/jobform/ValueProposition';
+import FAQ from '@/app/components/jobform/FAQ';
+import SecurePaymentBadge from '@/app/components/jobform/SecurePaymentBadge';
 
 export default function NewListingFormPage() {
 
@@ -15,6 +16,7 @@ export default function NewListingFormPage() {
           <div className="w-full md:w-1/2">
           <ValueProposition/>
           <FAQ/>
+          <SecurePaymentBadge/>
           </div>
         </div>
       </div>

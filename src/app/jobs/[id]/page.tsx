@@ -218,7 +218,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
             <a
             href={`${job.applyLink}`}
             target="_blank" rel="noopener noreferrer"
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
+            className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors duration-200"
           >
             Apply for this position
           </a>
