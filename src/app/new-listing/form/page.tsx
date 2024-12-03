@@ -16,11 +16,11 @@ export default function NewListingFormPage() {
           <div className="hidden md:block md:w-1/2">
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 text-blue-700">
               <p className="font-bold">No Login Required</p>
-              <p>You can post a job without creating an account. It's quick and easy!</p>
+              <p>You can post a job without creating an account. It&apos;s quick and easy!</p>
             </div>
-          <ValueProposition/>
-          <FAQ/>
-          <SecurePaymentBadge/>
+            <ValueProposition/>
+            <FAQ/>
+            <SecurePaymentBadge/>
           </div>
         </div>
       </div>
