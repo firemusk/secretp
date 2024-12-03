@@ -60,7 +60,7 @@ export default async function Header() {
           )}
           
           <Link
-            className="text-sm sm:text-base rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 whitespace-nowrap"
+            className="text-sm sm:text-base rounded-md py-1 px-2 sm:py-2 sm:px-4 bg-indigo-600 text-white hover:bg-indigo-700 transition-colors duration-200 whitespace-nowrap"
             href="/new-listing/form"
           >
             Post a job

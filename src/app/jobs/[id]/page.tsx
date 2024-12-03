@@ -2,11 +2,13 @@
 import { useEffect, useState } from 'react';
 import { Job } from '@/models/Job';
 import axios from 'axios';
+import Link from 'next/link';
 import JobPostingJsonLd from '@/app/components/JobPostingJsonLd';
 import TimeAgo from "@/app/components/TimeAgo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faBriefcase, 
+  faArrowLeft,
   faBuilding, 
   faLocationDot, 
   faRoad, 
@@ -82,6 +84,9 @@ export default function JobPage({ params }: { params: { id: string } }) {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       {job && <JobPostingJsonLd job={job} />}
+        <Link href="https://eujobs.co/" className="text-gray-500 hover:text-gray-600 transition-colors text-right block w-full mb-4">return back home
+        <FontAwesomeIcon icon={faArrowLeft} className="ml-2" />
+        </Link>
         {/* Header Section */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-6 relative">
@@ -218,7 +223,7 @@ export default function JobPage({ params }: { params: { id: string } }) {
             <a
             href={`${job.applyLink}`}
             target="_blank" rel="noopener noreferrer"
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200"
+            className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors duration-200"
           >
             Apply for this position
           </a>

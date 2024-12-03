@@ -33,7 +33,7 @@ export default async function NewListingPage() {
           <form action={createNewListing}>
             <button
               type="submit"
-              className="inline-flex gap-2 items-center bg-blue-500 text-white px-4 py-2 rounded-md mt-6 hover:bg-blue-600 transition-colors"
+              className="inline-flex gap-2 items-center bg-indigo-500 text-white px-4 py-2 rounded-md mt-6 hover:bg-indigo-600 transition-colors"
             >
               Create a new job listing
               <FontAwesomeIcon className="h-4" icon={faArrowRight} />

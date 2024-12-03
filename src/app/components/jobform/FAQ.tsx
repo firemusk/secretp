@@ -12,7 +12,7 @@ const FAQ: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const faqs: FAQItem[] = [
-    {
+ {
       question: "Differences eujobs vs Eurobrussels?",
       answer: "EUJobs offers instant payment options and job postings at just 100 euros, compared to the 2000 euros charged by other platforms. Whether you're seeking to post on EUJobs, Eurobrussels, or attract candidates for jobs Euractiv or Euractive Jobs, our cost-effective pricing ensures your job opportunities reach the right audience at a fraction of the cost."
     },
@@ -52,7 +52,7 @@ const FAQ: React.FC = () => {
               <span>{faq.question}</span>
               <FontAwesomeIcon 
                 icon={activeIndex === index ? faChevronUp : faChevronDown} 
-                className="text-gray-500"
+                className="text-gray-500 h-4"
               />
             </button>
             

@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faDollarSign, 
-  faCheckCircle, 
+  faClock, 
   faShieldAlt, 
   faChartLine 
 } from '@fortawesome/free-solid-svg-icons';
@@ -15,14 +15,14 @@ const ValueProposition = () => {
   ];
 
   return (
-    <div className="w-full px-4 py-6">
+    <div className="w-full mb-8">
       <div className="bg-gray-50 rounded-lg p-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Why Choose <span className='text-blue-900'>EUjobs.co?</span></h2>
         
         {/* Pricing Comparison */}
         <div className="mb-8">
           <h3 className="text-xl font-semibold mb-4 flex items-center">
-            <FontAwesomeIcon icon={faDollarSign} className="mr-2 text-green-600" />
+            <FontAwesomeIcon icon={faDollarSign} className="mr-2 text-green-600 h-4" />
             Unbeatable Pricing
           </h3>
           <div className="grid grid-cols-3 gap-4 text-center">
@@ -31,7 +31,7 @@ const ValueProposition = () => {
                 key={competitor.name} 
                 className={`p-4 border rounded-lg ${competitor.highlight ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}
               >
-                <p className="font-medium">{competitor.name}</p>
+                <p className="font-medium text-nowrap">{competitor.name}</p>
                 <p className={`text-lg font-bold ${competitor.highlight ? 'text-green-600' : 'text-gray-800'}`}>
                   {competitor.price}
                 </p>
@@ -43,11 +43,11 @@ const ValueProposition = () => {
         {/* Key Benefits */}
         <div className="space-y-4">
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faCheckCircle} className="mr-3 text-blue-600" />
-            <p className="text-gray-700">Post unlimited job listings with our affordable pricing</p>
+            <FontAwesomeIcon icon={faClock} className="mr-3 text-blue-600 h-4" />
+            <p className="text-gray-700">Your job gets posted instantly - no review required.</p>
           </div>
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faShieldAlt} className="mr-3 text-purple-600" />
+            <FontAwesomeIcon icon={faShieldAlt} className="mr-3 text-purple-600 h-4" />
             <p className="text-gray-700">Recruiter plan where we vet and set meetings for hiring</p>
           </div>
           <div className="flex items-center">

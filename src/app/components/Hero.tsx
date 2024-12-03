@@ -31,14 +31,14 @@ export default function Hero() {
                 id="search"
                 type="search"
                 className="border border-gray-300 w-full py-2 px-4 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Search job here.."
+                placeholder="Policy Analyst"
                 value={searchPhrase}
                 onChange={(e) => setSearchPhrase(e.target.value)}
               />
             </div>
             <button 
               type="submit" 
-              className="transition-colors bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg"
+              className="transition-colors bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg"
             >
               Search
             </button>
@@ -78,7 +78,7 @@ export default function Hero() {
               type="submit"
               name="subscribe"
               id="mc-embedded-subscribe"
-              className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+              className="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors"
             >
               Subscribe
             </button>

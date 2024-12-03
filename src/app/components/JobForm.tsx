@@ -359,7 +359,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                 </div>
 
                 <div className="">
-                  <label className="block text-sm font-medium text-gray-700 mb-3">Additional Contact Information</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Additional Contact Information</label>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <TextField.Root
                     placeholder="John Wick"
@@ -467,7 +467,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
           )}
 
           <div className="flex justify-center">
-            <Button size="4" disabled={isSubmitting} className="min-w-full transition-colors">
+            <Button size="4" disabled={isSubmitting} className="min-w-full transition-colors bg-indigo-500 hover:bg-indigo-600 cursor-pointer">
               <span className="px-8">{isSubmitting ? 'Loading...' : (jobDoc ? 'Update' : 'Proceed to Checkout')}</span>
             </Button>
           </div>
