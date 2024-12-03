@@ -51,7 +51,7 @@ const ValueProposition = () => {
             <p className="text-gray-700">Recruiter plan where we vet and set meetings for hiring</p>
           </div>
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faChartLine} className="mr-3 text-green-600 h-4" />
+            <FontAwesomeIcon icon={faChartLine} className="mr-3 text-green-600" />
             <p className="text-gray-700">100% Belgian VAT complient</p>
           </div>
         </div>

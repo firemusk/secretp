@@ -58,7 +58,7 @@ const FairPayCalculator = () => {
     <Theme>
       <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-xl">
         <h1 className="text-2xl font-bold mb-6">
-          Brussels Fair Pay Calculator 
+          EUjobs Fair Pay Calculator 
           <span className="ml-2 text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full font-medium">BETA</span>
         </h1>
         

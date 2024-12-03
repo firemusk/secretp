@@ -179,7 +179,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                 Seniority Level <span className="text-red-500">*</span>
                 </label>
-                <RadioGroup.Root defaultValue={seniority} name="seniority" onValueChange={setSeniority}>
+                <RadioGroup.Root defaultValue={jobDoc?.seniority || 'junior'} name="seniority" onValueChange={setSeniority}>
                   <div className="flex items-center">
                     <RadioGroup.Item value="intern" className="w-4 h-4 rounded-full border border-gray-300" />
                     <span className="ml-2 text-gray-700">Intern</span>
