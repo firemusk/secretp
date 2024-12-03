@@ -2,16 +2,16 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faDollarSign, 
-  faCheckCircle, 
+  faClock, 
   faShieldAlt, 
   faChartLine 
 } from '@fortawesome/free-solid-svg-icons';
 
 const ValueProposition = () => {
   const competitorPricing = [
-    { name: 'eurobrussels', price: '$299/month' },
-    { name: 'eu jobs in brussels', price: '$249/month' },
-    { name: 'Our Platform', price: '$99/month', highlight: true }
+    { name: 'Eurobrussels', price: '$2000/month' },
+    { name: 'Euractiv Jobs', price: '$1000/month' },
+    { name: 'Eujobs Brussels', price: '$99.99/month', highlight: true }
   ];
 
   return (
@@ -43,23 +43,23 @@ const ValueProposition = () => {
         {/* Key Benefits */}
         <div className="space-y-4">
           <div className="flex items-center">
-            <FontAwesomeIcon icon={faCheckCircle} className="mr-3 text-blue-600 h-4" />
-            <p className="text-gray-700">Post unlimited job listings with our affordable pricing</p>
+            <FontAwesomeIcon icon={faClock} className="mr-3 text-blue-600 h-4" />
+            <p className="text-gray-700">Your job gets posted instantly - no review required.</p>
           </div>
           <div className="flex items-center">
             <FontAwesomeIcon icon={faShieldAlt} className="mr-3 text-purple-600 h-4" />
-            <p className="text-gray-700">Guaranteed candidate quality and screening</p>
+            <p className="text-gray-700">Recruiter plan where we vet and set meetings for hiring</p>
           </div>
           <div className="flex items-center">
             <FontAwesomeIcon icon={faChartLine} className="mr-3 text-green-600 h-4" />
-            <p className="text-gray-700">Higher conversion rates compared to traditional job boards</p>
+            <p className="text-gray-700">100% Belgian VAT complient</p>
           </div>
         </div>
 
         {/* Call to Action */}
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600 mb-2">
-            Save up to 60% compared to other job platforms
+            Pay 1/20th compared to other job boards
           </p>
         </div>
       </div>

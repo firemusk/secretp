@@ -467,7 +467,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
           )}
 
           <div className="flex justify-center">
-            <Button size="4" disabled={isSubmitting} className="min-w-full transition-colors bg-indigo-500 hover:bg-indigo-600">
+            <Button size="4" disabled={isSubmitting} className="min-w-full transition-colors bg-indigo-500 hover:bg-indigo-600 cursor-pointer">
               <span className="px-8">{isSubmitting ? 'Loading...' : (jobDoc ? 'Update' : 'Proceed to Checkout')}</span>
             </Button>
           </div>

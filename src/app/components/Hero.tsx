@@ -31,7 +31,7 @@ export default function Hero() {
                 id="search"
                 type="search"
                 className="border border-gray-300 w-full py-2 px-4 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Search job here.."
+                placeholder="Policy Analyst"
                 value={searchPhrase}
                 onChange={(e) => setSearchPhrase(e.target.value)}
               />

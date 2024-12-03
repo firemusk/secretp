@@ -12,25 +12,25 @@ const FAQ: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const faqs: FAQItem[] = [
-    {
-      question: "How much does it cost to post a job on EUjobs.co?",
-      answer: "We offer competitive pricing for job listings in Brussels and the EU. Our standard job posting starts at €99 per month, with discounts available for multiple listings or longer-term packages."
+ {
+      question: "Differences eujobs vs Eurobrussels?",
+      answer: "EUJobs offers instant payment options and job postings at just 100 euros, compared to the 2000 euros charged by other platforms. Whether you're seeking to post on EUJobs, Eurobrussels, or attract candidates for jobs Euractiv or Euractive Jobs, our cost-effective pricing ensures your job opportunities reach the right audience at a fraction of the cost."
     },
     {
-      question: "What types of jobs do you cover?",
-      answer: "EUjobs.co specializes in professional jobs across various sectors in Brussels and the European Union, including roles in EU institutions, international organizations, tech, finance, and more."
+      question: "Why use eujobs instead of euractiv jobs Brussels?",
+      answer: "EUJobs is the fastest-growing Brussels public affairs job site, offering affordable job postings at just 100 euros instead of the 1000 euros charged by others. For employers targeting Brussels employment or professionals seeking European jobs in Brussels, EUJobs stands out as an effective alternative to Euractiv Jobs and Euroactive Jobs platforms."
     },
     {
       question: "How long are job listings active?",
-      answer: "Job listings remain active for 30 days from the date of posting. You can renew or extend your listing to keep it visible to potential candidates."
+      answer: "Job listings on Euractiv Jobs remain active for 30 days from the date of posting. If you're looking to attract top talent in Brussels or across the EU job market, you can renew or extend your listing to keep it visible. Euractiv Jobs ensures your postings reach professionals searching for European jobs in Brussels, Eurobrussels roles, and more."
     },
     {
       question: "Do you offer candidate screening?",
-      answer: "Yes! We provide optional candidate screening services to help you find the most qualified professionals for your open positions in the EU job market."
+      answer: "Yes! We have a recuiter plan that provides optional candidate screening services to help you find the most qualified professionals for your open positions."
     },
     {
-      question: "Are international candidates welcome?",
-      answer: "Absolutely! We cater to the diverse, international nature of Brussels and EU job market, welcoming candidates from all EU member states and beyond."
+      question: "Why post on eubjos and not linkedin?",
+      answer: "Posting on a local specialized job board like Eubjos allows you to target candidates who are already within your niche or professional 'bubble.' This built-in focus acts as an automatic screening process, ensuring that applicants are more likely to meet your specific needs and qualifications compared to the broader audience on LinkedIn."
     }
   ];
 
