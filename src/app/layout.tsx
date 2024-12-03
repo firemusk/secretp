@@ -41,10 +41,10 @@ export default function RootLayout({
         <GoogleAnalytics />
         <Header />
         {children}
-        <footer className="container py-8 text-gray-500">
-          <div className="flex justify-between items-center">
+        <footer className="container py-8 text-gray-500 border-t-2 mt-2 md:mt-4 lg:mt-8">
+          <div className="flex md:flex-row flex-col justify-between md:items-center">
             <div>EUjobs.co &copy; 2024 - All rights reserved</div>
-            <nav className="flex flex-col">
+            <nav className="flex flex-col underline mt-4 md:mt-0 gap-1">
               <Link href="/blog" className="hover:text-gray-700 transition-colors">Eujobs Blog</Link>
               <Link href="/fairpay" className="hover:text-gray-700 transition-colors">EUjobs Fair Pay Calculator</Link>
               <Link href="/contact" className="hover:text-gray-700 transition-colors">Eujobs Contact</Link>
