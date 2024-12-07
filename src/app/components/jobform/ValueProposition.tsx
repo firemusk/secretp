@@ -9,9 +9,9 @@ import {
 
 const ValueProposition = () => {
   const competitorPricing = [
-    { name: 'Eurobrussels', price: '$2000/month' },
-    { name: 'Euractiv Jobs', price: '$1000/month' },
-    { name: 'Eujobs Brussels', price: '$99.99/month', highlight: true }
+    { name: 'Eurobrussels', price: '$2000' },
+    { name: 'Euractiv Jobs', price: '$1000' },
+    { name: 'Eujobs Brussels', price: '$99.99', highlight: true }
   ];
 
   return (
@@ -29,9 +29,9 @@ const ValueProposition = () => {
             {competitorPricing.map((competitor) => (
               <div 
                 key={competitor.name} 
-                className={`p-4 border rounded-lg ${competitor.highlight ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}
+                className={`px-4 py-2 border rounded-lg ${competitor.highlight ? 'border-green-500 bg-green-50' : 'border-gray-200'}`}
               >
-                <p className="font-medium text-nowrap">{competitor.name}</p>
+                <p className="font-medium">{competitor.name}</p>
                 <p className={`text-lg font-bold ${competitor.highlight ? 'text-green-600' : 'text-gray-800'}`}>
                   {competitor.price}
                 </p>
