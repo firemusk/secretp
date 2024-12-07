@@ -30,7 +30,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
   const [countryName, setCountryName] = useState(jobDoc?.country || 'Belgium');
   const [stateName, setStateName] = useState(jobDoc?.state || 'Brussels-Capital Region');
   const [cityName, setCityName] = useState(jobDoc?.city || 'Brussels');
-  const [seniority, setSeniority] = useState(jobDoc?.seniority || 'entry');
+  const [seniority, setSeniority] = useState(jobDoc?.seniority || 'junior');
   const [plan, setPlan] = useState(jobDoc?.plan || 'basic');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
