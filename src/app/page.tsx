@@ -21,9 +21,13 @@ export default async function Home({
   const header = searchPhrase ? `Search Results for "${searchPhrase}"` : "Latest Jobs";
 
   return (
-    <>
+    <div className="relative">
+      {/* Grid Background */}
+      <div className="grid-background"></div>
+
+      {/* Page Content */}
       <Hero />
       <Jobs header={header} initialJobs={jobs} isSearchResult={!!searchPhrase} />
-    </>
+    </div>
   );
 }
