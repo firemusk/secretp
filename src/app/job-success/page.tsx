@@ -23,6 +23,14 @@ function SuccessContent() {
       .then(data => {
         if (data.jobId && data.plan) {
           updateJobStatusAfterPayment(data.jobId, data.plan);
+
+          // Trigger Google Analytics event
+          if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'ads_conversion_Success_Page_1', {
+              jobId: data.jobId,
+              plan: data.plan,
+            });
+          }
         }
       })
       .catch(error => console.error('Error:', error));
