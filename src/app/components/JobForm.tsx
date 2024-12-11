@@ -78,6 +78,12 @@ export default function JobForm({ jobDoc }: JobFormProps) {
 
       const savedJob = await saveJobAction(data);
 
+      // Trigger Google Analytics event
+      gtag('event', 'ads_conversion_Success_Page_1', {
+        event_category: 'Checkout',
+        event_label: 'Job Checkout Start',
+      });
+
       // If we're editing (jobDoc exists), skip the Stripe checkout
       if (!jobDoc) {
         const stripe = await stripePromise;
@@ -466,6 +472,11 @@ export default function JobForm({ jobDoc }: JobFormProps) {
               </div>
           )}
 
+            {error && (
+              <div className="bg-red-100 text-red-800 p-4 rounded-md">
+                {error}
+                </div>
+            )}
           <div className="flex justify-center">
             <Button size="4" disabled={isSubmitting} className="min-w-full transition-colors bg-indigo-500 hover:bg-indigo-600 cursor-pointer">
               <span className="px-8">{isSubmitting ? 'Loading...' : (jobDoc ? 'Update' : 'Proceed to Checkout')}</span>
