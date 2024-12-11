@@ -62,9 +62,6 @@ export default function RootLayout({
               >
                 Jobs In London
               </Link>
-              <Link href="/eu-jobs" className="hover:text-gray-700 transition-colors">
-                Browse EU Jobs
-              </Link>
             </nav>
           </div>
         </footer>
