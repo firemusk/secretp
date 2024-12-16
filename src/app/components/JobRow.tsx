@@ -107,7 +107,7 @@ export default function JobRow({jobDoc}:{jobDoc:Job}) {
                   icon={faUpRightFromSquare} 
                   className="w-4 h-4" 
                 />
-                  Open Job in new tab
+                  Open Job Details
                 </a>
 
                 </button> 
