@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section className="container my-8">
       <h1 className="text-4xl font-bold text-center mb-6">
-        eujobs.co - Policy jobs in <span className='text-yellow-500'>Brussels</span>
+        eujobs.co - Policy jobs in <span className='underline'>Brussels</span>
       </h1>
       
       <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
