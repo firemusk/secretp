@@ -32,6 +32,7 @@ const JobSchema = z.object({
   postalCode: z.string().optional(),
   street: z.string().optional(),
   expiresOn: z.string().optional(),
+  plan: z.string().optional().default("pending"),
   applyLink: z
     .string()
     .optional(), 
@@ -40,6 +41,21 @@ const JobSchema = z.object({
 export async function updateJobStatusAfterPayment(jobId: string, plan: string): Promise<Job> {
   try {
     await dbConnect();
+    // Skip payment status update for the Basic plan
+    if (plan === 'basic') {
+      const job = await JobModel.findById(jobId);
+
+      if (!job) {
+        throw new Error('Job not found');
+      }
+
+      // Ensure the job's plan is updated to 'basic'
+      job.plan = 'basic';
+      await job.save();
+
+      revalidatePath('/jobs');
+      return job.toObject();
+    }
 
     const job = await JobModel.findByIdAndUpdate(jobId, { plan: plan }, { new: true });
 
@@ -87,7 +103,12 @@ export async function saveJobAction(formData: FormData): Promise<Job> {
     }
 
     // Validate the data
+    //const validatedData = JobSchema.parse({
+    //  ...jobDataWithOptionalWorkosId,
+    //  plan: jobDataWithOptionalWorkosId.plan || 'basic', // this might not be good, defaulting to basic might mean no pending status anymore! 
+    //});
     const validatedData = JobSchema.parse(jobDataWithOptionalWorkosId);
+    console.log("Validated data after schema parsing:", validatedData);
 
     let job;
     if (validatedData.id) {
