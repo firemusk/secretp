@@ -11,6 +11,7 @@ import { useState } from "react";
 import "react-country-state-city/dist/react-country-state-city.css";
 import { CitySelect, CountrySelect, StateSelect } from "react-country-state-city";
 import { loadStripe } from '@stripe/stripe-js';
+import { log } from "console";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -57,79 +58,74 @@ export default function JobForm({ jobDoc }: JobFormProps) {
     ],
   };
 
-  async function handleSaveJob(data: FormData) {
-    setIsSubmitting(true);
-    setError(null);
+async function handleSaveJob(data: FormData) {
+  setIsSubmitting(true);
+  setError(null);
 
-    try {
-      data.set('country', countryName);
-      data.set('state', stateName);
-      data.set('city', cityName);
-      data.set('countryId', countryId.toString());
-      data.set('stateId', stateId.toString());
-      data.set('cityId', cityId.toString());
-      data.set('seniority', seniority);
-      data.set('plan', plan);
+  try {
+    data.set('country', countryName);
+    data.set('state', stateName);
+    data.set('city', cityName);
+    data.set('countryId', countryId.toString());
+    data.set('stateId', stateId.toString());
+    data.set('cityId', cityId.toString());
+    data.set('seniority', seniority);
 
-      const applyLink = data.get('applyLink') as string;
-      if (applyLink && applyLink.trim() === '') {
-        data.delete('applyLink'); // Remove the field if it's empty
-      }
-
-      const savedJob = await saveJobAction(data);
-
-      // Trigger Google Analytics event
-      gtag('event', 'ads_conversion_Success_Page_1', {
-        event_category: 'Checkout',
-        event_label: 'Job Checkout Start',
-      });
-
-      // If we're editing (jobDoc exists), skip the Stripe checkout
-      if (!jobDoc) {
-        const stripe = await stripePromise;
-        if (!stripe) {
-          throw new Error('Stripe failed to load');
-        }
-
-        const response = await fetch('/api/create-checkout-session', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            jobId: savedJob._id,
-            plan: plan,
-          }),
-        });
-
-        const responseData = await response.json();
-
-        if (!response.ok) {
-          throw new Error(`Failed to create checkout session: ${responseData.error || 'Unknown error'}`);
-        }
-
-        if (!responseData.sessionId) {
-          throw new Error('No session ID returned from the server');
-        }
-
-        const result = await stripe.redirectToCheckout({
-          sessionId: responseData.sessionId,
-        });
-
-        if (result.error) {
-          throw new Error(result.error.message);
-        }
-      } else {
-        // For edits, redirect back to the job listings page
-        router.push('/job-listings');
-      }
-    } catch (error) {
-      console.error('Error during job save or checkout:', error);
-      setError(error instanceof Error ? error.message : 'An unexpected error occurred');
-    } finally {
-      setIsSubmitting(false);
+    if (plan === 'basic') {
+      data.set('plan', 'basic'); // Directly set to "basic" for free plan
+    } else {
+      data.set('plan', 'pending'); // Default to "pending" for paid plans
     }
+
+    const savedJob = await saveJobAction(data);
+
+    if (plan === 'basic') {
+      // Redirect immediately for Basic plan
+      router.push('/');
+      return;
+    }
+
+    // For paid plans, proceed with Stripe Checkout
+    const stripe = await stripePromise;
+    if (!stripe) {
+      throw new Error('Stripe failed to load');
+    }
+
+    const response = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        jobId: savedJob._id,
+        plan: plan, // Pass selected paid plan (e.g., "pro", "recruiter")
+      }),
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      throw new Error(`Failed to create checkout session: ${responseData.error || 'Unknown error'}`);
+    }
+
+    if (!responseData.sessionId) {
+      throw new Error('No session ID returned from the server');
+    }
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: responseData.sessionId,
+    });
+
+    if (result.error) {
+      throw new Error(result.error.message);
+    }
+  } catch (error) {
+    console.error('Error during job save or checkout:', error);
+    setError(error instanceof Error ? error.message : 'An unexpected error occurred');
+  } finally {
+    setIsSubmitting(false);
   }
+}
 
   const showPlanSelection = !jobDoc;
 
@@ -406,7 +402,7 @@ export default function JobForm({ jobDoc }: JobFormProps) {
                       id="basic"
                       className="w-4 h-4 rounded-full mr-2 cursor-pointer"
                     />
-                      <label className="pl-2 font-bold text-lg cursor-pointer" htmlFor="basic">Basic (€99.99)</label>
+                        <label className="pl-2 font-bold text-lg cursor-pointer" htmlFor="basic">Basic (Free)</label>
                     </div>
                     <ul className="space-y-2 ml-6">
                       {planFeatures.basic.map((feature, index) => (

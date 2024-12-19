@@ -79,7 +79,7 @@ const JobSchema = new Schema({
   userWorkosId: { type: String, required: false },
   plan: {
     type: String, 
-    enum: ['pending', 'basic', 'premium', 'recruiter', 'unlimited'],
+    enum: ['pending', 'basic', 'pro', 'recruiter', 'unlimited'],
     required: false,
     default: 'pending'
   }
@@ -107,7 +107,7 @@ export async function fetchJobs(limit: number = 10) {
     
     // First, fetch pro jobs
     const proJobs = await JobModel.find(
-      { plan: 'pro' },
+      { plan:  ['recruiter','pro'] },
       {},
       { sort: '-createdAt', limit }
     );
@@ -117,7 +117,7 @@ export async function fetchJobs(limit: number = 10) {
     const otherJobs = await JobModel.find(
       { 
         plan: { 
-          $nin: ['pro', 'pending']
+          $nin: ['pro', 'pending', 'recruiter']
         }
       },
       {},
