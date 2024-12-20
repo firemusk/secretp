@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faDollarSign, 
+  faEuroSign, 
   faClock, 
   faShieldAlt, 
   faChartLine 
@@ -9,9 +9,9 @@ import {
 
 const ValueProposition = () => {
   const competitorPricing = [
-    { name: 'Eurobrussels', price: '$2000' },
-    { name: 'Euractiv Jobs', price: '$1000' },
-    { name: 'Eujobs Brussels', price: '$99.99', highlight: true }
+    { name: 'Eurobrussels', price: '€2000' },
+    { name: 'Euractiv Jobs', price: '€1000' },
+    { name: 'Eujobs Brussels', price: '€99.99', highlight: true }
   ];
 
   return (
@@ -22,7 +22,7 @@ const ValueProposition = () => {
         {/* Pricing Comparison */}
         <div className="mb-8">
           <h3 className="text-xl font-semibold mb-4 flex items-center">
-            <FontAwesomeIcon icon={faDollarSign} className="mr-2 text-green-600 h-4" />
+            <FontAwesomeIcon icon={faEuroSign} className="mr-2 text-green-600 h-4" />
             Unbeatable Pricing
           </h3>
           <div className="grid grid-cols-3 gap-4 text-center">
