@@ -228,6 +228,7 @@ async function handleSaveJob(data: FormData) {
               placeholder="Describe the role, responsibilities, requirements, and benefits..."
               resize="vertical"
               name="description"
+              maxLength={10000}
               className="min-h-32"
               required
             />
